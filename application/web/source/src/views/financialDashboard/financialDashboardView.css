@@ -1,0 +1,30 @@
+#revenue-col-title {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	width: 75%;
+}
+
+.revenue-region {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	border: solid 2px black;
+	width: 75%;
+}
+
+.revenue-month {
+	display: flex;
+	justify-content: left;
+	width: 90%;
+}
+
+.revenue-gross {
+	display: flex;
+	justify-content: end;
+	width: 90%;
+}
+
+.revenue-year {
+	display: flex;
+	justify-content: center;
+	width: 90%;
+}

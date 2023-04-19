@@ -1,0 +1,26 @@
+[
+    {
+        "id": "104",
+        "description": "<script>",
+        "price": 100000000,
+        "stock": 17
+      },
+      {
+        "id": "105",
+        "description": "SELECT * FROM CartItem",
+        "price": 50,
+        "stock": 5
+      },
+      {
+        "id": "106",
+        "price": 49,
+        "description": "Sample description",
+        "stock": 6
+      },
+      {
+        "id": "107",
+        "price": 99999999,
+        "description": "Sample description",
+        "stock": 0
+      }
+]

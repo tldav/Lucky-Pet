@@ -1,0 +1,31 @@
+#payment-submission {
+  padding: 5%;
+}
+
+.payment-submission-form {
+  display: grid;
+  margin-top: 100px;
+}
+
+label {
+  padding: 5px;
+  margin-bottom: 5px;
+  margin-top: 12px;
+  font-size: 22px;
+  color: #000;
+}
+
+input {
+  border: 2px solid #000;
+  text-align: center;
+  padding: 5px;
+}
+
+.hide-error {
+  display: none;
+}
+
+.error {
+  color: red;
+  font-style: italic;
+}

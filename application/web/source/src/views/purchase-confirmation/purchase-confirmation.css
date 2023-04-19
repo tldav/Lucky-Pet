@@ -1,0 +1,14 @@
+#purchase-confirmation {
+  padding: 5%;
+  display: flex;
+}
+
+.confirmation-message-container {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #3a8c2f;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 300px;
+}

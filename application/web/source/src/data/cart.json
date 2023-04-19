@@ -1,0 +1,111 @@
+[
+	{
+		"id": "1",
+		"items": [
+			{
+				"id": "101",
+				"price": 500,
+				"description": "Sample text"
+			}
+		]
+	},
+	{
+		"id": "2",
+		"items": [
+			{
+				"id": "102",
+				"price": 60,
+				"description": ""
+			}
+		]
+	},
+	{
+		"id": "3",
+		"items": [
+			{
+				"id": "103",
+				"price": -100,
+				"description": "Item w/ price negative one dollar"
+			}
+		]
+	},
+	{
+		"id": "4",
+		"items": [
+			{
+				"id": "104",
+				"price": 100000000,
+				"description": "<script>"
+			}
+		]
+	},
+	{
+		"id": "5",
+		"items": [
+			{
+				"id": "105",
+				"price": 50,
+				"description": "SELECT * FROM CartItem"
+			}
+		]
+	},
+	{
+		"id": "6",
+		"items": [
+			{
+				"id": "106",
+				"price": 49,
+				"description": "Sample description"
+			}
+		]
+	},
+	{
+		"id": "7",
+		"items": [
+			{
+				"id": "107",
+				"price": 99999999,
+				"description": "Sample description"
+			}
+		]
+	},
+	{
+		"id": "8",
+		"items": [
+			{
+				"id": "111",
+				"price": 49,
+				"description": "Sample description"
+			},
+			{
+				"id": "108",
+				"price": 50,
+				"description": "Sample description"
+			}
+		]
+	},
+	{
+		"id": "9",
+		"items": [
+			{
+				"id": "110",
+				"price": 0,
+				"description": "Sample Description"
+			}
+		]
+	},
+	{
+		"id": "10",
+		"items": [
+			{
+				"id": "110",
+				"price": 500,
+				"description": null
+			}
+		]
+	},
+	{
+		"id": "11",
+		"items": []
+	}
+]

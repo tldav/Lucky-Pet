@@ -1,0 +1,13 @@
+* {
+	font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+	font-weight: lighter;
+	margin: 0 auto;
+	padding: 0;
+	background-color: #e8e8e4;
+}
+
+.app {
+	max-width: 75%;
+	box-shadow: 0px 0px 20px 5px #cdcdcd;
+	height: 100vh;
+}

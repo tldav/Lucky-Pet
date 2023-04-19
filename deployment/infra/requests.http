@@ -1,0 +1,14 @@
+@endpoint = https://sq0oezn7g8.execute-api.us-west-1.amazonaws.com/prod/
+
+GET {{endpoint}}/hell/
+###
+
+POST {{endpoint}}/pets/
+Content-Type: application/json
+
+  {
+  "dogName": " Rex",
+  "breed": "Rottweiler",
+  "sex": "male"
+}
+###

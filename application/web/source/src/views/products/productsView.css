@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+
+#products-view {
+	display: flex;
+	align-items: center;
+	height: 100%;
+}
+
+#product-list-region {
+	display: flex;
+	flex-flow: row wrap;
+	max-width: 80%;
+}
+
+.product-region {
+	border: solid 2px black;
+	width: 30%;
+	min-height: 115px;
+	text-align: center;
+}
+
+.product-region p {
+	font-size: 18px;
+	font-family: "Montserrat", sans-serif;
+}

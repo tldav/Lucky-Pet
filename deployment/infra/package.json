@@ -1,0 +1,27 @@
+{
+  "name": "aws-deployment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cdk-synth": "cdk synth",
+    "cdk-deploy": "cdk deploy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/uuid": "^9.0.1",
+    "aws-cdk": "^2.72.1",
+    "aws-cdk-lib": "^2.72.1",
+    "constructs": "^10.1.302",
+    "esbuild": "^0.17.15",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.3"
+  },
+  "dependencies": {
+    "@types/aws-lambda": "^8.10.114",
+    "aws-sdk": "^2.1352.0"
+  }
+}

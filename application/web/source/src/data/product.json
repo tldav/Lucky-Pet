@@ -1,0 +1,70 @@
+[
+  {
+    "id": "101",
+    "price": 500,
+    "description": "Sample text",
+    "stock": 230
+  },
+  {
+    "id": "102",
+    "description": "",
+    "price": 60,
+    "stock": 17
+  },
+  {
+    "id": "103",
+    "price": -100,
+    "description": "Item w/ price negative one dollar",
+    "stock": 40
+  },
+  {
+    "id": "104",
+    "description": "<script>",
+    "price": 100000000,
+    "stock": 17
+  },
+  {
+    "id": "105",
+    "description": "SELECT * FROM CartItem",
+    "price": 50,
+    "stock": 5
+  },
+  {
+    "id": "106",
+    "price": 49,
+    "description": "Sample description",
+    "stock": 6
+  },
+  {
+    "id": "107",
+    "price": 99999999,
+    "description": "Sample description",
+    "stock": 0
+  },
+  {
+    "id": "108",
+    "price": 50,
+    "description": "Sample description",
+    "stock": -1
+  },
+
+  {
+    "id": "110",
+    "description": null,
+    "price": 500,
+    "stock": 30
+  },
+
+  {
+    "id": "111",
+    "price": 49,
+    "description": "Sample description",
+    "stock": 50
+  },
+  {
+    "id": "112",
+    "price": 49,
+    "description": "Sample description",
+    "stock": 50
+  }
+]

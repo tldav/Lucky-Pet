@@ -1,0 +1,22 @@
+#navBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    height: 75px;
+    margin: auto;
+    padding: 0;
+    background-color: #D8E2DC;
+}
+
+#bannerTitle {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 50px;
+    width: 100%;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: lighter;
+    color: white;
+    background-color: #D8E2DC;
+}
