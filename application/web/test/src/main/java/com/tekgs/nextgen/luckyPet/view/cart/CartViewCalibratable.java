@@ -5,5 +5,5 @@ import com.tekgs.nextgen.luckyPet.view.cart.itemListRegion.ItemListRegionCalibra
 public interface CartViewCalibratable {
     String getTotal();
     
-    ItemListRegionCalibratable inItemListRegion();
+    ItemListRegionCalibratable getItemListRegion();
 }

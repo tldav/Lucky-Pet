@@ -3,6 +3,7 @@ package com.tekgs.nextgen.luckyPet.view.cart;
 import com.tekgs.nextgen.luckyPet.data.cart.Cart;
 import com.tekgs.nextgen.luckyPet.data.cart.CartDefinition;
 import com.tekgs.nextgen.luckyPet.data.cart.CartProvider;
+import com.tekgs.nextgen.luckyPet.data.cart.item.ItemDefinition;
 import com.tekgs.nextgen.luckyPet.data.product.ProductDefinition;
 import org.softwareonpurpose.gauntlet.GauntletTest;
 import org.testng.annotations.DataProvider;
@@ -27,7 +28,8 @@ public class CartViewTests extends GauntletTest {
                 {CartDefinition.getInstance().withItem(zeroCostItem)},
                 {CartDefinition.getInstance().withItem(fortyNineCentItem).withItem(fiftyCentItem)},
                 {CartDefinition.getInstance().withItemCount(0)},
-                {CartDefinition.getInstance().withItem(ProductDefinition.getInstance().withDescription(null))},
+                {CartDefinition.getInstance().withItem(ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withDescription(null)))},
+                        
                 {CartDefinition.getInstance().withItem(ProductDefinition.getInstance().withDescription(""))},
                 {CartDefinition.getInstance().withItem(ProductDefinition.getInstance().withDescriptionContaining("<script>"))},
                 {CartDefinition.getInstance().withItem(ProductDefinition.getInstance().withDescriptionContaining(sql))}

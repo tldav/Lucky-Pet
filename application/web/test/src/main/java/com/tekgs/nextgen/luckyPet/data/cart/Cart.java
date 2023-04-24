@@ -1,13 +1,13 @@
 package com.tekgs.nextgen.luckyPet.data.cart;
 
-import com.tekgs.nextgen.luckyPet.data.product.Product;
-import com.tekgs.nextgen.luckyPet.data.product.ProductCalibratable;
+import com.tekgs.nextgen.luckyPet.data.cart.item.Item;
+import com.tekgs.nextgen.luckyPet.data.cart.item.ItemCalibratable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cart implements CartCalibratable {
-    private final List<Product> items = new ArrayList<>();
+    private final List<Item> items = new ArrayList<>();
     private final String id;
     
     private Cart(String id) {
@@ -21,16 +21,16 @@ public class Cart implements CartCalibratable {
     @Override
     public Integer getCartTotal() {
         Integer totalInCents = 0;
-        for (ProductCalibratable item : this.items) {
-            if (item.getPrice() != null) {
-            totalInCents += item.getPrice();
+        for (ItemCalibratable item : this.items) {
+            if (item.getProduct().getPrice() != null) {
+            totalInCents += item.getProduct().getPrice();
             }
         }
         return totalInCents;
     }
 
     @Override
-    public List<ProductCalibratable> getItems() {
+    public List<ItemCalibratable> getItems() {
         return new ArrayList<>(this.items);
     }
 
@@ -50,18 +50,18 @@ public class Cart implements CartCalibratable {
         } else if (comparator.getId() != null && this.getId().equals(comparator.getId())) {
             return true;
         }
-        List<ProductCalibratable> itemDefinitions = comparator.getItems();
+        List<ItemCalibratable> itemDefinitions = comparator.getItems();
         boolean isEquivalent = areEquivalent(comparator.getCartTotal(), this.getCartTotal());
         isEquivalent &= areEquivalent(comparator.getItemCount(), this.getItemCount());
         isEquivalent &= areItemsEquivalent(itemDefinitions);
         return isEquivalent;
     }
 
-    private boolean areItemsEquivalent(List<ProductCalibratable> comparators) {
-        List<ProductCalibratable> thisItems = new ArrayList<>(this.getItems());
-        for (ProductCalibratable itemDefinition : comparators) {
-            ProductCalibratable foundItem = null;
-            for (ProductCalibratable candidate : thisItems) {
+    private boolean areItemsEquivalent(List<ItemCalibratable> comparators) {
+        List<ItemCalibratable> thisItems = new ArrayList<>(this.getItems());
+        for (ItemCalibratable itemDefinition : comparators) {
+            ItemCalibratable foundItem = null;
+            for (ItemCalibratable candidate : thisItems) {
                 if (candidate.equivalent(itemDefinition)) {
                     foundItem = candidate;
                     break;

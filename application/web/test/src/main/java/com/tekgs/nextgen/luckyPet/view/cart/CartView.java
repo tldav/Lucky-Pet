@@ -40,7 +40,7 @@ public class CartView extends UiView implements CartViewCalibratable {
     }
 
     @Override
-    public ItemListRegionCalibratable inItemListRegion() {
+    public ItemListRegionCalibratable getItemListRegion() {
         return ItemListRegion.getInstance(this.getElement());
     }
 

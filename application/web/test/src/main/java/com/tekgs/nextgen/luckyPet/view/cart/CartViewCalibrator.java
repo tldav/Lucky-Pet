@@ -14,7 +14,7 @@ public class CartViewCalibrator extends Calibrator {
         this.expected = expected;
         this.actual = actual;
         UiRegion.suppressConstructionLogging(true);
-        addChildCalibrator(ItemListRegionCalibrator.getInstance(expected.inItemListRegion(), actual.inItemListRegion()));
+        addChildCalibrator(ItemListRegionCalibrator.getInstance(expected.getItemListRegion(), actual.getItemListRegion()));
         UiRegion.suppressConstructionLogging(false);
     }
     

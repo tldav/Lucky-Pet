@@ -1,6 +1,7 @@
 package com.tekgs.nextgen.luckyPet.view.cart;
 
 import com.tekgs.nextgen.luckyPet.data.cart.Cart;
+import com.tekgs.nextgen.luckyPet.data.cart.item.ItemCalibratable;
 import com.tekgs.nextgen.luckyPet.data.financial.Cents;
 import com.tekgs.nextgen.luckyPet.data.product.ProductCalibratable;
 import com.tekgs.nextgen.luckyPet.view.cart.itemListRegion.ItemListRegionCalibratable;
@@ -30,8 +31,8 @@ public class CartViewExpected implements CartViewCalibratable {
         return Cents.getInstance(total).inUsdFormat();
     }
     @Override
-    public ItemListRegionCalibratable inItemListRegion() {
-        List<ProductCalibratable> items = this.cart == null ? new ArrayList<>() : this.cart.getItems();
+    public ItemListRegionCalibratable getItemListRegion() {
+        List<ItemCalibratable> items = this.cart == null ? new ArrayList<>() : this.cart.getItems();
         return ItemListRegionExpected.getInstance(items);
     }
 }

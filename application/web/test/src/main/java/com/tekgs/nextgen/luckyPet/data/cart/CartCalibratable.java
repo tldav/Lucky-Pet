@@ -1,13 +1,13 @@
 package com.tekgs.nextgen.luckyPet.data.cart;
 
-import com.tekgs.nextgen.luckyPet.data.product.ProductCalibratable;
+import com.tekgs.nextgen.luckyPet.data.cart.item.ItemCalibratable;
 
 import java.util.List;
 
 public interface CartCalibratable {
     Integer getCartTotal();
 
-    List<ProductCalibratable> getItems();
+    List<ItemCalibratable> getItems();
 
     String getId();
 

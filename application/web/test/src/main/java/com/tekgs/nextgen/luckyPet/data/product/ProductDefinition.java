@@ -5,7 +5,10 @@ public class ProductDefinition implements ProductCalibratable {
     private String invalidDescription = "";
     private String description;
     private Integer stock;
-
+    
+    private ProductDefinition() {
+    }
+    
     public static ProductDefinition getInstance() {
         return new ProductDefinition();
     }
