@@ -17,7 +17,7 @@ public class CartDefinition implements CartCalibratable {
     }
 
     @Override
-    public Integer getCartTotal() {
+    public Integer getTotal() {
         return total;
     }
 

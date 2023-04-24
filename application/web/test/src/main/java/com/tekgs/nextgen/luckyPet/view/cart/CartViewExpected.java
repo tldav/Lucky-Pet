@@ -3,7 +3,6 @@ package com.tekgs.nextgen.luckyPet.view.cart;
 import com.tekgs.nextgen.luckyPet.data.cart.Cart;
 import com.tekgs.nextgen.luckyPet.data.cart.item.ItemCalibratable;
 import com.tekgs.nextgen.luckyPet.data.financial.Cents;
-import com.tekgs.nextgen.luckyPet.data.product.ProductCalibratable;
 import com.tekgs.nextgen.luckyPet.view.cart.itemListRegion.ItemListRegionCalibratable;
 import com.tekgs.nextgen.luckyPet.view.cart.itemListRegion.ItemListRegionExpected;
 
@@ -27,7 +26,7 @@ public class CartViewExpected implements CartViewCalibratable {
 
     @Override
     public String getTotal() {
-        Integer total = this.cart == null ? 0 : this.cart.getCartTotal();
+        Integer total = this.cart == null ? 0 : this.cart.getTotal();
         return Cents.getInstance(total).inUsdFormat();
     }
     @Override

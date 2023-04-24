@@ -19,11 +19,11 @@ public class Cart implements CartCalibratable {
     }
 
     @Override
-    public Integer getCartTotal() {
+    public Integer getTotal() {
         Integer totalInCents = 0;
         for (ItemCalibratable item : this.items) {
             if (item.getProduct().getPrice() != null) {
-            totalInCents += item.getProduct().getPrice();
+            totalInCents += item.getProduct().getPrice() * item.getQuantity();
             }
         }
         return totalInCents;
@@ -51,7 +51,7 @@ public class Cart implements CartCalibratable {
             return true;
         }
         List<ItemCalibratable> itemDefinitions = comparator.getItems();
-        boolean isEquivalent = areEquivalent(comparator.getCartTotal(), this.getCartTotal());
+        boolean isEquivalent = areEquivalent(comparator.getTotal(), this.getTotal());
         isEquivalent &= areEquivalent(comparator.getItemCount(), this.getItemCount());
         isEquivalent &= areItemsEquivalent(itemDefinitions);
         return isEquivalent;
