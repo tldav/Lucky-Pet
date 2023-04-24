@@ -13,13 +13,12 @@ import org.testng.annotations.Test;
 public class CartViewTests extends GauntletTest {
     @DataProvider
     public static Object[][] scenarios() {
-        ProductDefinition zeroCostItem = ProductDefinition.getInstance().withPrice(0);
-        ProductDefinition negativeCostItem = ProductDefinition.getInstance().withPrice(-100);
-        ProductDefinition oneMillionDollarItem = ProductDefinition.getInstance().withPrice(100000000);
-        ProductDefinition fiftyCentItem = ProductDefinition.getInstance().withPrice(50);
-        ProductDefinition fortyNineCentItem = ProductDefinition.getInstance().withPrice(49);
-        ProductDefinition oneLessThanAMillionItem = ProductDefinition.getInstance().withPrice(99999999);
-        String sql = "SELECT * FROM CartItem";
+        ItemDefinition zeroCostItem = ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withPrice(0));
+        ItemDefinition negativeCostItem = ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withPrice(-100));
+        ItemDefinition oneMillionDollarItem = ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withPrice(100000000));
+        ItemDefinition fiftyCentItem = ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withPrice(50));
+        ItemDefinition fortyNineCentItem = ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withPrice(49));
+        ItemDefinition oneLessThanAMillionItem = ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withPrice(99999999));
         return new Object[][]{
                 {CartDefinition.getInstance().withItem(oneLessThanAMillionItem)},
                 {CartDefinition.getInstance().withItem(fortyNineCentItem)},
@@ -29,27 +28,24 @@ public class CartViewTests extends GauntletTest {
                 {CartDefinition.getInstance().withItem(fortyNineCentItem).withItem(fiftyCentItem)},
                 {CartDefinition.getInstance().withItemCount(0)},
                 {CartDefinition.getInstance().withItem(ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withDescription(null)))},
-                        
-                {CartDefinition.getInstance().withItem(ProductDefinition.getInstance().withDescription(""))},
-                {CartDefinition.getInstance().withItem(ProductDefinition.getInstance().withDescriptionContaining("<script>"))},
-                {CartDefinition.getInstance().withItem(ProductDefinition.getInstance().withDescriptionContaining(sql))}
+                {CartDefinition.getInstance().withItem(ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withDescription("")))},
+                {CartDefinition.getInstance().withItem(ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withDescriptionContaining("<script>")))},
+                {CartDefinition.getInstance().withItem(ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withDescriptionContaining("SELECT * FROM CartItem")))}
         };
     }
 
     @Test(groups = {TestSuite.SMOKE})
     public void smoke() {
-        addRequirements("140-Cart View-empty message", "141-Cart View-Usd Formatting");
         CartViewExpected expected = CartViewExpected.getInstance();
         when();
         CartView actual = CartView.directNav();
         then(CartViewCalibrator.getInstance(expected, actual));
     }
 
-    @Test(groups = {TestSuite.RELEASE}, dependsOnMethods = "smoke")
+    @Test(groups = {TestSuite.RELEASE, TestSuite.ACCEPTANCE}, dependsOnMethods = "smoke")
     public void release() {
-        addRequirements("140-Cart View-empty message", "141-Cart View-Usd Formatting");
         CartDefinition shoppingCartDefinition =
-                CartDefinition.getInstance().withItem(ProductDefinition.getInstance().withPrice(50));
+                CartDefinition.getInstance().withItem(ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withPrice(50)));
         given(shoppingCartDefinition);
         Cart shoppingCart = CartProvider.getInstance().get(shoppingCartDefinition);
         CartViewExpected expected = CartViewExpected.getInstance(shoppingCart);
@@ -58,9 +54,9 @@ public class CartViewTests extends GauntletTest {
         then(CartViewCalibrator.getInstance(expected, actual));
     }
 
-    @Test(dependsOnMethods = "smoke", dataProvider = "scenarios")
+    @Test(groups = {TestSuite.DEBUG}, dependsOnMethods = "smoke", dataProvider = "scenarios")
     public void directNav(CartDefinition shoppingCartDefinition) {
-        addRequirements("140-Cart View-empty message", "141-Cart View-Usd Formatting");
+        addRequirements("53-Cart-view-line-item-total");
         Cart shoppingCart = CartProvider.getInstance().get(shoppingCartDefinition);
         given(shoppingCart);
         CartViewExpected expected = CartViewExpected.getInstance(shoppingCart);

@@ -31,7 +31,7 @@ public class ItemDefinition implements ItemCalibratable {
     }
     
     @Override
-    public Product getProduct() {
+    public ProductCalibratable getProduct() {
         return this.product;
     }
     
