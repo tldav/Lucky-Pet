@@ -2,7 +2,7 @@ const isInCart = (productId, cart) => {
 	let isInCart = false;
 	if (cart) {
 		cart.items.forEach((item) => {
-			isInCart = productId === item.id;
+			isInCart = productId === item.product.id;
 		});
 	}
 	return isInCart;
