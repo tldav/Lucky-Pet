@@ -22,7 +22,7 @@ import java.util.Properties;
 public class Environment {
     private static Environment environment;
     private final Properties properties = new Properties();
-
+    
     Environment(InputStream inputStream) {
         if (inputStream != null) {
             try {
@@ -32,7 +32,7 @@ public class Environment {
             }
         }
     }
-
+    
     /**
      * System Property 'env' is used to initialize Environment to resources/[env].properties
      *
@@ -54,15 +54,15 @@ public class Environment {
         }
         return environment;
     }
-
+    
     static void clear() {
         environment = null;
     }
-
+    
     private String getProperty(String key) {
         return properties.getProperty(key);
     }
-
+    
     public String getDomainUrl() {
         return getProperty("domain-url");
     }
