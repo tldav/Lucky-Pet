@@ -20,13 +20,18 @@ public class ItemRegionExpected implements ItemRegionCalibratable {
     }
     
     @Override
-    public String getPrice() {
+    public String getProductPrice() {
         Cents price = Cents.getInstance(this.item.getProduct().getPrice());
         return price.inUsdFormat();
     }
     
     @Override
-    public String getItemDescription() {
+    public String getProductDescription() {
         return item.getProduct().getDescription();
+    }
+    
+    @Override
+    public String getLineItemTotal() {
+        return null;
     }
 }

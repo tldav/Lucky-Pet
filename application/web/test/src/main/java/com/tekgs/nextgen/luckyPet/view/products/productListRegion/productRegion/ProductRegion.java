@@ -38,7 +38,7 @@ public class ProductRegion extends UiRegion implements ProductRegionCalibratable
     }
     
     private UiElement getPriceElement() {
-        return UiElement.getInstance("Product 'Price'", UiLocatorType.CLASS, "product-price", this.getElement());
+        return UiElement.getInstance("Product 'Price'", UiLocatorType.CLASS, "price", this.getElement());
     }
     
     @Override
@@ -57,6 +57,6 @@ public class ProductRegion extends UiRegion implements ProductRegionCalibratable
     
     
     private UiElement getProductDescriptionElement() {
-        return UiElement.getInstance("Product 'Description'", UiLocatorType.CLASS, "product-description", this.getElement());
+        return UiElement.getInstance("Product 'Description'", UiLocatorType.CLASS, "description", this.getElement());
     }
 }

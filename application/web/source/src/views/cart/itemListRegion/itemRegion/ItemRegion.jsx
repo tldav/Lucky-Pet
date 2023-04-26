@@ -1,5 +1,8 @@
 import { formatCurrency } from "../../../../currency/currency";
 
+/*
+ ***** Come up with better names for product in ItemRegion *****
+ */
 function ItemRegion({ item }) {
 	return (
 		<div className="item-region">

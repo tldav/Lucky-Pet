@@ -26,7 +26,7 @@ public class Item implements ItemCalibratable {
         if (comparator == null){
             return false;
         }
-
+        
         boolean isEquivalent = comparator.getQuantity() == null || this.quantity.equals(comparator.getQuantity());
         isEquivalent &= comparator.getProduct() == null || this.product.equivalent(comparator.getProduct());
         return isEquivalent;

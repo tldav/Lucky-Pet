@@ -15,25 +15,36 @@ public class ItemRegion extends UiRegion implements ItemRegionCalibratable {
 
     @Override
     public boolean equivalent(ItemRegionCalibratable comparator) {
-        return comparator.getPrice() == null || this.getPrice().equals(comparator.getPrice());
+        return comparator.getProductPrice() == null || this.getProductPrice().equals(comparator.getProductPrice());
     }
 
     @Override
-    public String getPrice() {
+    public String getProductPrice() {
         return getAmountElement().getText();
     }
-
+    /*
+     ***** Come up with better names for product in ItemRegion *****
+     */
     private UiElement getAmountElement() {
-        return UiElement.getInstance("Amount", UiLocatorType.CLASS, "item-amount", this.getElement());
+        return UiElement.getInstance("Amount", UiLocatorType.CLASS, "product-price", this.getElement());
     }
 
     @Override
-    public String getItemDescription() {
+    public String getProductDescription() {
         return getItemDescriptionElement().getText();
     }
-
+    
+    @Override
+    public String getLineItemTotal() {
+        return this.getLineItemTotalElement().getText();
+    }
+    
+    private UiElement getLineItemTotalElement() {
+        return UiElement.getInstance("'Line Item' total", UiLocatorType.CLASS, "line-item-total", this.getElement());
+    }
+    
     private UiElement getItemDescriptionElement() {
-        return UiElement.getInstance("Item Description", UiLocatorType.CLASS, "item-description", this.getElement());
+        return UiElement.getInstance("Item Description", UiLocatorType.CLASS, "product-description", this.getElement());
     }
 
 }

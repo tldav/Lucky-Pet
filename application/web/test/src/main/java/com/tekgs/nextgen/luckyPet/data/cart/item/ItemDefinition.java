@@ -1,6 +1,5 @@
 package com.tekgs.nextgen.luckyPet.data.cart.item;
 
-import com.tekgs.nextgen.luckyPet.data.product.Product;
 import com.tekgs.nextgen.luckyPet.data.product.ProductCalibratable;
 
 public class ItemDefinition implements ItemCalibratable {
@@ -39,9 +38,9 @@ public class ItemDefinition implements ItemCalibratable {
     public boolean equivalent(ItemCalibratable comparator) {
         return false;
     }
-
+    
     @Override
     public Integer getLineItemTotal() {
-        return null;
+        return this.product.getPrice() * this.quantity;
     }
 }
