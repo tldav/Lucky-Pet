@@ -32,6 +32,7 @@ public class ItemRegionExpected implements ItemRegionCalibratable {
     
     @Override
     public String getLineItemTotal() {
-        return null;
+        Cents lineItemTotal = Cents.getInstance(this.item.getQuantity() * this.item.getProduct().getPrice());
+        return lineItemTotal.inUsdFormat();
     }
 }

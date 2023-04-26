@@ -9,6 +9,7 @@ function ItemRegion({ item }) {
 			<div className="product-price">{formatCurrency(item.product.price)} </div>
 			<div>Item Description:</div>
 			<div className="product-description">{item.product.description}</div>
+			<div className="line-item-total">{formatCurrency(item.quantity * item.product.price)}</div>
 		</div>
 	);
 }
