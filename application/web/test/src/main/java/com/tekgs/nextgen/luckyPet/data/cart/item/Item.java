@@ -27,8 +27,13 @@ public class Item implements ItemCalibratable {
             return false;
         }
 
-        boolean isEquivalent = comparator.getQuantity() == null || this.getQuantity().equals(comparator.getQuantity());
-        isEquivalent &= comparator.getProduct() == null || this.getProduct().equivalent(comparator.getProduct());
+        boolean isEquivalent = comparator.getQuantity() == null || this.quantity.equals(comparator.getQuantity());
+        isEquivalent &= comparator.getProduct() == null || this.product.equivalent(comparator.getProduct());
         return isEquivalent;
+    }
+
+    @Override
+    public Integer getLineItemTotal() {
+        return this.product.getPrice() * this.quantity;
     }
 }

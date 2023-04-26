@@ -14,10 +14,6 @@ public class Cart implements CartCalibratable {
         this.id = id;
     }
     
-    private static boolean areEquivalent(Integer comparatorCartTotal, Integer thisTotal) {
-        return comparatorCartTotal == null || thisTotal.equals(comparatorCartTotal);
-    }
-
     @Override
     public Integer getTotal() {
         Integer totalInCents = 0;
@@ -55,6 +51,10 @@ public class Cart implements CartCalibratable {
         isEquivalent &= areEquivalent(comparator.getItemCount(), this.getItemCount());
         isEquivalent &= areItemsEquivalent(itemDefinitions);
         return isEquivalent;
+    }
+
+    private static boolean areEquivalent(Integer comparatorCartTotal, Integer thisTotal) {
+        return comparatorCartTotal == null || thisTotal.equals(comparatorCartTotal);
     }
 
     private boolean areItemsEquivalent(List<ItemCalibratable> comparators) {
