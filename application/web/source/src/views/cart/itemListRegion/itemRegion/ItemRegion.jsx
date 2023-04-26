@@ -6,9 +6,9 @@ import { formatCurrency } from "../../../../currency/currency";
 function ItemRegion({ item }) {
 	return (
 		<div className="item-region">
-			<div className="item-amount">{formatCurrency(item.product.price)} </div>
+			<div className="product-price">{formatCurrency(item.product.price)} </div>
 			<div>Item Description:</div>
-			<div className="item-description">{item.product.description}</div>
+			<div className="product-description">{item.product.description}</div>
 		</div>
 	);
 }
