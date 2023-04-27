@@ -11,5 +11,4 @@ function PurchaseConfirmation() {
   );
 }
 
-// noinspection JSUnusedGlobalSymbols
 export default PurchaseConfirmation;

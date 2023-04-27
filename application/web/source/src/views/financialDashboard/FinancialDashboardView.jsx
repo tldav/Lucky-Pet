@@ -4,11 +4,11 @@ import "./financialDashboardView.css";
 
 
 function FinancialDashboardView() {
-    return (
-        <div id="financial-dashboard-view">
-            <RevenueListRegion/>
-        </div>
-    )
+  return (
+    <div id="financial-dashboard-view">
+      <RevenueListRegion />
+    </div>
+  )
 }
 
 export default FinancialDashboardView;
