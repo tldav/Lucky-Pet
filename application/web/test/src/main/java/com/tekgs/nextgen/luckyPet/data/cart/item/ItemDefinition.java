@@ -38,9 +38,4 @@ public class ItemDefinition implements ItemCalibratable {
     public boolean equivalent(ItemCalibratable comparator) {
         return false;
     }
-    
-    @Override
-    public Integer getLineItemTotal() {
-        return this.product.getPrice() * this.quantity;
-    }
 }

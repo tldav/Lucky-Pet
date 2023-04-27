@@ -8,5 +8,4 @@ public interface ItemCalibratable {
     ProductCalibratable getProduct();
     
     boolean equivalent(ItemCalibratable comparator);
-    Integer getLineItemTotal();
 }

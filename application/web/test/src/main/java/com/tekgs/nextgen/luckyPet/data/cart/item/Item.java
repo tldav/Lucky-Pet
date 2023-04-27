@@ -31,9 +31,4 @@ public class Item implements ItemCalibratable {
         isEquivalent &= comparator.getProduct() == null || this.product.equivalent(comparator.getProduct());
         return isEquivalent;
     }
-
-    @Override
-    public Integer getLineItemTotal() {
-        return this.product.getPrice() * this.quantity;
-    }
 }
