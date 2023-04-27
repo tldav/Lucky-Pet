@@ -5,6 +5,7 @@ const paymentServiceResponse = require("../src/views/checkout/paymentServiceResp
 const getOutOfStockMessage = require("../src/views/products/productListRegion/productRegion/getOutOfStockMessage");
 const { formatCurrency } = require("../src/currency/currency");
 const { calculateSubtotal } = require("../src/currency/currency");
+const { calculateLineItemTotal } = require("../src/currency/currency");
 const isInCart = require("../src/views/products/productListRegion/productRegion/isInCart");
 const areItemsInCart = require("../src/views/cart/itemListRegion/cartHasItems");
 const hasLowStock = require("../src/views/inventoryDashboard/lowStockListRegion/hasLowStock");
@@ -35,15 +36,18 @@ unitTest("should return 'isInCart' true", () => {
 	const expected = true;
 	const productId = "101";
 	const cart = {
-		id: "1",
-		items: [
+		"id": "1",
+		"items": [
 			{
-				id: "101",
-				price: 500,
-				description: "Sample text",
-			},
-		],
-	};
+				"quantity": 5,
+				"product": {
+					"id": "101",
+					"price": 500,
+					"description": "Sample text"
+				}
+			}
+		]
+	}
 	const actual = isInCart(productId, cart);
 	strictEqual(actual, expected);
 });
@@ -52,15 +56,18 @@ unitTest("should return'isInCart' false", () => {
 	const expected = false;
 	const productId = "112";
 	const cart = {
-		id: "1",
-		items: [
+		"id": "1",
+		"items": [
 			{
-				id: "101",
-				price: 500,
-				description: "Sample text",
-			},
-		],
-	};
+				"quantity": 5,
+				"product": {
+					"id": "101",
+					"price": 500,
+					"description": "Sample text"
+				}
+			}
+		]
+	}
 	const actual = isInCart(productId, cart);
 	strictEqual(actual, expected);
 });
@@ -94,11 +101,14 @@ unitTest("given a cart with items", () => {
 	const expected = true;
 	const items = [
 		{
-			id: "101",
-			price: 500,
-			description: "Sample text",
-		},
-	];
+			"quantity": 5,
+			"product": {
+				"id": "101",
+				"price": 500,
+				"description": "Sample text"
+			}
+		}
+	]
 	const actual = areItemsInCart(items);
 	strictEqual(actual, expected);
 });
@@ -147,3 +157,17 @@ unitTest("should return all products", () => {
 	const actual = getProducts(testData);
 	strictEqual(actual, expected);
 });
+
+unitTest("should calculate line item total", () => {
+	const item = {
+		"quantity": 5,
+		"product": {
+			"id": "108",
+			"price": 50,
+			"description": "Sample description"
+		}
+	}
+	const expected = 250;
+	const actual = calculateLineItemTotal(item);
+	strictEqual(actual, expected);
+})
