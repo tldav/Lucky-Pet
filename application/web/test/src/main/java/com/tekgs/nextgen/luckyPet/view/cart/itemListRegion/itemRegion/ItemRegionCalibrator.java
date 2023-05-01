@@ -22,5 +22,6 @@ public class ItemRegionCalibrator extends Calibrator {
         verify("'Product Price'", this.expected.getProductPrice(), this.actual.getProductPrice());
         verify("'Product Description'", this.expected.getProductDescription(), this.actual.getProductDescription());
         verify("'Line Item' total", this.expected.getLineItemTotal(), this.actual.getLineItemTotal());
+        verify("'Line Item' quantity", this.expected.getLineItemQuantity(), this.actual.getLineItemQuantity());
     }
 }

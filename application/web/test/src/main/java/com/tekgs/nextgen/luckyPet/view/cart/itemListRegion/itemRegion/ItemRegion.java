@@ -38,7 +38,16 @@ public class ItemRegion extends UiRegion implements ItemRegionCalibratable {
     public String getLineItemTotal() {
         return this.getLineItemTotalElement().getText();
     }
-    
+
+    @Override
+    public String getLineItemQuantity() {
+        return this.getLineItemQuantityElement().getText();
+    }
+
+    private UiElement getLineItemQuantityElement() {
+        return UiElement.getInstance("'Line Item' quantity", UiLocatorType.CLASS,"line-item-quantity",this.getElement());
+    }
+
     private UiElement getLineItemTotalElement() {
         return UiElement.getInstance("'Line Item' total", UiLocatorType.CLASS, "line-item-total", this.getElement());
     }
