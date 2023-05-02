@@ -10,6 +10,7 @@ const isInCart = require("../src/views/products/productListRegion/productRegion/
 const areItemsInCart = require("../src/views/cart/itemListRegion/cartHasItems");
 const hasLowStock = require("../src/views/inventoryDashboard/lowStockListRegion/hasLowStock");
 const getProducts = require("../src/api/product");
+const postToStripe = require("../src/api/stripe")
 
 unitTest("should return dollar amount formatted", () => {
 	//TODO may need to be separated into separate unit tests
@@ -170,4 +171,32 @@ unitTest("should calculate line item total", () => {
 	const expected = 250;
 	const actual = calculateLineItemTotal(item);
 	strictEqual(actual, expected);
+})
+
+unitTest("post to stripe should succeed", async () => {
+	const payment = {
+		amount: 50,
+		currency: "usd",
+		source: "tok_amex",
+	}
+
+	const expected = true;
+	const response = await postToStripe(payment);
+	const actual = !response.error
+
+	strictEqual(actual, expected)
+})
+
+unitTest("post to stripe should fail", async () => {
+	const payment = {
+		amount: 50,
+		currency: "asd",
+		source: "asdfax",
+	}
+
+	const expected = false;
+	const response = await postToStripe(payment);
+	const actual = !response.error
+
+	strictEqual(actual, expected)
 })
