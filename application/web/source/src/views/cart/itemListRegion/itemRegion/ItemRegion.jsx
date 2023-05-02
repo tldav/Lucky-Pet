@@ -23,6 +23,7 @@ function ItemRegion({ item }) {
 					{formatCurrency(calculateLineItemTotal(item))}
 				</span>
 			</div>
+			<br />
 		</div>
 	);
 }
