@@ -8,4 +8,6 @@ public interface ItemRegionCalibratable {
     String getProductDescription();
     
     String getLineItemTotal();
+
+    String getLineItemQuantity();
 }
