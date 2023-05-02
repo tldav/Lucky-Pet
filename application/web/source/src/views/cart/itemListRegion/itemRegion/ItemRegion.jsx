@@ -6,15 +6,19 @@ import { calculateLineItemTotal, formatCurrency } from "../../../../currency/cur
 function ItemRegion({ item }) {
 	return (
 		<div className="item-region">
-			<div className="product-price">{formatCurrency(item.product.price)} </div>
-			<div>Description:</div>
-			<div className="product-description">{item.product.description}</div>
 			<div>
-				Quantity:
-				<span className="line-item-quantity">{item.quantity}</span>
+				Product Price:{" "}
+				<span className="product-price">{formatCurrency(item.product.price)} </span>
 			</div>
 			<div>
-				Item total:{" "}
+				Product Description:{" "}
+				<span className="product-description">{item.product.description}</span>
+			</div>
+			<div>
+				Item Quantity: <span className="line-item-quantity">{item.quantity}</span>
+			</div>
+			<div>
+				Item Total:{" "}
 				<span className="line-item-total">
 					{formatCurrency(calculateLineItemTotal(item))}
 				</span>
