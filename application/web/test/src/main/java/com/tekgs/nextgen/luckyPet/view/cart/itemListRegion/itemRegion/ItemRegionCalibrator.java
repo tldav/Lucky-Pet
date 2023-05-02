@@ -4,8 +4,8 @@ import com.softwareonpurpose.calibrator4test.Calibrator;
 
 public class ItemRegionCalibrator extends Calibrator {
     private static final String DESCRIPTION = "'Item' region";
-    private final ItemRegionCalibratable actual;
     private final ItemRegionCalibratable expected;
+    private final ItemRegionCalibratable actual;
 
     private ItemRegionCalibrator(ItemRegionCalibratable expected, ItemRegionCalibratable actual) {
         super(DESCRIPTION, expected, actual);
