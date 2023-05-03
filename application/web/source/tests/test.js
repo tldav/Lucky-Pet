@@ -173,6 +173,9 @@ unitTest("should calculate line item total", () => {
 	strictEqual(actual, expected);
 })
 
+/****************************************************************************
+   async test should be failing, but is passing regardless of stripe reponse	
+*****************************************************************************/
 unitTest("post to stripe should succeed", async () => {
 	const payment = {
 		amount: 50,
