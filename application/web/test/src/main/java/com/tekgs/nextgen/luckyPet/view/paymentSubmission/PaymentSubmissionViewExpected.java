@@ -1,5 +1,6 @@
 package com.tekgs.nextgen.luckyPet.view.paymentSubmission;
 
+import com.tekgs.nextgen.luckyPet.data.financial.Cents;
 import com.tekgs.nextgen.luckyPet.data.payment.Payment;
 
 public class PaymentSubmissionViewExpected implements PaymentSubmissionViewCalibratable {
@@ -20,15 +21,25 @@ public class PaymentSubmissionViewExpected implements PaymentSubmissionViewCalib
 
     @Override
     public String getCurrencyError() {
-        boolean paymentMade = paymentData != null;
-        String currency = !paymentMade ? null : paymentData.getCurrency();
-        return !paymentMade || "usd".equals(currency) ? "" : "Invalid Currency";
+        String currency = paymentData != null ? paymentData.getCurrency() : "";
+        return paymentData == null || "usd".equals(currency) ? "" : "Invalid Currency";
     }
 
     @Override
     public String getSourceError() {
-        boolean paymentMade = paymentData != null;
-        String source = !paymentMade ? null : paymentData.getSource();
-        return !paymentMade || "tok_amex".equals(source) ? "" : "Invalid Source";
+        String source = paymentData != null ? paymentData.getSource() : "";
+        return paymentData == null || "tok_amex".equals(source) ? "" : "Invalid Source";
+    }
+
+    @Override
+    public String getTotalOwed() {
+        int amount = paymentData == null ? 0 : this.paymentData.getAmount();
+        Cents totalOwed = Cents.getInstance(amount);
+        return totalOwed.inUsdFormat();
+    }
+
+    @Override
+    public boolean isSubmitButtonDisplayed() {
+        return true;
     }
 }

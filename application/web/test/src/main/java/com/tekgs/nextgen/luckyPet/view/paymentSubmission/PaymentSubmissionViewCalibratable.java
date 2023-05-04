@@ -4,4 +4,7 @@ public interface PaymentSubmissionViewCalibratable {
     String getCurrencyError();
 
     String getSourceError();
+    String getTotalOwed();
+
+    boolean isSubmitButtonDisplayed();
 }

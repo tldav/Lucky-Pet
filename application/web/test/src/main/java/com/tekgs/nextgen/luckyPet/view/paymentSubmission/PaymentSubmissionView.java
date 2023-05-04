@@ -4,6 +4,9 @@ import com.softwareonpurpose.uinavigator.UiElement;
 import com.softwareonpurpose.uinavigator.UiLocatorType;
 import com.softwareonpurpose.uinavigator.UiView;
 import com.tekgs.nextgen.luckyPet.data.payment.Payment;
+import com.tekgs.nextgen.luckyPet.view.purchaseConfirmation.PurchaseConfirmationView;
+
+import javax.swing.*;
 
 public class PaymentSubmissionView extends UiView implements PaymentSubmissionViewCalibratable {
     private static final String VIEW_URL = "http://localhost:3000/payment-submission";
@@ -56,6 +59,28 @@ public class PaymentSubmissionView extends UiView implements PaymentSubmissionVi
         return getSourceErrorElement().getText();
     }
 
+    @Override
+    public String getTotalOwed() {
+        return getTotalOwedElement().getText();
+    }
+
+    @Override
+    public boolean isSubmitButtonDisplayed() {
+        return getSubmitButtonElement().isDisplayed();
+    }
+
+    private UiElement getSubmitButtonElement() {
+        String description = "'Submit' button";
+        String locatorValue = "submit";
+        return UiElement.getInstance(description, UiLocatorType.ID, locatorValue, this.getElement());
+    }
+
+    private UiElement getTotalOwedElement() {
+        String description = "Total Owed";
+        String locatorValue = "total-owed";
+        return UiElement.getInstance(description, UiLocatorType.ID, locatorValue, this.getElement());
+    }
+
     private UiElement getSourceErrorElement() {
         String description = "'Source' error message";
         String locatorValue = "source-error";
@@ -66,5 +91,10 @@ public class PaymentSubmissionView extends UiView implements PaymentSubmissionVi
         String description = "'Currency' error message";
         String locatorValue = "currency-error";
         return UiElement.getInstance(description, UiLocatorType.ID, locatorValue, this.getElement());
+    }
+
+    public PurchaseConfirmationView submit(@SuppressWarnings("unused") Payment paymentData) {
+        getSubmitButtonElement().click();
+        return UiView.expect(PurchaseConfirmationView.class);
     }
 }
