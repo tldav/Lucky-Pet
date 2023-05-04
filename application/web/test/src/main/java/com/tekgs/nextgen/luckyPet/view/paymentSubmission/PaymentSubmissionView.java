@@ -28,8 +28,8 @@ public class PaymentSubmissionView extends UiView implements PaymentSubmissionVi
     public PaymentSubmissionView enter(Payment paymentData) {
         //  Clicking the other field after setting a value is to trigger the on-blur function
         getCurrencyElement().set(paymentData.getCurrency());
-        getTypeElement().click();
-        getTypeElement().set(paymentData.getType());
+        getSourceElement().click();
+        getSourceElement().set(paymentData.getSource());
         getCurrencyElement().click();
         return UiView.expect(PaymentSubmissionView.class);
     }
@@ -40,9 +40,9 @@ public class PaymentSubmissionView extends UiView implements PaymentSubmissionVi
         return UiElement.getInstance(description, UiLocatorType.NAME, locatorValue, this.getElement());
     }
 
-    private UiElement getTypeElement() {
-        String description = "'Type' field";
-        String locatorValue = "type";
+    private UiElement getSourceElement() {
+        String description = "'Source' field";
+        String locatorValue = "source";
         return UiElement.getInstance(description, UiLocatorType.NAME, locatorValue, this.getElement());
     }
 
@@ -52,13 +52,13 @@ public class PaymentSubmissionView extends UiView implements PaymentSubmissionVi
     }
 
     @Override
-    public String getTypeError() {
-        return getTypeErrorElement().getText();
+    public String getSourceError() {
+        return getSourceErrorElement().getText();
     }
 
-    private UiElement getTypeErrorElement() {
-        String description = "'Type' error message";
-        String locatorValue = "type-error";
+    private UiElement getSourceErrorElement() {
+        String description = "'Source' error message";
+        String locatorValue = "source-error";
         return UiElement.getInstance(description, UiLocatorType.ID, locatorValue, this.getElement());
     }
 

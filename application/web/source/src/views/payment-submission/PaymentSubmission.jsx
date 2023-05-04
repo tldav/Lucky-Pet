@@ -5,7 +5,7 @@ function PaymentSubmission() {
 
   const validValues = {
     "currency": "usd",
-    "type": "tok_amex"
+    "source": "tok_amex"
   }
 
   function validateInput(input) {
@@ -22,10 +22,10 @@ function PaymentSubmission() {
       <form className="payment-submission-form">
         <label htmlFor="currency">Currency</label>
         <input id="currency" name="currency" error-id="currency-error" onBlur={e => validateInput(e.target)}></input>
-        <p id="currency-error" className="hide-error error">Currency Error</p>
-        <label htmlFor="type">Type</label>
-        <input id="type" name="type" error-id="type-error" onBlur={e => validateInput(e.target)}></input>
-        <p id="type-error" className="hide-error error">Type Error</p>
+        <p id="currency-error" className="hide-error error">Invalid Currency</p>
+        <label htmlFor="source">Source</label>
+        <input id="source" name="source" error-id="source-error" onBlur={e => validateInput(e.target)}></input>
+        <p id="source-error" className="hide-error error">Invalid Source</p>
       </form>
     </div>
   );

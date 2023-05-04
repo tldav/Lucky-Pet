@@ -22,13 +22,13 @@ public class PaymentSubmissionViewExpected implements PaymentSubmissionViewCalib
     public String getCurrencyError() {
         boolean paymentMade = paymentData != null;
         String currency = !paymentMade ? null : paymentData.getCurrency();
-        return !paymentMade || "usd".equals(currency) ? "" : "Currency Error";
+        return !paymentMade || "usd".equals(currency) ? "" : "Invalid Currency";
     }
 
     @Override
-    public String getTypeError() {
+    public String getSourceError() {
         boolean paymentMade = paymentData != null;
-        String type = !paymentMade ? null : paymentData.getType();
-        return !paymentMade || "tok_amex".equals(type) ? "" : "Type Error";
+        String source = !paymentMade ? null : paymentData.getSource();
+        return !paymentMade || "tok_amex".equals(source) ? "" : "Invalid Source";
     }
 }

@@ -10,26 +10,26 @@ import org.testng.annotations.Test;
 public class PaymentSubmissionViewTests extends GauntletTest {
     @DataProvider
     public static Object[][] scenarios() {
-        String invalidType = "tok_kit";
-        String validType = "tok_amex";
+        String invalidSource = "tok_kit";
+        String validSource = "tok_amex";
         String validCurrency = "usd";
         String invalidCurrency = "not";
-        PaymentDefinition withInvalidType =
-                PaymentDefinition.getInstance().withCurrency(validCurrency).withType(invalidType);
+        PaymentDefinition withInvalidSource =
+                PaymentDefinition.getInstance().withCurrency(validCurrency).withSource(invalidSource);
         PaymentDefinition withInvalidCurrency =
-                PaymentDefinition.getInstance().withCurrency(invalidCurrency).withType(validType);
+                PaymentDefinition.getInstance().withCurrency(invalidCurrency).withSource(validSource);
         PaymentDefinition withValidValues =
-                PaymentDefinition.getInstance().withCurrency(validCurrency).withType(validType);
+                PaymentDefinition.getInstance().withCurrency(validCurrency).withSource(validSource);
         PaymentDefinition withEmptyValues =
-                PaymentDefinition.getInstance().withCurrency("").withType("");
-        PaymentDefinition withInvalidTypeAndCurrency =
-                PaymentDefinition.getInstance().withCurrency(invalidCurrency).withType(invalidType);
+                PaymentDefinition.getInstance().withCurrency("").withSource("");
+        PaymentDefinition withInvalidSourceAndCurrency =
+                PaymentDefinition.getInstance().withCurrency(invalidCurrency).withSource(invalidSource);
         return new Object[][]{
-                {withInvalidType},
+                {withInvalidSource},
                 {withValidValues},
                 {withEmptyValues},
                 {withInvalidCurrency},
-                {withInvalidTypeAndCurrency}
+                {withInvalidSourceAndCurrency}
         };
     }
 
@@ -43,7 +43,7 @@ public class PaymentSubmissionViewTests extends GauntletTest {
 
     @Test(groups = {TestSuite.RELEASE}, dependsOnMethods = "smoke")
     public void release() {
-        PaymentDefinition paymentDefinition = PaymentDefinition.getInstance().withCurrency("usd").withType("tok_amex");
+        PaymentDefinition paymentDefinition = PaymentDefinition.getInstance().withCurrency("usd").withSource("tok_amex");
         Payment paymentData = paymentDefinition.toPayment();
         given(paymentData);
         PaymentSubmissionViewExpected expected = PaymentSubmissionViewExpected.getInstance(paymentData);
@@ -52,7 +52,7 @@ public class PaymentSubmissionViewTests extends GauntletTest {
         then(PaymentSubmissionViewCalibrator.getInstance(expected, actual));
     }
 
-    @Test(dependsOnMethods = "smoke", dataProvider = "scenarios")
+    @Test(groups = {TestSuite.DEBUG}, dependsOnMethods = "smoke", dataProvider = "scenarios")
     public void dataEntryValidation(PaymentDefinition paymentDefinition) {
         Payment paymentData = paymentDefinition.toPayment();
         given(paymentData);

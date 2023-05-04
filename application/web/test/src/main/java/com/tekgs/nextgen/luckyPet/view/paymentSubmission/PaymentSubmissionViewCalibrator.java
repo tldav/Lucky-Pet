@@ -20,6 +20,6 @@ public class PaymentSubmissionViewCalibrator extends Calibrator {
     @Override
     protected void executeVerifications() {
         verify("'Currency' error message", expected.getCurrencyError(), actual.getCurrencyError());
-        verify("'Type' error message", expected.getTypeError(), actual.getTypeError());
+        verify("'Source' error message", expected.getSourceError(), actual.getSourceError());
     }
 }

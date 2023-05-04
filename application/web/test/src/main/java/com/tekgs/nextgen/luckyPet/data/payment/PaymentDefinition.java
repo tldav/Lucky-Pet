@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 public class PaymentDefinition implements PaymentCalibratable {
     private int amount;
     private String currency;
-    private String type;
+    private String source;
 
     public static PaymentDefinition getInstance() {
         return new PaymentDefinition();
@@ -26,8 +26,8 @@ public class PaymentDefinition implements PaymentCalibratable {
     }
 
     @Override
-    public String getType() {
-        return type;
+    public String getSource() {
+        return source;
     }
 
     @Override
@@ -45,8 +45,8 @@ public class PaymentDefinition implements PaymentCalibratable {
         return this;
     }
 
-    public PaymentDefinition withType(String type) {
-        this.type = type;
+    public PaymentDefinition withSource(String source) {
+        this.source = source;
         return this;
     }
 }

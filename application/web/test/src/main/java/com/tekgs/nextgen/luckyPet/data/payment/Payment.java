@@ -5,13 +5,13 @@ import com.tekgs.nextgen.luckyPet.behavior.ToStringBehavior;
 public class Payment implements PaymentCalibratable {
     private final Integer amount;
     private final String currency;
-    private final String type;
+    private final String source;
     private transient final ToStringBehavior toStringBehavior = ToStringBehavior.getInstance(this);
 
     public Payment(PaymentDefinition paymentDefinition) {
         this.amount = paymentDefinition == null ? null : paymentDefinition.getAmount();
         this.currency = paymentDefinition == null ? null : paymentDefinition.getCurrency();
-        this.type = paymentDefinition == null ? null : paymentDefinition.getType();
+        this.source = paymentDefinition == null ? null : paymentDefinition.getSource();
     }
 
     public static Payment getInstance() {
@@ -28,8 +28,8 @@ public class Payment implements PaymentCalibratable {
     }
 
     @Override
-    public String getType() {
-        return type;
+    public String getSource() {
+        return source;
     }
 
     @Override
