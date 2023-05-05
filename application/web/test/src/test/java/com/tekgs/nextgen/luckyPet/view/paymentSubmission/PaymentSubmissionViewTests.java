@@ -78,11 +78,11 @@ public class PaymentSubmissionViewTests extends GauntletTest {
         then(PaymentSubmissionViewCalibrator.getInstance(expected, actual));
     }
 
-    @Test(dependsOnMethods = "smoke", dataProvider = "amountScenarios")
+    @Test(groups = {TestSuite.DEBUG}, dependsOnMethods = "smoke", dataProvider = "amountScenarios")
     public void amountDirectNav(PaymentDefinition paymentDefinition) {
         Payment payment = PaymentProvider.getInstance().get(paymentDefinition);
-        CheckoutViewExpected expected = CheckoutViewExpected.getInstance(payment);
-        CheckoutView actual = CheckoutView.directNav(payment.getAmount());
-        then(CheckoutViewCalibrator.getInstance(expected, actual));
+        PaymentSubmissionViewExpected expected = PaymentSubmissionViewExpected.getInstance(payment);
+        PaymentSubmissionView actual = PaymentSubmissionView.directNav(payment.getAmount());
+        then(PaymentSubmissionViewCalibrator.getInstance(expected, actual));
     }
 }

@@ -4,6 +4,7 @@ import com.softwareonpurpose.uinavigator.UiElement;
 import com.softwareonpurpose.uinavigator.UiLocatorType;
 import com.softwareonpurpose.uinavigator.UiView;
 import com.tekgs.nextgen.luckyPet.data.payment.Payment;
+import com.tekgs.nextgen.luckyPet.view.checkout.CheckoutView;
 import com.tekgs.nextgen.luckyPet.view.purchaseConfirmation.PurchaseConfirmationView;
 
 import javax.swing.*;
@@ -20,6 +21,11 @@ public class PaymentSubmissionView extends UiView implements PaymentSubmissionVi
 
     public static PaymentSubmissionView directNav() {
         new PaymentSubmissionView().load();
+        return UiView.expect(PaymentSubmissionView.class);
+    }
+
+    public static PaymentSubmissionView directNav(Integer amountOwed) {
+        new PaymentSubmissionView().load(String.format("?total=%d", amountOwed));
         return UiView.expect(PaymentSubmissionView.class);
     }
 
