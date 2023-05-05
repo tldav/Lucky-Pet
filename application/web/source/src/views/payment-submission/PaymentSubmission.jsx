@@ -18,8 +18,7 @@ function PaymentSubmission() {
   }
 
   return (
-    <div id="payment-submission">
-      <form className="payment-submission-form">
+       <form id="submission-form-region">
         <label htmlFor="currency">Currency</label>
         <input id="currency" name="currency" error-id="currency-error" onBlur={e => validateInput(e.target)}></input>
         <p id="currency-error" className="hide-error error">Invalid Currency</p>
@@ -27,7 +26,7 @@ function PaymentSubmission() {
         <input id="source" name="source" error-id="source-error" onBlur={e => validateInput(e.target)}></input>
         <p id="source-error" className="hide-error error">Invalid Source</p>
       </form>
-    </div>
+
   );
 }
 

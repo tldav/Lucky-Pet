@@ -2,7 +2,7 @@
   padding: 5%;
 }
 
-.payment-submission-form {
+#submission-form-region {
   display: grid;
   margin-top: 100px;
 }
