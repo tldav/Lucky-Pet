@@ -21,19 +21,21 @@ public class PaymentSubmissionViewExpected implements PaymentSubmissionViewCalib
 
     @Override
     public String getCurrencyError() {
-        String currency = paymentData != null ? paymentData.getCurrency() : "";
-        return paymentData == null || "usd".equals(currency) ? "" : "Invalid Currency";
+//        String currency = paymentData != null ? paymentData.getCurrency() : "";
+        boolean isCurrencyValid = this.paymentData.getCurrency() == null || "usd".equals(this.paymentData.getCurrency());
+        return isCurrencyValid ? "" : "Invalid Currency";
     }
 
     @Override
     public String getSourceError() {
-        String source = paymentData != null ? paymentData.getSource() : "";
-        return paymentData == null || "tok_amex".equals(source) ? "" : "Invalid Source";
+       // String source = this.paymentData != null ? this.paymentData.getSource() : "";
+        boolean isSourceValid = this.paymentData.getSource() == null || "tok_amex".equals(this.paymentData.getSource());
+        return isSourceValid ? "" : "Invalid Source";
     }
 
     @Override
     public String getTotalOwed() {
-        int amount = paymentData == null ? 0 : this.paymentData.getAmount();
+        int amount = this.paymentData == null ? 0 : this.paymentData.getAmount();
         Cents totalOwed = Cents.getInstance(amount);
         return totalOwed.inUsdFormat();
     }
