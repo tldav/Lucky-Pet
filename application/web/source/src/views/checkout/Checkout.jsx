@@ -2,6 +2,7 @@ import React from "react";
 import paymentServiceResponse from "./paymentServiceResponse";
 import { formatCurrency } from "../../currency/currency";
 import "./checkout.css";
+import PaymentFormRegion from "./paymentFormRegion/PaymentFormRegion";
 
 function Checkout() {
   function submitPayment() {
@@ -28,6 +29,7 @@ function Checkout() {
       <button id="submit" onClick={submitPayment}>
         Place Order
       </button>
+      <PaymentFormRegion/>
     </div>
   );
 }
