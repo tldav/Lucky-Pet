@@ -1,18 +1,33 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 function PaymentFormRegion() {
-	const [source, setSource] = useState("");
-	const [currency, setCurrency] = useState("");
+	const [errorMessage, setErrorMessage] = useState("");
 
-	const handleCurrencyChange = (e) => {
-		setCurrency(e.target.value);
-	};
+	const currencyRef = useRef(null)
+	const sourceRef = useRef(null)
 
-	const handleSourceChange = (e) => {
-		setSource(e.target.value);
-	};
+	let isCurrencyValid = false;
+	let isSourceValid = false;
 
-	const validateInput = () => {};
+	const setAndValidateCurrency = () => {
+		if (currencyRef.current.value === "usd") {
+			isCurrencyValid = true;
+			setErrorMessage("")
+		} else {
+			isCurrencyValid = false;
+			setErrorMessage("Invalid Currency")
+		}
+	}
+
+	const setAndValidateSource = () => {
+		if (sourceRef.current.value === "tok_amex") {
+			isSourceValid = true;
+			setErrorMessage("")
+		} else {
+			isSourceValid = false;
+			setErrorMessage("Invalid Source")
+		}
+	}
 
 	return (
 		<form id="payment-form-region">
@@ -20,21 +35,25 @@ function PaymentFormRegion() {
 			<input
 				id="currency"
 				name="currency"
-				onBlur={validateInput}
-				onChange={handleCurrencyChange}
+				// onBlur={validateInput}
+				// onChange={handleCurrencyChange}
+				onBlur={setAndValidateCurrency}
+				ref={currencyRef}
 			></input>
 			<p id="currency-error" className="hide-error error">
-				Invalid Currency
+				{errorMessage}
 			</p>
 			<label htmlFor="source">Source</label>
 			<input
 				id="source"
 				name="source"
-				onBlur={validateInput}
-				onChange={handleSourceChange}
+				// onBlur={validateInput}
+				// onChange={handleSourceChange}
+				ref={sourceRef}
+				onBlur={setAndValidateSource}
 			></input>
 			<p id="source-error" className="hide-error error">
-				Invalid Source
+				{errorMessage}
 			</p>
 		</form>
 	);
