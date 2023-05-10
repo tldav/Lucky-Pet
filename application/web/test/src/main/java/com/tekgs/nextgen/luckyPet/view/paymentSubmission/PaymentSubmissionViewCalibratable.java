@@ -1,9 +1,9 @@
 package com.tekgs.nextgen.luckyPet.view.paymentSubmission;
 
 public interface PaymentSubmissionViewCalibratable {
-    String getCurrencyError();
+    String getCurrencyErrorMessage();
 
-    String getSourceError();
+    String getSourceErrorMessage();
     String getTotalOwed();
 
     boolean isSubmitButtonDisplayed();

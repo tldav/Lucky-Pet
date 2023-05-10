@@ -3,9 +3,6 @@ package com.tekgs.nextgen.luckyPet.view.paymentSubmission;
 import com.tekgs.nextgen.luckyPet.data.payment.Payment;
 import com.tekgs.nextgen.luckyPet.data.payment.PaymentDefinition;
 import com.tekgs.nextgen.luckyPet.data.payment.PaymentProvider;
-import com.tekgs.nextgen.luckyPet.view.checkout.CheckoutView;
-import com.tekgs.nextgen.luckyPet.view.checkout.CheckoutViewCalibrator;
-import com.tekgs.nextgen.luckyPet.view.checkout.CheckoutViewExpected;
 import org.softwareonpurpose.gauntlet.GauntletTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -18,35 +15,17 @@ public class PaymentSubmissionViewTests extends GauntletTest {
         String validSource = "tok_amex";
         String validCurrency = "usd";
         String invalidCurrency = "not";
-        PaymentDefinition withInvalidSource =
-                PaymentDefinition.getInstance().withCurrency(validCurrency).withSource(invalidSource);
-        PaymentDefinition withInvalidCurrency =
-                PaymentDefinition.getInstance().withCurrency(invalidCurrency).withSource(validSource);
-        PaymentDefinition withValidValues =
-                PaymentDefinition.getInstance().withCurrency(validCurrency).withSource(validSource);
-        PaymentDefinition withEmptyValues =
-                PaymentDefinition.getInstance().withCurrency("").withSource("");
-        PaymentDefinition withInvalidSourceAndCurrency =
-                PaymentDefinition.getInstance().withCurrency(invalidCurrency).withSource(invalidSource);
-        return new Object[][]{
-                {withInvalidSource},
-                {withValidValues},
-                {withEmptyValues},
-                {withInvalidCurrency},
-                {withInvalidSourceAndCurrency}
-        };
+        PaymentDefinition withInvalidSource = PaymentDefinition.getInstance().withCurrency(validCurrency).withSource(invalidSource);
+        PaymentDefinition withInvalidCurrency = PaymentDefinition.getInstance().withCurrency(invalidCurrency).withSource(validSource);
+        PaymentDefinition withValidValues = PaymentDefinition.getInstance().withCurrency(validCurrency).withSource(validSource);
+        PaymentDefinition withEmptyValues = PaymentDefinition.getInstance().withCurrency("").withSource("");
+        PaymentDefinition withInvalidSourceAndCurrency = PaymentDefinition.getInstance().withCurrency(invalidCurrency).withSource(invalidSource);
+        return new Object[][]{{withInvalidSource}, {withValidValues}, {withEmptyValues}, {withInvalidCurrency}, {withInvalidSourceAndCurrency}};
     }
 
     @DataProvider
     public static Object[][] amountScenarios() {
-        return new Object[][]{
-                {PaymentDefinition.getInstance().withAmount(49)},
-                {PaymentDefinition.getInstance().withAmount(50)},
-                {PaymentDefinition.getInstance().withAmount(99999999)},
-                {PaymentDefinition.getInstance().withAmount(100000000)},
-                {PaymentDefinition.getInstance().withAmount(-500)},
-                {PaymentDefinition.getInstance().withAmount(0)}
-        };
+        return new Object[][]{{PaymentDefinition.getInstance().withAmount(49)}, {PaymentDefinition.getInstance().withAmount(50)}, {PaymentDefinition.getInstance().withAmount(99999999)}, {PaymentDefinition.getInstance().withAmount(100000000)}, {PaymentDefinition.getInstance().withAmount(-500)}, {PaymentDefinition.getInstance().withAmount(0)}};
     }
 
     @Test(groups = {TestSuite.SMOKE})

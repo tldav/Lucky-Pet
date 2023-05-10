@@ -4,10 +4,7 @@ import com.softwareonpurpose.uinavigator.UiElement;
 import com.softwareonpurpose.uinavigator.UiLocatorType;
 import com.softwareonpurpose.uinavigator.UiView;
 import com.tekgs.nextgen.luckyPet.data.payment.Payment;
-import com.tekgs.nextgen.luckyPet.view.checkout.CheckoutView;
 import com.tekgs.nextgen.luckyPet.view.purchaseConfirmation.PurchaseConfirmationView;
-
-import javax.swing.*;
 
 public class PaymentSubmissionView extends UiView implements PaymentSubmissionViewCalibratable {
     private static final String VIEW_URL = "http://localhost:3000/payment-submission";
@@ -56,12 +53,12 @@ public class PaymentSubmissionView extends UiView implements PaymentSubmissionVi
     }
 
     @Override
-    public String getCurrencyError() {
+    public String getCurrencyErrorMessage() {
         return getCurrencyErrorElement().getText();
     }
 
     @Override
-    public String getSourceError() {
+    public String getSourceErrorMessage() {
         return getSourceErrorElement().getText();
     }
 

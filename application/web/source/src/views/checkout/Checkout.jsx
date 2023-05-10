@@ -22,6 +22,7 @@ function Checkout() {
   setTimeout(updateTotal, 1);
   return (
     <div id="checkout">
+      <PaymentFormRegion/>
       <div className="total-owed-container">
         <p>Total:</p>
         <p id="total-owed">{updateTotal}</p>
@@ -29,7 +30,6 @@ function Checkout() {
       <button id="submit" onClick={submitPayment}>
         Place Order
       </button>
-      <PaymentFormRegion/>
     </div>
   );
 }
