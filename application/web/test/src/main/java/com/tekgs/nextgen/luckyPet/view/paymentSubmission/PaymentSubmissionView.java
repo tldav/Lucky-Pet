@@ -7,10 +7,10 @@ import com.tekgs.nextgen.luckyPet.data.payment.Payment;
 import com.tekgs.nextgen.luckyPet.view.purchaseConfirmation.PurchaseConfirmationView;
 
 public class PaymentSubmissionView extends UiView implements PaymentSubmissionViewCalibratable {
-    private static final String VIEW_URL = "http://localhost:3000/payment-submission";
-    private static final String DESCRIPTION = "'Payment Submission' view";
+    private static final String VIEW_URL = "http://localhost:3000/checkout";
+    private static final String DESCRIPTION = "'Checkout'' view";
     private static final String LOCATOR_TYPE = UiLocatorType.ID;
-    private static final String LOCATOR_VALUE = "payment-submission";
+    private static final String LOCATOR_VALUE = "checkout-view";
 
     public PaymentSubmissionView() {
         super(VIEW_URL, UiElement.getInstance(DESCRIPTION, LOCATOR_TYPE, LOCATOR_VALUE));

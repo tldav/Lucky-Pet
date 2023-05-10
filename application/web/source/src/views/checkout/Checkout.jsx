@@ -5,33 +5,32 @@ import "./checkout.css";
 import PaymentFormRegion from "./paymentFormRegion/PaymentFormRegion";
 
 function Checkout() {
-  function submitPayment() {
-    let response = paymentServiceResponse();
-    if (response.status === "succeeded" && response.paid) {
-      window.location.replace("/purchase-confirmation");
-    }
-  }
+	function submitPayment() {
+		let response = paymentServiceResponse();
+		if (response.status === "succeeded" && response.paid) {
+			window.location.replace("/purchase-confirmation");
+		}
+	}
 
-  function updateTotal() {
-    let queryString = window.location.search;
-    let amountOwed = queryString === "" ? 0 : queryString.split("=")[1];
-    document.getElementById("total-owed").innerText =
-      formatCurrency(amountOwed);
-  }
+	function updateTotal() {
+		let queryString = window.location.search;
+		let amountOwed = queryString === "" ? 0 : queryString.split("=")[1];
+		document.getElementById("total-owed").innerText = formatCurrency(amountOwed);
+	}
 
-  setTimeout(updateTotal, 1);
-  return (
-    <div id="checkout">
-      <PaymentFormRegion/>
-      <div className="total-owed-container">
-        <p>Total:</p>
-        <p id="total-owed">{updateTotal}</p>
-      </div>
-      <button id="submit" onClick={submitPayment}>
-        Place Order
-      </button>
-    </div>
-  );
+	setTimeout(updateTotal, 1);
+	return (
+		<div id="checkout-view">
+			<PaymentFormRegion />
+			<div className="total-owed-container">
+				<p>Total:</p>
+				<p id="total-owed">{updateTotal}</p>
+			</div>
+			<button id="submit" onClick={submitPayment}>
+				Place Order
+			</button>
+		</div>
+	);
 }
 
 export default Checkout;
