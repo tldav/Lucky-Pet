@@ -1,6 +1,6 @@
-package com.tekgs.nextgen.luckyPet.view.paymentSubmission;
+package com.tekgs.nextgen.luckyPet.view.checkout;
 
-public interface PaymentSubmissionViewCalibratable {
+public interface CheckoutViewCalibratable {
     String getCurrencyErrorMessage();
 
     String getSourceErrorMessage();

@@ -1,4 +1,4 @@
-package com.tekgs.nextgen.luckyPet.view.paymentSubmission;
+package com.tekgs.nextgen.luckyPet.view.checkout;
 
 import com.tekgs.nextgen.luckyPet.data.payment.Payment;
 import com.tekgs.nextgen.luckyPet.data.payment.PaymentDefinition;
@@ -7,8 +7,8 @@ import org.softwareonpurpose.gauntlet.GauntletTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-@Test(groups = {GauntletTest.Application.LUCKY_PET_WEB, GauntletTest.View.PAYMENT_SUBMISSION})
-public class PaymentSubmissionViewTests extends GauntletTest {
+@Test(groups = {GauntletTest.Application.LUCKY_PET_WEB, GauntletTest.View.CHECKOUT})
+public class CheckoutViewTests extends GauntletTest {
     @DataProvider
     public static Object[][] scenarios() {
         String invalidSource = "tok_kit";
@@ -30,38 +30,39 @@ public class PaymentSubmissionViewTests extends GauntletTest {
 
     @Test(groups = {TestSuite.SMOKE})
     public void smoke() {
-        PaymentSubmissionViewExpected expected = PaymentSubmissionViewExpected.getInstance();
+        CheckoutViewExpected expected = CheckoutViewExpected.getInstance();
         when();
-        PaymentSubmissionView actual = PaymentSubmissionView.directNav();
-        then(PaymentSubmissionViewCalibrator.getInstance(expected, actual));
+        CheckoutView actual = CheckoutView.directNav();
+        then(CheckoutViewCalibrator.getInstance(expected, actual));
     }
 
-    @Test(groups = {TestSuite.RELEASE}, dependsOnMethods = "smoke")
+    @Test(groups = {TestSuite.RELEASE, TestSuite.DEBUG}, dependsOnMethods = "smoke")
     public void release() {
-        PaymentDefinition paymentDefinition = PaymentDefinition.getInstance().withCurrency("usd").withSource("tok_amex").withAmount(50);
+        int amount = 50;
+        PaymentDefinition paymentDefinition = PaymentDefinition.getInstance().withCurrency("usd").withSource("tok_amex").withAmount(amount);
         Payment paymentData = paymentDefinition.toPayment();
         given(paymentData);
-        PaymentSubmissionViewExpected expected = PaymentSubmissionViewExpected.getInstance(paymentData);
+        CheckoutViewExpected expected = CheckoutViewExpected.getInstance(paymentData);
         when();
-        PaymentSubmissionView actual = PaymentSubmissionView.directNav().enter(paymentData);
-        then(PaymentSubmissionViewCalibrator.getInstance(expected, actual));
+        CheckoutView actual = CheckoutView.directNav(amount).enter(paymentData);
+        then(CheckoutViewCalibrator.getInstance(expected, actual));
     }
 
-    @Test(groups = {TestSuite.DEBUG}, dependsOnMethods = "smoke", dataProvider = "scenarios")
+    @Test(groups = {}, dependsOnMethods = "smoke", dataProvider = "scenarios")
     public void dataEntryValidation(PaymentDefinition paymentDefinition) {
         Payment paymentData = paymentDefinition.toPayment();
         given(paymentData);
-        PaymentSubmissionViewExpected expected = PaymentSubmissionViewExpected.getInstance(paymentData);
+        CheckoutViewExpected expected = CheckoutViewExpected.getInstance(paymentData);
         when();
-        PaymentSubmissionView actual = PaymentSubmissionView.directNav().enter(paymentData);
-        then(PaymentSubmissionViewCalibrator.getInstance(expected, actual));
+        CheckoutView actual = CheckoutView.directNav().enter(paymentData);
+        then(CheckoutViewCalibrator.getInstance(expected, actual));
     }
 
-    @Test(groups = {TestSuite.DEBUG}, dependsOnMethods = "smoke", dataProvider = "amountScenarios")
+    @Test(groups = {}, dependsOnMethods = "smoke", dataProvider = "amountScenarios")
     public void amountDirectNav(PaymentDefinition paymentDefinition) {
         Payment payment = PaymentProvider.getInstance().get(paymentDefinition);
-        PaymentSubmissionViewExpected expected = PaymentSubmissionViewExpected.getInstance(payment);
-        PaymentSubmissionView actual = PaymentSubmissionView.directNav(payment.getAmount());
-        then(PaymentSubmissionViewCalibrator.getInstance(expected, actual));
+        CheckoutViewExpected expected = CheckoutViewExpected.getInstance(payment);
+        CheckoutView actual = CheckoutView.directNav(payment.getAmount());
+        then(CheckoutViewCalibrator.getInstance(expected, actual));
     }
 }

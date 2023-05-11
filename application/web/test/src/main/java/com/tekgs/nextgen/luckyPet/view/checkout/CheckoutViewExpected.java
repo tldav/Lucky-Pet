@@ -1,22 +1,22 @@
-package com.tekgs.nextgen.luckyPet.view.paymentSubmission;
+package com.tekgs.nextgen.luckyPet.view.checkout;
 
 import com.tekgs.nextgen.luckyPet.data.financial.Cents;
 import com.tekgs.nextgen.luckyPet.data.payment.Payment;
 
-public class PaymentSubmissionViewExpected implements PaymentSubmissionViewCalibratable {
+public class CheckoutViewExpected implements CheckoutViewCalibratable {
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private final Payment paymentData;
     
-    public PaymentSubmissionViewExpected(Payment paymentData) {
+    public CheckoutViewExpected(Payment paymentData) {
         this.paymentData = paymentData;
     }
     
-    public static PaymentSubmissionViewExpected getInstance() {
-        return new PaymentSubmissionViewExpected(null);
+    public static CheckoutViewExpected getInstance() {
+        return new CheckoutViewExpected(null);
     }
     
-    public static PaymentSubmissionViewExpected getInstance(Payment paymentData) {
-        return new PaymentSubmissionViewExpected(paymentData);
+    public static CheckoutViewExpected getInstance(Payment paymentData) {
+        return new CheckoutViewExpected(paymentData);
     }
     
     @Override

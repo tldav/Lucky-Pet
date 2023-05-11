@@ -3,7 +3,7 @@ package com.tekgs.nextgen.luckyPet.view.purchaseConfirmation;
 import com.tekgs.nextgen.luckyPet.data.payment.Payment;
 import com.tekgs.nextgen.luckyPet.data.payment.PaymentDefinition;
 import com.tekgs.nextgen.luckyPet.data.payment.PaymentProvider;
-import com.tekgs.nextgen.luckyPet.view.paymentSubmission.PaymentSubmissionView;
+import com.tekgs.nextgen.luckyPet.view.checkout.CheckoutView;
 import org.softwareonpurpose.gauntlet.GauntletTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -24,7 +24,7 @@ public class PurchaseConfirmationViewTests extends GauntletTest {
     public void smoke() {
         Payment paymentData = PaymentProvider.getInstance().get();
         PurchaseConfirmationViewExpected expected = PurchaseConfirmationViewExpected.getInstance(paymentData);
-        PurchaseConfirmationView actual = PaymentSubmissionView.directNav().submit(paymentData);
+        PurchaseConfirmationView actual = CheckoutView.directNav().submit(paymentData);
         then(PurchaseConfirmationViewCalibrator.getInstance(expected, actual));
     }
 
@@ -32,7 +32,7 @@ public class PurchaseConfirmationViewTests extends GauntletTest {
     public void fromCheckout(PaymentDefinition paymentDefinition) {
         Payment payment = PaymentProvider.getInstance().get(paymentDefinition);
         PurchaseConfirmationViewExpected expected = PurchaseConfirmationViewExpected.getInstance(payment);
-        PurchaseConfirmationView actual = PaymentSubmissionView.directNav().submit(payment);
+        PurchaseConfirmationView actual = CheckoutView.directNav().submit(payment);
         then(PurchaseConfirmationViewCalibrator.getInstance(expected, actual));
     }
 }
