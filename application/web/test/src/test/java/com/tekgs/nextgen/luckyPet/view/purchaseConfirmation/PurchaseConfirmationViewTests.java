@@ -15,16 +15,17 @@ public class PurchaseConfirmationViewTests extends GauntletTest {
         int fiftyCents = 50;
         int oneCentLessThanAMillionDollars = 99999999;
         return new Object[][]{
-                {PaymentDefinition.getInstance().withAmount(fiftyCents)}
-                , {PaymentDefinition.getInstance().withAmount(oneCentLessThanAMillionDollars)}
+                {PaymentDefinition.getInstance().withAmount(fiftyCents).withCurrency("usd").withSource("tok_amex")}
+                , {PaymentDefinition.getInstance().withAmount(oneCentLessThanAMillionDollars).withCurrency("usd").withSource("tok_amex")}
         };
     }
 
     @Test(groups = {TestSuite.SMOKE})
     public void smoke() {
-        Payment paymentData = PaymentProvider.getInstance().get();
+        PaymentDefinition paymentDefinition = PaymentDefinition.getInstance().withCurrency("usd").withSource("tok_amex").withAmount(50);
+        Payment paymentData = paymentDefinition.toPayment();
         PurchaseConfirmationViewExpected expected = PurchaseConfirmationViewExpected.getInstance(paymentData);
-        PurchaseConfirmationView actual = CheckoutView.directNav().submit(paymentData);
+        PurchaseConfirmationView actual = CheckoutView.directNav(paymentData.getAmount()).enter(paymentData).submit(paymentData);
         then(PurchaseConfirmationViewCalibrator.getInstance(expected, actual));
     }
 
@@ -32,7 +33,7 @@ public class PurchaseConfirmationViewTests extends GauntletTest {
     public void fromCheckout(PaymentDefinition paymentDefinition) {
         Payment payment = PaymentProvider.getInstance().get(paymentDefinition);
         PurchaseConfirmationViewExpected expected = PurchaseConfirmationViewExpected.getInstance(payment);
-        PurchaseConfirmationView actual = CheckoutView.directNav().submit(payment);
+        PurchaseConfirmationView actual = CheckoutView.directNav(payment.getAmount()).enter(payment).submit(payment);
         then(PurchaseConfirmationViewCalibrator.getInstance(expected, actual));
     }
 }

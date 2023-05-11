@@ -36,7 +36,7 @@ public class CheckoutViewTests extends GauntletTest {
         then(CheckoutViewCalibrator.getInstance(expected, actual));
     }
 
-    @Test(groups = {TestSuite.RELEASE, TestSuite.DEBUG}, dependsOnMethods = "smoke")
+    @Test(groups = {TestSuite.RELEASE}, dependsOnMethods = "smoke")
     public void release() {
         int amount = 50;
         PaymentDefinition paymentDefinition = PaymentDefinition.getInstance().withCurrency("usd").withSource("tok_amex").withAmount(amount);

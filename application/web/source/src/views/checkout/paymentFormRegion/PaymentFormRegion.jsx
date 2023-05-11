@@ -1,8 +1,11 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { formatCurrency } from "../../../currency/currency";
+import postToStripe from "../../../api/stripe";
 
 function PaymentFormRegion() {
 	const [sourceErrorMessage, setSourceErrorMessage] = useState("");
 	const [currencyErrorMessage, setCurrencyErrorMessage] = useState("");
+	const [total, setTotal] = useState(0);
 
 	const currencyRef = useRef(null)
 	const sourceRef = useRef(null)
@@ -38,6 +41,28 @@ function PaymentFormRegion() {
 		}
 	}
 
+	async function submitPayment(e) {
+		e.preventDefault();
+		const source = sourceRef.current.value;
+		const currency = currencyRef.current.value;
+		const amount = parseInt(total);
+		const payload = {
+			amount,
+			currency,
+			source
+		}
+		let response = await postToStripe(payload);
+		if (response.status === "succeeded" && response.paid) {
+			window.location.replace("/purchase-confirmation");
+		}
+	}
+
+	useEffect(()=>{
+		let queryString = window.location.search;
+		let amountOwed = queryString === "" ? 0 : queryString.split("=")[1];
+		setTotal(amountOwed);
+	},[])
+
 	return (
 		<form id="payment-form-region">
 			<label htmlFor="currency">Currency</label>
@@ -60,6 +85,13 @@ function PaymentFormRegion() {
 			<p id="source-error" className="error">
 				{sourceErrorMessage}
 			</p>
+			<div className="total-owed-container">
+				<p>Total:</p>
+				<p id="total-owed">{formatCurrency(total)}</p>
+			</div>
+			<button id="submit" onClick={submitPayment}>
+				Place Order
+			</button>
 		</form>
 	);
 }
