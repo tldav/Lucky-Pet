@@ -1,8 +1,10 @@
+import React from "react";
+import "./checkout.css";
 import { useState, useRef, useEffect } from "react";
-import { formatCurrency } from "../../../currency/currency";
-import postToStripe from "../../../api/stripe";
+import { formatCurrency } from "../../currency/currency";
+import postToStripe from "../../api/stripe";
 
-function PaymentFormRegion() {
+function CheckoutView() {
 	const [sourceErrorMessage, setSourceErrorMessage] = useState("");
 	const [currencyErrorMessage, setCurrencyErrorMessage] = useState("");
 	const [total, setTotal] = useState(0);
@@ -57,43 +59,45 @@ function PaymentFormRegion() {
 		}
 	}
 
-	useEffect(()=>{
+	useEffect(() => {
 		let queryString = window.location.search;
 		let amountOwed = queryString === "" ? 0 : queryString.split("=")[1];
 		setTotal(amountOwed);
-	},[])
+	}, [])
 
 	return (
-		<form id="payment-form-region">
-			<label htmlFor="currency">Currency</label>
-			<input
-				id="currency"
-				name="currency"
-				onBlur={setAndValidateCurrency}
-				ref={currencyRef}
-			></input>
-			<p id="currency-error" className="error">
-				{currencyErrorMessage}
-			</p>
-			<label htmlFor="source">Source</label>
-			<input
-				id="source"
-				name="source"
-				ref={sourceRef}
-				onBlur={setAndValidateSource}
-			></input>
-			<p id="source-error" className="error">
-				{sourceErrorMessage}
-			</p>
-			<div className="total-owed-container">
-				<p>Total:</p>
-				<p id="total-owed">{formatCurrency(total)}</p>
-			</div>
-			<button id="submit" onClick={submitPayment}>
-				Place Order
-			</button>
-		</form>
+		<div id="checkout-view">
+			<form id="payment-form-region">
+				<label htmlFor="currency">Currency</label>
+				<input
+					id="currency"
+					name="currency"
+					onBlur={setAndValidateCurrency}
+					ref={currencyRef}
+				></input>
+				<p id="currency-error" className="error">
+					{currencyErrorMessage}
+				</p>
+				<label htmlFor="source">Source</label>
+				<input
+					id="source"
+					name="source"
+					ref={sourceRef}
+					onBlur={setAndValidateSource}
+				></input>
+				<p id="source-error" className="error">
+					{sourceErrorMessage}
+				</p>
+				<div className="total-owed-container">
+					<p>Total:</p>
+					<p id="total-owed">{formatCurrency(total)}</p>
+				</div>
+				<button id="submit" onClick={submitPayment}>
+					Place Order
+				</button>
+			</form>
+		</div>
 	);
 }
 
-export default PaymentFormRegion;
+export default CheckoutView;

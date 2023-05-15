@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import React from "react";
 import CartView from "../views/cart/CartView";
-import Checkout from "../views/checkout/Checkout";
+import CheckoutView from "../views/checkout/CheckoutView";
 import PurchaseConfirmation from "../views/purchase-confirmation/PurchaseConfirmation";
 import AdminDashboardView from "../views/admin/AdminDashboardView";
 import ErrorGenerator from "../views/error/ErrorGenerator";
@@ -19,14 +19,14 @@ function Router() {
       <Route path="/" element={<Home />} />
       <Route path="/products" element={<ProductsView />} />
       <Route path="/cart" element={<CartView />} />
-      <Route path="/checkout" element={<Checkout />} />
+      <Route path="/checkout" element={<CheckoutView />} />
       <Route path="/purchase-confirmation" element={<PurchaseConfirmation />} />
       <Route path="/admin-dashboard" element={<AdminDashboardView />} />
       <Route path="/inventory-dashboard" element={<InventoryDashboardView />} />
       <Route path="/financial-dashboard" element={<FinancialDashboardView />} />
       <Route path="/error-generator" element={<ErrorGenerator />} />
       <Route path="/error" element={<ErrorView />} />
-      <Route path="/pets" element={<PetsView /> } />
+      <Route path="/pets" element={<PetsView />} />
       <Route path="*" element={<Navigate to="/error" replace />} />
     </Routes>
   );
