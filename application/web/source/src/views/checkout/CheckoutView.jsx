@@ -1,65 +1,47 @@
-import React from "react";
-import "./checkout.css";
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { formatCurrency } from "../../currency/currency";
+import { isValidCurrency, isValidSource } from "./checkout";
 import postToStripe from "../../api/stripe";
-import { isValidCurrency } from "./checkout";
+import getUrlParam from "../../urlParam/urlParam";
+import "./checkout.css";
 
 function CheckoutView() {
 	const [sourceErrorMessage, setSourceErrorMessage] = useState("");
 	const [currencyErrorMessage, setCurrencyErrorMessage] = useState("");
-	const [total, setTotal] = useState(0);
+	const navigate = useNavigate();
 
-	const currencyRef = useRef(null)
-	const sourceRef = useRef(null)
+	const currencyRef = useRef(null);
+	const sourceRef = useRef(null);
+	const amountOwed = getUrlParam("total") ? getUrlParam("total") : "0";
 
-	let isSourceValid = false;
-
-	const setAndValidateCurrency = () => {
+	const getCurrencyErrorMessage = () => {
 		isValidCurrency(currencyRef.current.value)
 			? setCurrencyErrorMessage("")
-			: setCurrencyErrorMessage("Invalid Currency")
+			: setCurrencyErrorMessage("Invalid Currency");
+	};
 
-		if (currencyRef.current.value) {
-			return currencyRef.current.value;
-		}
-	}
-
-	const setAndValidateSource = () => {
-		if (sourceRef.current.value === "tok_amex") {
-			isSourceValid = true;
-			setSourceErrorMessage("")
-		} else {
-			isSourceValid = false;
-			setSourceErrorMessage("Invalid Source")
-		}
-
-		if (sourceRef.current.value) {
-			return sourceRef.current.value;
-		}
-	}
+	const getSourceErrorMessage = () => {
+		isValidSource(sourceRef.current.value)
+			? setSourceErrorMessage("")
+			: setSourceErrorMessage("Invalid Source");
+	};
 
 	async function submitPayment(e) {
 		e.preventDefault();
 		const source = sourceRef.current.value;
 		const currency = currencyRef.current.value;
-		const amount = parseInt(total);
+		const amount = parseInt(amountOwed);
 		const payload = {
 			amount,
 			currency,
-			source
-		}
+			source,
+		};
 		let response = await postToStripe(payload);
 		if (response.status === "succeeded" && response.paid) {
-			window.location.replace("/purchase-confirmation");
+			navigate("/purchase-confirmation");
 		}
 	}
-
-	useEffect(() => {
-		let queryString = window.location.search;
-		let amountOwed = queryString === "" ? 0 : queryString.split("=")[1];
-		setTotal(amountOwed);
-	}, [])
 
 	return (
 		<div id="checkout-view">
@@ -68,7 +50,7 @@ function CheckoutView() {
 				<input
 					id="currency"
 					name="currency"
-					onBlur={setAndValidateCurrency}
+					onBlur={getCurrencyErrorMessage}
 					ref={currencyRef}
 				></input>
 				<p id="currency-error" className="error">
@@ -79,14 +61,14 @@ function CheckoutView() {
 					id="source"
 					name="source"
 					ref={sourceRef}
-					onBlur={setAndValidateSource}
+					onBlur={getSourceErrorMessage}
 				></input>
 				<p id="source-error" className="error">
 					{sourceErrorMessage}
 				</p>
 				<div className="total-owed-container">
 					<p>Total:</p>
-					<p id="total-owed">{formatCurrency(total)}</p>
+					<p id="total-owed">{formatCurrency(amountOwed)}</p>
 				</div>
 				<button id="submit" onClick={submitPayment}>
 					Place Order
