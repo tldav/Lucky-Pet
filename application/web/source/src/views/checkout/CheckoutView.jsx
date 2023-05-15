@@ -3,6 +3,7 @@ import "./checkout.css";
 import { useState, useRef, useEffect } from "react";
 import { formatCurrency } from "../../currency/currency";
 import postToStripe from "../../api/stripe";
+import { isValidCurrency } from "./checkout";
 
 function CheckoutView() {
 	const [sourceErrorMessage, setSourceErrorMessage] = useState("");
@@ -12,17 +13,12 @@ function CheckoutView() {
 	const currencyRef = useRef(null)
 	const sourceRef = useRef(null)
 
-	let isCurrencyValid = false;
 	let isSourceValid = false;
 
 	const setAndValidateCurrency = () => {
-		if (currencyRef.current.value === "usd") {
-			isCurrencyValid = true;
-			setCurrencyErrorMessage("")
-		} else {
-			isCurrencyValid = false;
-			setCurrencyErrorMessage("Invalid Currency")
-		}
+		isValidCurrency(currencyRef.current.value)
+			? setCurrencyErrorMessage("")
+			: setCurrencyErrorMessage("Invalid Currency")
 
 		if (currencyRef.current.value) {
 			return currencyRef.current.value;
