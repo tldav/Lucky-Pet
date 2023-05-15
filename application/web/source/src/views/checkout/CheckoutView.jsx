@@ -1,10 +1,10 @@
-import { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { formatCurrency } from "../../currency/currency";
-import { isValidCurrency, isValidSource } from "./checkout";
 import postToStripe from "../../api/stripe";
 import getUrlParam from "../../urlParam/urlParam";
 import "./checkout.css";
+import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { formatCurrency } from "../../currency/currency";
+const { isValidCurrency, isValidSource } = require("./checkout");
 
 function CheckoutView() {
 	const [sourceErrorMessage, setSourceErrorMessage] = useState("");

@@ -10,7 +10,8 @@ const isInCart = require("../src/views/products/productListRegion/productRegion/
 const areItemsInCart = require("../src/views/cart/itemListRegion/cartHasItems");
 const hasLowStock = require("../src/views/inventoryDashboard/lowStockListRegion/hasLowStock");
 const getProducts = require("../src/api/product");
-const postToStripe = require("../src/api/stripe")
+const postToStripe = require("../src/api/stripe");
+const { isValidCurrency, isValidSource } = require("../src/views/checkout/checkout");
 
 unitTest("should return dollar amount formatted", () => {
 	//TODO may need to be separated into separate unit tests
@@ -174,7 +175,7 @@ unitTest("should calculate line item total", () => {
 })
 
 /****************************************************************************
-   async test should be failing, but is passing regardless of stripe reponse	
+	 async test should be failing, but is passing regardless of stripe reponse	
 *****************************************************************************/
 unitTest("post to stripe should succeed", async () => {
 	const payment = {
@@ -201,5 +202,29 @@ unitTest("post to stripe should fail", async () => {
 	const response = await postToStripe(payment);
 	const actual = !response.error
 
+	strictEqual(actual, expected)
+})
+
+unitTest("is valid currency", () => {
+	const expected = true;
+	const actual = isValidCurrency("usd")
+	strictEqual(actual, expected)
+})
+
+unitTest("is valid source", () => {
+	const expected = true;
+	const actual = isValidSource("tok_amex")
+	strictEqual(actual, expected)
+})
+
+unitTest("is invalid currency", () => {
+	const expected = false;
+	const actual = isValidCurrency("thomas")
+	strictEqual(actual, expected)
+})
+
+unitTest("is invalid source", () => {
+	const expected = false;
+	const actual = isValidSource("jonothan")
 	strictEqual(actual, expected)
 })
