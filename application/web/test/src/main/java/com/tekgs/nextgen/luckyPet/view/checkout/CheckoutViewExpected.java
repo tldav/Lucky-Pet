@@ -21,22 +21,24 @@ public class CheckoutViewExpected implements CheckoutViewCalibratable {
     
     @Override
     public String getCurrencyErrorMessage() {
-        if (paymentData == null) {
-            return "";
-        }
-        boolean isCurrencyValid = paymentData.getCurrency() == null || "usd".equals(paymentData.getCurrency());
-        return isCurrencyValid ? "" : "Invalid Currency";
+        // If payment data is null then the form is not being filled out or being submitted by the test.
+        return this.paymentData == null || isCurrencyValid() ? "" : "Invalid Currency";
     }
-    
+
+    private boolean isCurrencyValid() {
+        return this.paymentData.getCurrency() == null || "usd".equals(this.paymentData.getCurrency());
+    }
+
     @Override
     public String getSourceErrorMessage() {
-        if (paymentData == null) {
-            return "";
-        }
-        boolean isSourceValid = paymentData.getSource() == null || "tok_amex".equals(paymentData.getSource());
-        return isSourceValid ? "" : "Invalid Source";
+        // If payment data is null then the form is not being filled out or being submitted by the test.
+        return this.paymentData == null || isSourceValid()  ? "" : "Invalid Source" ;
     }
-    
+
+    private boolean isSourceValid() {
+        return this.paymentData.getSource() == null || "tok_amex".equals(this.paymentData.getSource());
+    }
+
     @Override
     public String getTotalOwed() {
         int amount = this.paymentData == null ? 0 : this.paymentData.getAmount();
