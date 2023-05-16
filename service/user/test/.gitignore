@@ -1,0 +1,29 @@
+*.class
+build
+out/
+
+# Mobile Tools for Java (J2ME) #
+.mtj.tmp/
+
+# Package Files #
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml #
+hs_err_pid*
+
+# Gradle Files #
+.gradle/
+
+# Idea Files #
+.idea/
+*.iml
+
+# Windows Executable Files #
+*.exe
+
+# Coverage Report Files #
+*.rpt
+
+# Mac/Linux Executable Files #
+/src/main/resources/chromedriver
