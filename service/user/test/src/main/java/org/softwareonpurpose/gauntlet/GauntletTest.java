@@ -71,9 +71,22 @@ public abstract class GauntletTest {
     protected void addRequirements(String... requirements) {
         this.requirements.addAll(Arrays.asList(requirements));
     }
-
+    
+    public enum Service {
+        ;
+        public static final String USER = "user";
+    }
+    
+    public enum Endpoint {
+        ;
+        public static final String CART = "cart";
+    }
+    
     public static class TestSuite {
         public static final String SMOKE = "smoke";
+        public static final String DEBUG = "debug";
+        public static final String RELEASE = "release";
+        public static final String ACCEPTANCE = "acceptance";
     }
 
     protected void driverInstantation() {
