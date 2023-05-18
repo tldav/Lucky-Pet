@@ -1,7 +1,6 @@
 package org.softwareonpurpose.gauntlet;
 
 import com.softwareonpurpose.calibrator4test.Calibrator;
-import com.softwareonpurpose.uinavigator.web.WebUiHost;
 import org.apache.commons.io.FileUtils;
 import org.softwareonpurpose.coverage4test.CoverageReport;
 import org.testng.Assert;
@@ -30,7 +29,6 @@ public abstract class GauntletTest {
 
     @BeforeMethod(alwaysRun = true)
     protected void initializeTest(Method method) {
-        driverInstantation();
         testName = method.getName();
         System.out.println(String.format("Executing %s...", testName));
     }
@@ -47,7 +45,6 @@ public abstract class GauntletTest {
         } else {
             reportManager.addTestEntry(testName, feature, scenarios);
         }
-        WebUiHost.quitInstance();
     }
 
     @AfterClass(alwaysRun = true)
@@ -89,7 +86,4 @@ public abstract class GauntletTest {
         public static final String ACCEPTANCE = "acceptance";
     }
 
-    protected void driverInstantation() {
-        WebUiHost.getInstance(ChromeUiDriver.getInstance());
-    }
 }
