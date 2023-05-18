@@ -1,7 +1,15 @@
 package com.luckypet.user.cart;
 
+import com.luckypet.user.cart.data.CartCalibratable;
+
 public class CartRequestPayload {
-    public static CartRequestPayload getInstance(String cartId, String productId, Integer newQuantity) {
-        return null;
+    private final CartCalibratable cart;
+
+    public CartRequestPayload(CartCalibratable cart) {
+        this.cart = cart;
+    }
+
+    public static CartRequestPayload getInstance(CartCalibratable cart) {
+        return new CartRequestPayload(cart);
     }
 }

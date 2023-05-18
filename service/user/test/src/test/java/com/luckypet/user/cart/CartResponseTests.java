@@ -9,7 +9,7 @@ public class CartResponseTests extends GauntletTest {
     @Test(groups = {TestSuite.SMOKE, TestSuite.DEBUG})
     public void smoke() {
         CartResponseExpected expected = CartResponseExpected.getInstance();
-        CartResponse actual = CartRequest.getInstance();
+        CartResponse actual = CartRequest.getInstance().head();
         then(CartResponseCalibrator.getInstance(expected, actual));
     }
 }
