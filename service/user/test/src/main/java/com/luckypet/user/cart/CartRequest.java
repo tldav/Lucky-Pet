@@ -25,7 +25,19 @@ public class CartRequest {
     public CartResponse head() {
         WebTarget target = client.target(USER_SERVICE_URI);
         CartResponse cartResponse;
-        try (Response response = target.request().head()){
+        try (Response response = target.request().head()) {
+            cartResponse = CartResponse.getInstance(response);
+        } finally {
+            client.close();
+        }
+        return cartResponse;
+    }
+
+    public CartResponse get() {
+        String url = String.format("%s/%s", USER_SERVICE_URI, this.cartRequestPayload.getCart().getId());
+        WebTarget target = client.target(url);
+        CartResponse cartResponse;
+        try (Response response = target.request().get()) {
             cartResponse = CartResponse.getInstance(response);
         } finally {
             client.close();

@@ -12,4 +12,8 @@ public class CartRequestPayload {
     public static CartRequestPayload getInstance(CartCalibratable cart) {
         return new CartRequestPayload(cart);
     }
+
+    public CartCalibratable getCart() {
+        return this.cart;
+    }
 }
