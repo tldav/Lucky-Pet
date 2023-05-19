@@ -7,4 +7,9 @@ public class CartResponseExpected implements CartResponseCalibratable{
     public static CartResponseExpected getInstance() {
         return new CartResponseExpected();
     }
+
+    @Override
+    public boolean isSuccessful() {
+        return true;
+    }
 }

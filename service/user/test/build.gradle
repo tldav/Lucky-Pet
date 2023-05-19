@@ -16,7 +16,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'org.apache.commons:commons-lang3:3.12.0'
     implementation 'org.slf4j:slf4j-api:2.0.7'
-    implementation group: 'jakarta.ws.rs', name: 'jakarta.ws.rs-api', version: '3.1.0'
+    implementation 'org.jboss.resteasy:resteasy-client:6.2.4.Final'
     implementation files('./src/main/resources/coverage4test-3.0.0.jar')
     implementation files('./src/main/resources/calibrator4test-1.5.3.jar')
     implementation files('./src/main/resources/indentmanager-1.0.7.jar')
