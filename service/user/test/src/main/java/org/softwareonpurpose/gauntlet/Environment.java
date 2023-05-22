@@ -56,7 +56,7 @@ public class Environment {
         environment=null;
     }
 
-    String getProperty(String key) {
+    public String getProperty(String key) {
         return properties.getProperty(key);
     }
 }
