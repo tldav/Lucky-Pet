@@ -1,9 +1,6 @@
 package com.luckypet.user.cart;
 
-import com.luckypet.user.cart.data.Cart;
-import com.luckypet.user.cart.data.CartCalibratable;
-import com.luckypet.user.cart.data.CartDefinition;
-import com.luckypet.user.cart.data.CartExpected;
+import com.luckypet.user.cart.data.*;
 import org.softwareonpurpose.gauntlet.GauntletTest;
 import org.testng.annotations.Test;
 
@@ -29,3 +26,6 @@ public class CartResponseTests extends GauntletTest {
         then(CartResponseCalibrator.getInstance(expected,actual));
     }
 }
+
+
+
