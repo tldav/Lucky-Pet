@@ -2,6 +2,8 @@ package com.luckypet.user.cart;
 
 import com.luckypet.user.cart.data.Cart;
 import com.luckypet.user.cart.data.CartCalibratable;
+import com.luckypet.user.cart.data.CartDefinition;
+import com.luckypet.user.cart.data.CartExpected;
 import org.softwareonpurpose.gauntlet.GauntletTest;
 import org.testng.annotations.Test;
 
