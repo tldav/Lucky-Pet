@@ -1,17 +1,29 @@
 package com.luckypet.user.cart.data;
 
-public class Cart implements CartCalibratable{
-    private final String id;
-    private final String username;
-
-    public Cart(String id, String username) {
-        this.id = id;
-        this.username = username;
-    }
-
+public class Cart implements CartCalibratable {
+    private String id;
+    private String username;
+    
     public String getId() {
-        return null;
+        return this.id;
     }
-
-
+    
+    @Override
+    public String getUsername() {
+        return this.username;
+    }
+    
+    @Override
+    public boolean equivalent(CartCalibratable comparator) {
+        if (comparator == null) {
+            return false;
+        }
+        if (comparator.getId() != null && this.id.equals(comparator.getId())) {
+            return true;
+        }
+//        boolean isEquivalent = comparator.getId() == null || this.id.equals(comparator.getId());
+//        isEquivalent &= comparator.getUsername() == null || this.username.equals(comparator.getUsername());
+        
+        return comparator.getUsername() == null || this.username.equals(comparator.getUsername());
+    }
 }

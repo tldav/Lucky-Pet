@@ -1,5 +1,6 @@
 package com.luckypet.user.cart;
 
+import com.luckypet.user.cart.data.Cart;
 import com.luckypet.user.cart.data.CartCalibratable;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
@@ -21,7 +22,11 @@ public class CartRequest {
     public static CartRequest getInstance() {
         return new CartRequest(null);
     }
-
+    
+    public static CartRequest getInstance(Cart cart) {
+        return new CartRequest(cart);
+    }
+    
     public CartResponse head() {
         WebTarget target = client.target(USER_SERVICE_URI);
         CartResponse cartResponse;

@@ -24,11 +24,16 @@ public class CartRepository {
     }
     
     public Cart query(CartCalibratable cartDefinition) {
+        for (Cart candidate : getCartsFromMySQLDB()) {
+            if (candidate.equivalent(cartDefinition)) {
+                return candidate;
+            }
+        }
         return null;
     }
     
     @SuppressWarnings({"UnusedReturnValue", "unchecked"})
-    public List<Cart> getCartsFromMySQLDB() {
+    private List<Cart> getCartsFromMySQLDB() {
         List<Cart> carts = new ArrayList<>();
         try {
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());

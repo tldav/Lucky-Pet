@@ -15,4 +15,14 @@ public class CartExpected implements CartCalibratable {
     public String getId() {
         return cart.getId();
     }
+    
+    @Override
+    public String getUsername() {
+        return null;
+    }
+    
+    @Override
+    public boolean equivalent(CartCalibratable cartDefinition) {
+        return false;
+    }
 }
