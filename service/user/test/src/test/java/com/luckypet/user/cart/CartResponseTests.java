@@ -7,14 +7,14 @@ import org.testng.annotations.Test;
 @Test(groups = {GauntletTest.Service.USER, GauntletTest.Endpoint.CART})
 public class CartResponseTests extends GauntletTest {
     
-    @Test(groups = {TestSuite.SMOKE, TestSuite.DEBUG})
+    @Test(groups = {TestSuite.SMOKE})
     public void smoke() {
         CartResponseExpected expected = CartResponseExpected.getInstance();
         CartResponse actual = CartRequest.getInstance().head();
         then(CartResponseCalibrator.getInstance(expected, actual));
     }
 
-    @Test(groups = {TestSuite.RELEASE}, dependsOnMethods = "smoke")
+    @Test(groups = {TestSuite.RELEASE, TestSuite.DEBUG}, dependsOnMethods = "smoke")
     public void getById(){
         CartCalibratable cartDefinition = CartDefinition.getInstance();
         Cart cart = CartProvider.getInstance().get(cartDefinition);
