@@ -1,18 +1,19 @@
 package com.luckypet.user.data.cart;
 
+import com.luckypet.user.data.cart.itemList.ItemList;
 import com.luckypet.user.data.cart.itemList.ItemListCalibratable;
 
 public class Cart implements CartCalibratable {
     private String id;
-    private String username;
+    private ItemList itemList;
     
     public String getId() {
         return this.id;
     }
     
     @Override
-    public String getUsername() {
-        return this.username;
+    public ItemListCalibratable getItemList() {
+        return this.itemList;
     }
     
     @Override
@@ -23,14 +24,7 @@ public class Cart implements CartCalibratable {
         if (comparator.getId() != null && this.id.equals(comparator.getId())) {
             return true;
         }
-//        boolean isEquivalent = comparator.getId() == null || this.id.equals(comparator.getId());
-//        isEquivalent &= comparator.getUsername() == null || this.username.equals(comparator.getUsername());
-        
-        return comparator.getUsername() == null || this.username.equals(comparator.getUsername());
-    }
-
-    @Override
-    public ItemListCalibratable getItemList() {
-        return null;
+        // will need to address item equivalence
+        return false;
     }
 }

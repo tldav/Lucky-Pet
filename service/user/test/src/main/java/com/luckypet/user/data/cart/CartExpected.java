@@ -1,35 +1,35 @@
 package com.luckypet.user.data.cart;
 
 import com.luckypet.user.data.cart.itemList.ItemListCalibratable;
+import com.luckypet.user.data.cart.itemList.ItemListExpected;
 
 public class CartExpected implements CartCalibratable {
-    private final CartCalibratable cart;
-
+    private CartCalibratable cart;
+    private ItemListExpected itemListExpected;
+    
     public CartExpected(CartCalibratable cart) {
-        this.cart = cart;
+        if (cart != null) {
+            this.cart = cart;
+            this.itemListExpected.getItems().addAll(cart.getItemList().getItems());
+        }
     }
-
+    
     public static CartExpected getInstance(CartCalibratable cart) {
         return new CartExpected(cart);
     }
-
+    
     @Override
     public String getId() {
         return cart.getId();
     }
     
     @Override
-    public String getUsername() {
+    public ItemListCalibratable getItemList() {
         return null;
     }
     
     @Override
     public boolean equivalent(CartCalibratable cartDefinition) {
         return false;
-    }
-
-    @Override
-    public ItemListCalibratable getItemList() {
-        return null;
     }
 }

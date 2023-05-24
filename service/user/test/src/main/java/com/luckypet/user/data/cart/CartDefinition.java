@@ -1,15 +1,15 @@
 package com.luckypet.user.data.cart;
 
+import com.luckypet.user.data.cart.itemList.ItemList;
 import com.luckypet.user.data.cart.itemList.ItemListCalibratable;
 
 public class CartDefinition implements CartCalibratable {
-    //    private final List<ItemCalibratable> items = new ArrayList<>();
     private String id;
-    private String username;
+    private ItemList itemList; // <- is good or needs to be calibratable?
     
-    public CartDefinition(CartCalibratable cart) {
+    private CartDefinition(CartCalibratable cart) {
         if (cart != null) {
-//            this.items.addAll(cart.getItems());
+            this.itemList.getItems().addAll(cart.getItemList().getItems());
             this.id = cart.getId();
         }
     }
@@ -23,29 +23,18 @@ public class CartDefinition implements CartCalibratable {
         return this;
     }
     
-    public CartDefinition withUsername(String username) {
-        this.username = username;
-        return this;
-    }
-    
-    
     @Override
     public String getId() {
         return this.id;
     }
     
     @Override
-    public String getUsername() {
-        return this.username;
+    public ItemListCalibratable getItemList() {
+        return this.itemList;
     }
     
     @Override
     public boolean equivalent(CartCalibratable cartDefinition) {
         return false;
-    }
-
-    @Override
-    public ItemListCalibratable getItemList() {
-        return null;
     }
 }
