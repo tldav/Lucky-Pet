@@ -1,6 +1,6 @@
 package com.luckypet.user.cart;
 
-import com.luckypet.user.cart.data.*;
+import com.luckypet.user.data.cart.*;
 import org.softwareonpurpose.gauntlet.GauntletTest;
 import org.testng.annotations.Test;
 

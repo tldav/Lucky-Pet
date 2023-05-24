@@ -1,4 +1,4 @@
-package com.luckypet.user.cart.data;
+package com.luckypet.user.data.cart;
 
 public class CartProvider {
     public static CartProvider getInstance() {

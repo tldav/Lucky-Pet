@@ -1,4 +1,6 @@
-package com.luckypet.user.cart.data;
+package com.luckypet.user.data.cart;
+
+import com.luckypet.user.data.cart.itemList.ItemListCalibratable;
 
 public class CartExpected implements CartCalibratable {
     private final CartCalibratable cart;
@@ -24,5 +26,10 @@ public class CartExpected implements CartCalibratable {
     @Override
     public boolean equivalent(CartCalibratable cartDefinition) {
         return false;
+    }
+
+    @Override
+    public ItemListCalibratable getItemList() {
+        return null;
     }
 }

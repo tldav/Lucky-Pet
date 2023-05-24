@@ -1,4 +1,4 @@
-package com.luckypet.user.cart.data;
+package com.luckypet.user.data.cart;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

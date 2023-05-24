@@ -1,6 +1,6 @@
 package com.luckypet.user.cart;
 
-import com.luckypet.user.cart.data.CartCalibratable;
+import com.luckypet.user.data.cart.CartCalibratable;
 
 import java.util.List;
 

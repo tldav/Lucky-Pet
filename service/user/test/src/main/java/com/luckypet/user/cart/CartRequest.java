@@ -1,7 +1,7 @@
 package com.luckypet.user.cart;
 
-import com.luckypet.user.cart.data.Cart;
-import com.luckypet.user.cart.data.CartCalibratable;
+import com.luckypet.user.data.cart.Cart;
+import com.luckypet.user.data.cart.CartCalibratable;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.WebTarget;

@@ -1,4 +1,6 @@
-package com.luckypet.user.cart.data;
+package com.luckypet.user.data.cart;
+
+import com.luckypet.user.data.cart.itemList.ItemListCalibratable;
 
 public class Cart implements CartCalibratable {
     private String id;
@@ -25,5 +27,10 @@ public class Cart implements CartCalibratable {
 //        isEquivalent &= comparator.getUsername() == null || this.username.equals(comparator.getUsername());
         
         return comparator.getUsername() == null || this.username.equals(comparator.getUsername());
+    }
+
+    @Override
+    public ItemListCalibratable getItemList() {
+        return null;
     }
 }
