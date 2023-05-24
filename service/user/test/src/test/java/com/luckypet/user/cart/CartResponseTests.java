@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 
 @Test(groups = {GauntletTest.Service.USER, GauntletTest.Endpoint.CART})
 public class CartResponseTests extends GauntletTest {
-    
     @Test(groups = {TestSuite.SMOKE})
     public void smoke() {
         CartResponseExpected expected = CartResponseExpected.getInstance();
