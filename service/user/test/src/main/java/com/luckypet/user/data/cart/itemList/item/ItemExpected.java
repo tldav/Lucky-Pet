@@ -1,6 +1,21 @@
 package com.luckypet.user.data.cart.itemList.item;
 
+import com.luckypet.user.data.cart.itemList.item.product.Product;
+
 public class ItemExpected implements ItemCalibratable {
+    private Integer quantity;
+    private Product product;
+
+    @Override
+    public Integer getQuantity() {
+        return this.quantity;
+    }
+
+    @Override
+    public Product getProduct() {
+        return this.product;
+    }
+
     @Override
     public boolean equivalent(ItemCalibratable comparator) {
         return false;

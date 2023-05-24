@@ -2,9 +2,19 @@ package com.luckypet.user.data.cart.itemList.item;
 
 import com.luckypet.user.data.cart.itemList.item.product.Product;
 
-public class Item implements ItemCalibratable {
+public class ItemDefinition implements ItemCalibratable {
     private Integer quantity;
     private Product product;
+
+    public ItemDefinition withQuantity(Integer quantity) {
+        this.quantity = quantity;
+        return this;
+    }
+
+    public ItemDefinition withProduct(Product product) {
+        this.product = product;
+        return this;
+    }
 
     @Override
     public Integer getQuantity() {
