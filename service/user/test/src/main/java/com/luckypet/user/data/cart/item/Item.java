@@ -18,6 +18,13 @@ public class Item implements ItemCalibratable {
 
     @Override
     public boolean equivalent(ItemCalibratable comparator) {
-        return false;
+        if (comparator == null){
+            return false;
+        }
+
+        boolean isEquivalent = this.product.equivalent(comparator.getProduct());
+        isEquivalent &= comparator.getQuantity() == null || this.quantity.equals(comparator.getQuantity());
+
+        return isEquivalent;
     }
 }

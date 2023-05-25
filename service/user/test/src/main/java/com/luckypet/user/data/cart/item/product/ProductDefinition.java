@@ -40,4 +40,9 @@ public class ProductDefinition implements ProductCalibratable {
     public Integer getStock() {
         return this.stock;
     }
+
+    @Override
+    public boolean equivalent(ProductCalibratable comparator) {
+        return false;
+    }
 }

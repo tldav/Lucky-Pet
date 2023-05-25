@@ -5,4 +5,5 @@ public interface ProductCalibratable {
     String getDescription();
     Integer getPrice();
     Integer getStock();
+    boolean equivalent(ProductCalibratable comparator);
 }

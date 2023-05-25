@@ -13,6 +13,10 @@ public class Cart implements CartCalibratable {
     }
     
     private boolean itemsAreEquivalent(List<ItemCalibratable> comparatorItemList) {
+        if (comparatorItemList == null){
+            return false;
+        }
+
         boolean areEquivalent = true;
         for (ItemCalibratable comparatorItem : comparatorItemList) {
             for (ItemCalibratable item : this.itemList) {
