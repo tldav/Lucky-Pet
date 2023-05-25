@@ -1,6 +1,5 @@
 package com.luckypet.user.data.cart;
 
-import com.luckypet.user.data.cart.item.Item;
 import com.luckypet.user.data.cart.item.ItemCalibratable;
 
 import java.util.List;
@@ -11,6 +10,19 @@ public class Cart implements CartCalibratable {
     
     public String getId() {
         return this.id;
+    }
+    
+    private boolean itemsAreEquivalent(List<ItemCalibratable> comparatorItemList) {
+        boolean areEquivalent = true;
+        for (ItemCalibratable comparatorItem : comparatorItemList) {
+            for (ItemCalibratable item : this.itemList) {
+                if (!item.equivalent(comparatorItem)) {
+                    areEquivalent = false;
+                    break;
+                }
+            }
+        }
+        return areEquivalent;
     }
     
     @Override
@@ -26,7 +38,7 @@ public class Cart implements CartCalibratable {
         if (comparator.getId() != null && this.id.equals(comparator.getId())) {
             return true;
         }
-        // will need to address item equivalence
-        return false;
+        
+        return itemsAreEquivalent(comparator.getItemList());
     }
 }
