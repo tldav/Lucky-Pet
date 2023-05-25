@@ -6,9 +6,6 @@ import java.util.List;
 
 public interface CartCalibratable {
     String getId();
-    
     List<ItemCalibratable> getItemList();
-    
     boolean equivalent(CartCalibratable cartDefinition);
-    
 }
