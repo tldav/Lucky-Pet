@@ -1,11 +1,13 @@
 package com.luckypet.user.data.cart;
 
-import com.luckypet.user.data.cart.itemList.ItemListCalibratable;
+import com.luckypet.user.data.cart.item.ItemCalibratable;
+
+import java.util.List;
 
 public interface CartCalibratable {
     String getId();
     
-    ItemListCalibratable getItemList();
+    List<ItemCalibratable> getItemList();
     
     boolean equivalent(CartCalibratable cartDefinition);
     

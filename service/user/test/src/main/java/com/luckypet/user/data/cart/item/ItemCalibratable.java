@@ -1,6 +1,6 @@
-package com.luckypet.user.data.cart.itemList.item;
+package com.luckypet.user.data.cart.item;
 
-import com.luckypet.user.data.cart.itemList.item.product.Product;
+import com.luckypet.user.data.cart.item.product.Product;
 
 public interface ItemCalibratable {
     Integer getQuantity();

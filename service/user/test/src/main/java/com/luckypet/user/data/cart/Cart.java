@@ -1,18 +1,20 @@
 package com.luckypet.user.data.cart;
 
-import com.luckypet.user.data.cart.itemList.ItemList;
-import com.luckypet.user.data.cart.itemList.ItemListCalibratable;
+import com.luckypet.user.data.cart.item.Item;
+import com.luckypet.user.data.cart.item.ItemCalibratable;
+
+import java.util.List;
 
 public class Cart implements CartCalibratable {
     private String id;
-    private ItemList itemList;
+    private List<ItemCalibratable> itemList;
     
     public String getId() {
         return this.id;
     }
     
     @Override
-    public ItemListCalibratable getItemList() {
+    public List<ItemCalibratable> getItemList() {
         return this.itemList;
     }
     
