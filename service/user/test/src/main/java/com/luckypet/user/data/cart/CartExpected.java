@@ -1,17 +1,18 @@
 package com.luckypet.user.data.cart;
 
-import com.luckypet.user.data.cart.item.Item;
 import com.luckypet.user.data.cart.item.ItemCalibratable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartExpected implements CartCalibratable {
-    private CartCalibratable cart;
-    private List<ItemCalibratable> itemListExpected;
+    private final CartCalibratable cartExpected;
+    private final List<ItemCalibratable> itemListExpected;
     
     public CartExpected(CartCalibratable cart) {
+        this.cartExpected = cart;
+        this.itemListExpected = new ArrayList<>();
         if (cart != null) {
-            this.cart = cart;
             this.itemListExpected.addAll(cart.getItemList());
         }
     }
@@ -22,12 +23,12 @@ public class CartExpected implements CartCalibratable {
     
     @Override
     public String getId() {
-        return cart.getId();
+        return this.cartExpected.getId();
     }
     
     @Override
     public List<ItemCalibratable> getItemList() {
-        return null;
+        return this.itemListExpected;
     }
     
     @Override
