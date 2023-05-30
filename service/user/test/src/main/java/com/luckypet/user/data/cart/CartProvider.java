@@ -5,7 +5,7 @@ public class CartProvider {
         return new CartProvider();
     }
 
-    public Cart get(CartCalibratable cartDefinition) {
-        return CartRepository.getInstance().query(cartDefinition);
+    public Cart get() {
+        return CartRepository.getInstance().query(CartDefinition.getInstance());
     }
 }

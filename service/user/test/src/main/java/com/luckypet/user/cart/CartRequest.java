@@ -1,7 +1,5 @@
 package com.luckypet.user.cart;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.luckypet.user.data.cart.Cart;
 import com.luckypet.user.data.cart.CartCalibratable;
 import jakarta.ws.rs.client.Client;
@@ -41,8 +39,6 @@ public class CartRequest {
     }
 
     public CartResponse get() {
-        Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
-        System.out.println(gson.toJson(this.cartRequestPayload));
         String url = String.format("%s/%s", USER_SERVICE_URI, this.cartRequestPayload.getCart().getId());
         WebTarget target = client.target(url);
         CartResponse cartResponse;

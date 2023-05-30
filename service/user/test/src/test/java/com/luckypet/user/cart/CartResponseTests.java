@@ -15,8 +15,7 @@ public class CartResponseTests extends GauntletTest {
 
     @Test(groups = {TestSuite.RELEASE, TestSuite.DEBUG}, dependsOnMethods = "smoke")
     public void getById(){
-        CartCalibratable cartDefinition = CartDefinition.getInstance();
-        Cart cart = CartProvider.getInstance().get(cartDefinition);
+        Cart cart = CartProvider.getInstance().get();
         // given(cart)
         CartExpected cartExpected = CartExpected.getInstance(cart);
         CartResponseExpected expected = CartResponseExpected.getInstance(cartExpected);
