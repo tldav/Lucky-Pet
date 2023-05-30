@@ -1,5 +1,6 @@
 package com.luckypet.user.cart;
 
+import com.google.gson.GsonBuilder;
 import com.luckypet.user.data.cart.*;
 import org.softwareonpurpose.gauntlet.GauntletTest;
 import org.testng.annotations.Test;
@@ -16,8 +17,10 @@ public class CartResponseTests extends GauntletTest {
     @Test(groups = {TestSuite.RELEASE, TestSuite.DEBUG}, dependsOnMethods = "smoke")
     public void getById(){
         Cart cart = CartProvider.getInstance().get();
+        System.out.println(cart);
         // given(cart)
         CartExpected cartExpected = CartExpected.getInstance(cart);
+        System.out.println(cartExpected);
         CartResponseExpected expected = CartResponseExpected.getInstance(cartExpected);
         // when()
         CartResponse actual = CartRequest.getInstance(cart).get();
