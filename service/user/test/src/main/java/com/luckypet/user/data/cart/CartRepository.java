@@ -24,7 +24,9 @@ public class CartRepository {
     }
     
     public Cart query(CartCalibratable cartDefinition) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         for (Cart candidate : query()) {
+            System.out.println(gson.toJson(candidate));
             if (candidate.equivalent(cartDefinition)) {
                 return candidate;
             }
@@ -43,8 +45,7 @@ public class CartRepository {
             JSONArray jsonArray = new JSONArray();
             while (resultSet.next()) {
                 JSONObject record = new JSONObject();
-                record.put("id", resultSet.getInt("id"));
-                record.put("username", resultSet.getString("username"));
+                record.put("id", resultSet.getInt("cart_id"));
                 jsonArray.add(record);
             }
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
