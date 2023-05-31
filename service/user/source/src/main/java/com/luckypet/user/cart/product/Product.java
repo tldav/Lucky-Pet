@@ -10,6 +10,6 @@ public class Product {
     @Column(name = "product_id", columnDefinition = "INT NOT NULL AUTO_INCREMENT")
     private int id;
     @OneToOne
-    @JoinColumn(name = "item_id")
+    @JoinColumn(name = "product_id")
     private Item _item;
 }
