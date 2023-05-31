@@ -49,4 +49,8 @@ public class CartRequest {
         }
         return cartResponse;
     }
+
+    public CartResponse put() {
+        return null;
+    }
 }

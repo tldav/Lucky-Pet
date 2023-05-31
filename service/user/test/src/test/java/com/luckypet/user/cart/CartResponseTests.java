@@ -26,6 +26,13 @@ public class CartResponseTests extends GauntletTest {
         CartResponse actual = CartRequest.getInstance(cart).get();
         then(CartResponseCalibrator.getInstance(expected,actual));
     }
+
+    @Test(groups = {TestSuite.RELEASE}, dependsOnMethods = "smoke")
+    public void addToCart(){
+        CartResponseExpected expected = CartResponseExpected.getInstance();
+        CartResponse actual = CartRequest.getInstance().put();
+        then(CartResponseCalibrator.getInstance(expected, actual));
+    }
 }
 
 
