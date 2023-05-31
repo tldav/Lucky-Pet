@@ -7,13 +7,16 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "_item")
 public class Item {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "item_id", columnDefinition = "INT NOT NULL AUTO_INCREMENT")
+    private int id;
     @Column(name = "quantity")
     private int quantity;
     @ManyToOne
     @JoinColumn(name = "cart_id")
-    private Cart cart;
+    private Cart _cart;
 
-    @OneToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
+    @OneToOne(mappedBy = "_item")
+    private Product _product;
 }

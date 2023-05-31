@@ -9,6 +9,7 @@ public class Product {
     @Id
     @Column(name = "product_id", columnDefinition = "INT NOT NULL AUTO_INCREMENT")
     private int id;
-    @OneToOne(mappedBy = "_item")
-    private Item item;
+    @OneToOne
+    @JoinColumn(name = "item_id")
+    private Item _item;
 }
