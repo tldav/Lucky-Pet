@@ -19,6 +19,11 @@ public class Product {
     @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "product_id", nullable = false)
     private int id;
+
+    private int price;
+    private String description;
+    private int stock;
+
     @OneToOne(mappedBy = "_product")
     private Item _item;
 }
