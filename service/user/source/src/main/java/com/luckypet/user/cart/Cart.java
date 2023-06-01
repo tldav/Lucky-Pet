@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.List;
 
@@ -13,13 +14,13 @@ import java.util.List;
 @Table(name = "_cart")
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter @Setter
 public class Cart {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "cart_id", columnDefinition = "INT NOT NULL AUTO_INCREMENT")
-    @Getter @Setter
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    @Column(name = "cart_id", nullable = false)
     private int id;
-
     @OneToMany(mappedBy = "_cart")
     private List<Item> itemList;
 }
