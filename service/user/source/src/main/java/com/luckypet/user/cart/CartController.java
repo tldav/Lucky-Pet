@@ -16,7 +16,7 @@ public class CartController {
     }
 
     @GetMapping("/{id}")
-    public void getById(@PathVariable(name = "id") int id){
-        cartService.getCart(id);
+    public Cart getById(@PathVariable(name = "id") int id){
+        return cartService.getCart(id);
     }
 }

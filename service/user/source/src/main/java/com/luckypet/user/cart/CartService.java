@@ -13,11 +13,10 @@ public class CartService {
     private CartRepository cartRepository;
 
     public Cart getCart(int cartId) {
-        Optional<Cart> cart = cartRepository.findById(cartId);
-        if (cart.isPresent()){
-            return cart.get();
-        } else {
+        Cart cart = this.cartRepository.findById(cartId).orElse(null);
+        if (cart == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No cart exists with id " + cartId);
         }
+        return cart;
     }
 }
