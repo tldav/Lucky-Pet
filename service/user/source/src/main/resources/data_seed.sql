@@ -24,8 +24,8 @@
 
 USE lucky_pet_db;
 
-INSERT INTO _cart (cart_id)
-VALUES(1), (10);
+INSERT INTO _cart ()
+VALUES(), ();
 
 INSERT INTO _product (description, price, stock)
 VALUES("Sample text", 500, 230), 
@@ -40,5 +40,5 @@ VALUES("Sample text", 500, 230),
 ("Sample description", 49, 50),
 ("Sample description", 49, 50);
 
-INSERT INTO _item (item_id,quantity,cart_id,product_id)
-VALUES (1,10,1,2), (2,20,10,11);
+INSERT INTO _item (quantity,cart_id,product_id)
+VALUES (10,1,2), (20,2,11);

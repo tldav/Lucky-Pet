@@ -21,7 +21,7 @@ public class Cart {
     @Column(name = "cart_id", nullable = false)
     private int id;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "_cart")
     private List<Item> itemList;
 }
