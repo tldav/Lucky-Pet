@@ -1,5 +1,6 @@
 package com.luckypet.user.cart.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.luckypet.user.cart.item.Item;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,8 @@ public class Product {
     private int price;
     private String description;
     private int stock;
-
+    
     @OneToOne(mappedBy = "_product")
+    @JsonIgnore
     private Item _item;
 }
