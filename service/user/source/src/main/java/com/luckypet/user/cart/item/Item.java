@@ -16,8 +16,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Getter @Setter
 public class Item {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id", nullable = false)
     private int id;
     @Column(name = "quantity")
