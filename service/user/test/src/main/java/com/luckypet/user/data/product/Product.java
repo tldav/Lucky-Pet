@@ -1,4 +1,4 @@
-package com.luckypet.user.product;
+package com.luckypet.user.data.product;
 
 public class Product implements ProductCalibratable {
     private String id;

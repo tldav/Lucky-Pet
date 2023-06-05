@@ -1,4 +1,4 @@
-package com.luckypet.user.product;
+package com.luckypet.user.data.product;
 
 import com.luckypet.user.data.cart.CartRepository;
 

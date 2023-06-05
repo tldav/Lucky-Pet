@@ -1,4 +1,4 @@
-package com.luckypet.user.cart;
+package com.luckypet.user.service.cart;
 
 import com.softwareonpurpose.calibrator4test.Calibrator;
 

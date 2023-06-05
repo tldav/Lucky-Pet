@@ -1,4 +1,4 @@
-package com.luckypet.user.product;
+package com.luckypet.user.data.product;
 
 public interface ProductCalibratable {
     String getId();

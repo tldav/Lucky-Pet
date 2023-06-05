@@ -1,4 +1,4 @@
-package com.luckypet.user.cart;
+package com.luckypet.user.service.cart;
 
 import com.luckypet.user.data.cart.CartCalibratable;
 import jakarta.ws.rs.core.GenericType;

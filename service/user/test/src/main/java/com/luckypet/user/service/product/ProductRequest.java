@@ -1,6 +1,4 @@
-package com.luckypet.user.product;
-
-import com.luckypet.user.cart.CartRequest;
+package com.luckypet.user.service.product;
 
 public class ProductRequest {
     public static ProductRequest getInstance() {

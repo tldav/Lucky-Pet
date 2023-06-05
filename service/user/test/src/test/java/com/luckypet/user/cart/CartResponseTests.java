@@ -3,6 +3,10 @@ package com.luckypet.user.cart;
 import com.luckypet.user.data.cart.Cart;
 import com.luckypet.user.data.cart.CartExpected;
 import com.luckypet.user.data.cart.CartProvider;
+import com.luckypet.user.service.cart.CartRequest;
+import com.luckypet.user.service.cart.CartResponse;
+import com.luckypet.user.service.cart.CartResponseCalibrator;
+import com.luckypet.user.service.cart.CartResponseExpected;
 import org.softwareonpurpose.gauntlet.GauntletTest;
 import org.testng.annotations.Test;
 

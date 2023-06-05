@@ -1,4 +1,4 @@
-package com.luckypet.user.cart;
+package com.luckypet.user.service.cart;
 
 import com.luckypet.user.data.cart.CartCalibratable;
 import com.luckypet.user.data.cart.CartExpected;
@@ -41,3 +41,11 @@ public class CartResponseExpected implements CartResponseCalibratable {
         return this.carts;
     }
 }
+
+// user
+    // data
+        // cart
+        // product
+    // service
+        // cart
+        // product

@@ -1,5 +1,9 @@
 package com.luckypet.user.product;
 
+import com.luckypet.user.service.product.ProductRequest;
+import com.luckypet.user.service.product.ProductResponse;
+import com.luckypet.user.service.product.ProductResponseCalibrator;
+import com.luckypet.user.service.product.ProductResponseExpected;
 import org.softwareonpurpose.gauntlet.GauntletTest;
 import org.testng.annotations.Test;
 
