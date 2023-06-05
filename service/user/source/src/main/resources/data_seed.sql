@@ -36,7 +36,7 @@ VALUES("Sample text", 500, 230),
 ("Sample description", 49, 6),
 ("Sample description", 99999999, 0),
 ("Sample description", 50, -1),
-("null", 500, 30),
+(NULL, 500, 30),
 ("Sample description", 49, 50),
 ("Sample description", 49, 50);
 

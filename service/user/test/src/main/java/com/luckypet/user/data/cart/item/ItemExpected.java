@@ -1,6 +1,6 @@
 package com.luckypet.user.data.cart.item;
 
-import com.luckypet.user.data.cart.item.product.Product;
+import com.luckypet.user.product.Product;
 
 public class ItemExpected implements ItemCalibratable {
     private Integer quantity;

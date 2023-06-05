@@ -1,10 +1,16 @@
-package com.luckypet.user.data.cart.item.product;
+package com.luckypet.user.product;
+
+import com.luckypet.user.data.cart.CartCalibratable;
 
 public class ProductDefinition implements ProductCalibratable {
     private String id;
     private String description;
     private Integer price;
     private Integer stock;
+
+    public static ProductCalibratable getInstance() {
+        return new ProductDefinition();
+    }
 
     public ProductDefinition withDescription(String description) {
         this.description = description;

@@ -3,6 +3,8 @@ package com.luckypet.user.data.cart;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.luckypet.user.product.Product;
+import com.luckypet.user.product.ProductCalibratable;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.softwareonpurpose.gauntlet.Environment;
@@ -56,5 +58,9 @@ public class CartRepository {
             System.out.println(e);
         }
         return carts;
+    }
+
+    public Product query(ProductCalibratable instance) {
+        return null;
     }
 }
