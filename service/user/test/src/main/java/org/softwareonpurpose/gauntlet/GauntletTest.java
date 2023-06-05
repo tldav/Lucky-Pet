@@ -77,6 +77,8 @@ public abstract class GauntletTest {
     public enum Endpoint {
         ;
         public static final String CART = "cart";
+
+        public static final String PRODUCT = "product";
     }
     
     public static class TestSuite {

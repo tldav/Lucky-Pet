@@ -1,4 +1,4 @@
 package com.luckypet.user.product;
 
-public class ProductResponseTest {
+public class ProductResponse {
 }
