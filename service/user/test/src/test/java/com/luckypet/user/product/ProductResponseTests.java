@@ -9,11 +9,18 @@ import org.testng.annotations.Test;
 
 @Test(groups = {GauntletTest.Service.USER, GauntletTest.Endpoint.PRODUCT})
 public class ProductResponseTests extends GauntletTest {
-
-    @Test(groups = {GauntletTest.TestSuite.SMOKE})
+    
+    @Test(groups = {TestSuite.SMOKE})
     public void smoke() {
         ProductResponseExpected expected = ProductResponseExpected.getInstance();
         ProductResponse actual = ProductRequest.getInstance().head();
+        then(ProductResponseCalibrator.getInstance(expected, actual));
+    }
+    
+    @Test(groups = {TestSuite.ACCEPTANCE, TestSuite.DEBUG}, dependsOnMethods = "smoke")
+    public void getAll() {
+        ProductResponseExpected expected = ProductResponseExpected.getInstance();
+        ProductResponse actual = ProductRequest.getInstance().getAll();
         then(ProductResponseCalibrator.getInstance(expected, actual));
     }
 }

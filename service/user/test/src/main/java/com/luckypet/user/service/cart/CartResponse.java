@@ -23,7 +23,7 @@ public class CartResponse implements CartResponseCalibratable {
     }
 
     @Override
-    public boolean isSuccessful() {
+    public Boolean isSuccessful() {
         return "OK".equals(statusInfo.getReasonPhrase());
     }
     

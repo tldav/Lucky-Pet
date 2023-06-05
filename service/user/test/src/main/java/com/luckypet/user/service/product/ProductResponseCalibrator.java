@@ -19,6 +19,6 @@ public class ProductResponseCalibrator extends Calibrator {
 
     @Override
     protected void executeVerifications() {
-
+        verify("Is successful response", this.expected.isSuccessful(), this.actual.isSuccessful());
     }
 }

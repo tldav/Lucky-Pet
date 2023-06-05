@@ -32,7 +32,7 @@ public class CartResponseExpected implements CartResponseCalibratable {
     }
     
     @Override
-    public boolean isSuccessful() {
+    public Boolean isSuccessful() {
         return true;
     }
     
@@ -41,11 +41,3 @@ public class CartResponseExpected implements CartResponseCalibratable {
         return this.carts;
     }
 }
-
-// user
-    // data
-        // cart
-        // product
-    // service
-        // cart
-        // product

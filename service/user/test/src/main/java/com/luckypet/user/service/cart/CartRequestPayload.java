@@ -2,6 +2,7 @@ package com.luckypet.user.service.cart;
 
 import com.luckypet.user.data.cart.CartCalibratable;
 
+@SuppressWarnings("ClassCanBeRecord")
 public class CartRequestPayload {
     private final CartCalibratable cart;
 

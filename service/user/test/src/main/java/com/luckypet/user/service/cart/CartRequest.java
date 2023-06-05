@@ -12,13 +12,13 @@ public class CartRequest {
     private static final String ENDPOINT = "cart";
     private static final String USER_SERVICE_URI = String.format("%s/%s", DOMAIN_URL, ENDPOINT);
     private final CartRequestPayload cartRequestPayload;
-    Client client;
-
-    public CartRequest(CartCalibratable cart) {
+    private final Client client;
+    
+    private CartRequest(CartCalibratable cart) {
         this.client = ClientBuilder.newClient();
         this.cartRequestPayload = CartRequestPayload.getInstance(cart);
     }
-
+    
     public static CartRequest getInstance() {
         return new CartRequest(null);
     }
@@ -37,7 +37,7 @@ public class CartRequest {
         }
         return cartResponse;
     }
-
+    
     public CartResponse get() {
         String url = String.format("%s/%s", USER_SERVICE_URI, this.cartRequestPayload.getCart().getId());
         WebTarget target = client.target(url);
@@ -49,7 +49,7 @@ public class CartRequest {
         }
         return cartResponse;
     }
-
+    
     public CartResponse put() {
         return null;
     }

@@ -5,7 +5,7 @@ import com.luckypet.user.data.cart.CartCalibratable;
 import java.util.List;
 
 public interface CartResponseCalibratable {
-    boolean isSuccessful();
+    Boolean isSuccessful();
     
     List<CartCalibratable> getCarts();
 }
