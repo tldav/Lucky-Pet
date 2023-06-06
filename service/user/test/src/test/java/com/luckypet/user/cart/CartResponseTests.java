@@ -18,9 +18,9 @@ public class CartResponseTests extends GauntletTest {
         CartResponse actual = CartRequest.getInstance().head();
         then(CartResponseCalibrator.getInstance(expected, actual));
     }
-
-    @Test(groups = {TestSuite.RELEASE, TestSuite.DEBUG}, dependsOnMethods = "smoke")
-    public void getById(){
+    
+    @Test(groups = {TestSuite.RELEASE}, dependsOnMethods = "smoke")
+    public void getById() {
         Cart cart = CartProvider.getInstance().get();
         // given(cart)
         CartExpected cartExpected = CartExpected.getInstance(cart);
@@ -28,11 +28,11 @@ public class CartResponseTests extends GauntletTest {
         CartResponseExpected expected = CartResponseExpected.getInstance(cartExpected);
         // when()
         CartResponse actual = CartRequest.getInstance(cart).get();
-        then(CartResponseCalibrator.getInstance(expected,actual));
+        then(CartResponseCalibrator.getInstance(expected, actual));
     }
-
+    
     @Test(groups = {TestSuite.RELEASE}, dependsOnMethods = "smoke")
-    public void addToCart(){
+    public void addToCart() {
         CartResponseExpected expected = CartResponseExpected.getInstance();
         CartResponse actual = CartRequest.getInstance().put();
         then(CartResponseCalibrator.getInstance(expected, actual));

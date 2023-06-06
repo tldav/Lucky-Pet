@@ -23,6 +23,6 @@ public class ProductResponseExpected implements ProductResponseCalibratable {
     
     @Override
     public Boolean isSuccessful() {
-        return null;
+        return true;
     }
 }
