@@ -1,5 +1,6 @@
 package com.luckypet.user.cart.product;
 
+import com.luckypet.behavior.ToStringBehavior;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -16,9 +17,7 @@ public class ProductService {
     
     
     public List<Product> getAll() {
-        List<Product> productList = new ArrayList<>();
-        this.productRepository.findAll().forEach(product -> productList.add(product));
-        return productList;
+        return this.productRepository.findAll();
     }
     
     public Product getById(int productId) {
