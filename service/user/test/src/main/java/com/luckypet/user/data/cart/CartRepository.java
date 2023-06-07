@@ -3,6 +3,7 @@ package com.luckypet.user.data.cart;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.luckypet.user.data.cart.item.Item;
 import com.luckypet.user.data.product.Product;
 import com.luckypet.user.data.product.ProductCalibratable;
 import org.json.simple.JSONArray;
@@ -35,6 +36,7 @@ public class CartRepository {
         }
         return null;
     }
+
     
     @SuppressWarnings({"UnusedReturnValue", "unchecked"})
     private List<Cart> query() {
@@ -43,16 +45,36 @@ public class CartRepository {
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             Connection connection = DriverManager.getConnection(DB_URL, MYSQL_USER, MYSQL_PASSWORD);
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM _cart");
-            JSONArray jsonArray = new JSONArray();
+            ResultSet resultSet = statement.executeQuery("    select c.cart_id as cart_id_from_cart, i.cart_id as cart_id_from_item, i.quantity, i.product_id, p.description, p.price, p.stock from _cart as c\n" +
+                    "    JOIN _item i on c.cart_id=i.cart_id\n" +
+                    "    JOIN _product p on p.product_id=i.product_id;");
+            JSONArray jsonArrayCart = new JSONArray();
+            JSONArray jsonArrayItemList = new JSONArray();
+            JSONObject cart = new JSONObject();
+            int lastId = 0;
             while (resultSet.next()) {
-                JSONObject record = new JSONObject();
-                record.put("id", resultSet.getInt("cart_id"));
-                jsonArray.add(record);
+                JSONObject itemInCart = new JSONObject();
+                int cartIdFromCart = resultSet.getInt("cart_id_from_cart");
+                if (cartIdFromCart != lastId) {
+                    jsonArrayItemList = new JSONArray();
+                    cart = new JSONObject();
+                    lastId = cartIdFromCart;
+                    cart.put("id", cartIdFromCart);
+                }
+
+                itemInCart.put("quantity", resultSet.getInt("quantity"));
+                itemInCart.put("productId", resultSet.getInt("product_id"));
+                jsonArrayItemList.add(itemInCart);
+
+                cart.put("itemList", jsonArrayItemList);
+                if(jsonArrayCart.contains(cart)){
+                    jsonArrayCart.remove(cart);
+                }
+                jsonArrayCart.add(cart);
             }
+            System.out.println(jsonArrayCart);
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            carts = gson.fromJson(jsonArray.toJSONString(), new TypeToken<List<Cart>>() {
-            }.getType());
+            carts = gson.fromJson(jsonArrayCart.toJSONString(), new TypeToken<List<Cart>>(){}.getType());
             connection.close();
         } catch (Exception e) {
             System.out.println(e);
@@ -64,3 +86,13 @@ public class CartRepository {
         return null;
     }
 }
+
+
+//                record.put("itemList", resultset( get the item list))
+//                for (Cart cart : carts) {
+//                    List<Item> items = new ArrayList<>();
+//                    int cartIdFromCart = resultSet.getInt("cart_id_from_cart");
+//                    int cartIdFromItem = resultSet.getInt("cart_id_from_item");
+//                }
+// need to create item object from data and
+// create item list for each cart
