@@ -22,7 +22,7 @@ public class CartExpected implements CartCalibratable {
     }
     
     @Override
-    public String getId() {
+    public Integer getId() {
         return this.cartExpected.getId();
     }
     

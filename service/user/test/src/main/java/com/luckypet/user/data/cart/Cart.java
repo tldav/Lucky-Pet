@@ -1,5 +1,6 @@
 package com.luckypet.user.data.cart;
 
+import com.luckypet.user.data.cart.item.Item;
 import com.luckypet.user.data.cart.item.ItemCalibratable;
 
 import java.util.ArrayList;
@@ -7,12 +8,12 @@ import java.util.List;
 
 public class Cart implements CartCalibratable {
 
-    private String id;
-    private List<ItemCalibratable> itemList = new ArrayList<>();
+    private Integer id;
+    private List<Item> itemList = new ArrayList<>();
 
     public Cart() {
     }
-    public String getId() {
+    public Integer getId() {
         return this.id;
     }
     
@@ -31,7 +32,7 @@ public class Cart implements CartCalibratable {
     
     @Override
     public List<ItemCalibratable> getItemList() {
-        return this.itemList;
+        return new ArrayList<>(this.itemList);
     }
     
     @Override

@@ -1,7 +1,7 @@
 package com.luckypet.user.data.product;
 
 public class ProductDefinition implements ProductCalibratable {
-    private String id;
+    private Integer id;
     private String description;
     private Integer price;
     private Integer stock;
@@ -26,7 +26,7 @@ public class ProductDefinition implements ProductCalibratable {
     }
 
     @Override
-    public String getId() {
+    public Integer getId() {
         return this.id;
     }
 

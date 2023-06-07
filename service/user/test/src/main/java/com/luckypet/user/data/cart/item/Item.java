@@ -3,9 +3,12 @@ package com.luckypet.user.data.cart.item;
 import com.luckypet.user.data.product.Product;
 
 public class Item implements ItemCalibratable {
+
     private Integer quantity;
     private Product product;
 
+    public Item() {
+    }
     @Override
     public Integer getQuantity() {
         return this.quantity;

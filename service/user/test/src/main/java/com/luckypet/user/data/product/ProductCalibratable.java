@@ -1,7 +1,7 @@
 package com.luckypet.user.data.product;
 
 public interface ProductCalibratable {
-    String getId();
+    Integer getId();
     String getDescription();
     Integer getPrice();
     Integer getStock();

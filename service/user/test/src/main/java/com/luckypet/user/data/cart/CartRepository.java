@@ -28,8 +28,8 @@ public class CartRepository {
     public Cart query(CartCalibratable cartDefinition) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         for (Cart candidate : query()) {
-            System.out.println(gson.toJson(candidate));
             if (candidate.equivalent(cartDefinition)) {
+            System.out.println(gson.toJson(candidate));
                 return candidate;
             }
         }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CartDefinition implements CartCalibratable {
-    private String id;
+    private Integer id;
     private final List<ItemCalibratable> itemList = new ArrayList<>();
     
     private CartDefinition(CartCalibratable cart) {
@@ -20,13 +20,13 @@ public class CartDefinition implements CartCalibratable {
         return new CartDefinition(null);
     }
     
-    public CartDefinition withId(String id) {
+    public CartDefinition withId(Integer id) {
         this.id = id;
         return this;
     }
     
     @Override
-    public String getId() {
+    public Integer getId() {
         return this.id;
     }
     
