@@ -35,9 +35,4 @@ public class CartResponseExpected implements CartResponseCalibratable {
     public Boolean isSuccessful() {
         return true;
     }
-    
-    @Override
-    public List<CartCalibratable> getCarts() {
-        return this.carts;
-    }
 }

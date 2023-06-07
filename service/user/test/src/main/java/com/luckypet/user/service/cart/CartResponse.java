@@ -1,6 +1,6 @@
 package com.luckypet.user.service.cart;
 
-import com.luckypet.user.data.cart.CartCalibratable;
+import com.luckypet.user.data.cart.Cart;
 import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.Response;
 
@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CartResponse implements CartResponseCalibratable {
     private final Response.StatusType statusInfo;
-    private List<CartCalibratable> carts = new ArrayList<>();
+    private List<Cart> carts = new ArrayList<>();
 
     private CartResponse(Response response) {
         this.statusInfo = response.getStatusInfo();
@@ -25,10 +25,5 @@ public class CartResponse implements CartResponseCalibratable {
     @Override
     public Boolean isSuccessful() {
         return "OK".equals(this.statusInfo.getReasonPhrase());
-    }
-    
-    @Override
-    public List<CartCalibratable> getCarts() {
-        return this.carts;
     }
 }

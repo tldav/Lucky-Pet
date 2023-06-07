@@ -6,9 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cart implements CartCalibratable {
+
     private String id;
     private List<ItemCalibratable> itemList = new ArrayList<>();
-    
+
+    public Cart() {
+    }
     public String getId() {
         return this.id;
     }

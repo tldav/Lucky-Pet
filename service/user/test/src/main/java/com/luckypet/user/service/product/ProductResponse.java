@@ -1,7 +1,7 @@
 package com.luckypet.user.service.product;
 
 import com.luckypet.behavior.ToStringBehavior;
-import com.luckypet.user.data.product.ProductCalibratable;
+import com.luckypet.user.data.product.Product;
 import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.Response;
 
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ProductResponse implements ProductResponseCalibratable {
     private final Response.StatusType statusInfo;
-    private List<ProductCalibratable> products = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
     
     private ProductResponse(Response response) {
         this.statusInfo = response.getStatusInfo();

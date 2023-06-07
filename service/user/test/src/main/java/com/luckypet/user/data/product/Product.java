@@ -6,6 +6,9 @@ public class Product implements ProductCalibratable {
     private Integer price;
     private Integer stock;
 
+    public Product() {
+    }
+
     @Override
     public String getId() {
         return this.id;
