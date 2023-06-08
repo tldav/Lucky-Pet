@@ -2,12 +2,17 @@ package com.luckypet.user.service.cart;
 
 import com.luckypet.user.data.cart.CartCalibratable;
 import com.luckypet.user.data.cart.CartExpected;
+import com.luckypet.user.data.cart.CartProvider;
 
 public class CartResponseExpected implements CartResponseCalibratable {
     private final CartExpected cartExpected;
     
-    public CartResponseExpected(CartExpected cartExpected) {
-        this.cartExpected = cartExpected;
+    private CartResponseExpected(CartExpected cartExpected) {
+        if(cartExpected == null){
+            this.cartExpected = CartExpected.getInstance(CartProvider.getInstance().get());
+        } else{
+            this.cartExpected = cartExpected;
+        }
     }
     
     public static CartResponseExpected getInstance() {

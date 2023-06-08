@@ -2,6 +2,7 @@ package com.luckypet.user.service.cart;
 
 import com.luckypet.user.data.cart.Cart;
 import com.luckypet.user.data.cart.CartCalibratable;
+import com.luckypet.user.data.cart.CartProvider;
 import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.Response;
 
@@ -15,6 +16,8 @@ public class CartResponse implements CartResponseCalibratable {
         this.statusInfo = response.getStatusInfo();
         if (response.hasEntity()){
             this.cart = response.readEntity(new GenericType<>(){});
+        } else {
+            this.cart = CartProvider.getInstance().get();
         }
     }
 

@@ -2,6 +2,7 @@ package com.luckypet.user.data.cart;
 
 import com.luckypet.user.data.cart.item.ItemCalibratable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartExpected implements CartCalibratable {
@@ -27,6 +28,9 @@ public class CartExpected implements CartCalibratable {
     
     @Override
     public List<ItemCalibratable> getItemList() {
+        if(this.cartExpected == null){
+            return new ArrayList<>();
+        }
         return this.cartExpected.getItemList();
     }
     

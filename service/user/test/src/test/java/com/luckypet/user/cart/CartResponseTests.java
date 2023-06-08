@@ -16,6 +16,7 @@ public class CartResponseTests extends GauntletTest {
     @Test(groups = {TestSuite.SMOKE})
     public void smoke() {
         CartResponseExpected expected = CartResponseExpected.getInstance();
+        System.out.println(ToStringBehavior.getInstance(expected.getCart()).execute());
         CartResponse actual = CartRequest.getInstance().head();
         then(CartResponseCalibrator.getInstance(expected, actual));
     }
