@@ -5,7 +5,7 @@ import com.luckypet.user.data.product.Product;
 public class Item implements ItemCalibratable {
 
     private Integer quantity;
-    private Product product;
+    private Product _product;
 
     public Item() {
     }
@@ -16,7 +16,7 @@ public class Item implements ItemCalibratable {
 
     @Override
     public Product getProduct() {
-        return this.product;
+        return this._product;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class Item implements ItemCalibratable {
             return false;
         }
 
-        boolean isEquivalent = this.product.equivalent(comparator.getProduct());
+        boolean isEquivalent = this._product.equivalent(comparator.getProduct());
         isEquivalent &= comparator.getQuantity() == null || this.quantity.equals(comparator.getQuantity());
 
         return isEquivalent;

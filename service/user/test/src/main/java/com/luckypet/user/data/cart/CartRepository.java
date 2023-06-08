@@ -54,6 +54,8 @@ public class CartRepository {
             int lastId = 0;
             while (resultSet.next()) {
                 JSONObject itemInCart = new JSONObject();
+                JSONObject product = new JSONObject();
+
                 int cartIdFromCart = resultSet.getInt("cart_id_from_cart");
                 if (cartIdFromCart != lastId) {
                     jsonArrayItemList = new JSONArray();
@@ -62,8 +64,13 @@ public class CartRepository {
                     cart.put("id", cartIdFromCart);
                 }
 
+                product.put("id", resultSet.getInt("product_id"));
+                product.put("description", resultSet.getString("description"));
+                product.put("price", resultSet.getInt("price"));
+                product.put("stock", resultSet.getInt("stock"));
+
                 itemInCart.put("quantity", resultSet.getInt("quantity"));
-                itemInCart.put("productId", resultSet.getInt("product_id"));
+                itemInCart.put("_product", product);
                 jsonArrayItemList.add(itemInCart);
 
                 cart.put("itemList", jsonArrayItemList);
