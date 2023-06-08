@@ -16,8 +16,6 @@ public class CartResponse implements CartResponseCalibratable {
         this.statusInfo = response.getStatusInfo();
         if (response.hasEntity()){
             this.cart = response.readEntity(new GenericType<>(){});
-        } else {
-            this.cart = CartProvider.getInstance().get();
         }
     }
 

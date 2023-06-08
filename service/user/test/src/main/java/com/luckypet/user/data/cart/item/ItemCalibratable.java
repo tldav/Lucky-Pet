@@ -4,6 +4,6 @@ import com.luckypet.user.data.product.Product;
 
 public interface ItemCalibratable {
     Integer getQuantity();
-    Product getProduct();
+    Product get_product();
     boolean equivalent(ItemCalibratable comparator);
 }

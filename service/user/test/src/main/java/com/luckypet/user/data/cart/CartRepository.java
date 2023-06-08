@@ -30,7 +30,7 @@ public class CartRepository {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         for (Cart candidate : query()) {
             if (candidate.equivalent(cartDefinition)) {
-            System.out.println(gson.toJson(candidate));
+//            System.out.println(gson.toJson(candidate));
                 return candidate;
             }
         }
@@ -79,7 +79,7 @@ public class CartRepository {
                 }
                 jsonArrayCart.add(cart);
             }
-            System.out.println(jsonArrayCart);
+//            System.out.println(jsonArrayCart);
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             carts = gson.fromJson(jsonArrayCart.toJSONString(), new TypeToken<List<Cart>>(){}.getType());
             connection.close();

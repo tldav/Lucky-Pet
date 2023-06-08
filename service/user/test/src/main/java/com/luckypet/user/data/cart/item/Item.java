@@ -15,7 +15,7 @@ public class Item implements ItemCalibratable {
     }
 
     @Override
-    public Product getProduct() {
+    public Product get_product() {
         return this._product;
     }
 
@@ -25,7 +25,7 @@ public class Item implements ItemCalibratable {
             return false;
         }
 
-        boolean isEquivalent = this._product.equivalent(comparator.getProduct());
+        boolean isEquivalent = this._product.equivalent(comparator.get_product());
         isEquivalent &= comparator.getQuantity() == null || this.quantity.equals(comparator.getQuantity());
 
         return isEquivalent;

@@ -12,7 +12,7 @@ public class ItemExpected implements ItemCalibratable {
     }
 
     @Override
-    public Product getProduct() {
+    public Product get_product() {
         return this.product;
     }
 

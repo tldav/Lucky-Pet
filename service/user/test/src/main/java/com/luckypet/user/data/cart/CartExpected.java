@@ -6,15 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CartExpected implements CartCalibratable {
-    private final Cart cartExpected;
-//    private final List<ItemCalibratable> itemListExpected;
+    private final Integer id;
+    private final List<ItemCalibratable> itemListExpected;
     
     public CartExpected(Cart cart) {
-        this.cartExpected = cart;
-//        this.itemListExpected = new ArrayList<>();
-//        if (cart != null) {
-//            this.itemListExpected.addAll(cart.getItemList());
-//        }
+        this.itemListExpected = new ArrayList<>(cart.getItemList());
+        this.id = cart.getId();
     }
     
     public static CartExpected getInstance(Cart cart) {
@@ -23,15 +20,12 @@ public class CartExpected implements CartCalibratable {
     
     @Override
     public Integer getId() {
-        return this.cartExpected.getId();
+        return this.id;
     }
     
     @Override
     public List<ItemCalibratable> getItemList() {
-        if(this.cartExpected == null){
-            return new ArrayList<>();
-        }
-        return this.cartExpected.getItemList();
+        return this.itemListExpected;
     }
     
     @Override

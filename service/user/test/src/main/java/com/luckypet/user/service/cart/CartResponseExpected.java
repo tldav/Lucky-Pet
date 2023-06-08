@@ -8,11 +8,13 @@ public class CartResponseExpected implements CartResponseCalibratable {
     private final CartExpected cartExpected;
     
     private CartResponseExpected(CartExpected cartExpected) {
-        if(cartExpected == null){
-            this.cartExpected = CartExpected.getInstance(CartProvider.getInstance().get());
-        } else{
-            this.cartExpected = cartExpected;
-        }
+//        if(cartExpected == null){
+//            this.cartExpected = CartExpected.getInstance(CartProvider.getInstance().get());
+//        }
+//        else{
+//            this.cartExpected = cartExpected;
+//        }
+        this.cartExpected = cartExpected;
     }
     
     public static CartResponseExpected getInstance() {

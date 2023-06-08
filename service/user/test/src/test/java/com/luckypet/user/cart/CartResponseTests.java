@@ -16,7 +16,7 @@ public class CartResponseTests extends GauntletTest {
     @Test(groups = {TestSuite.SMOKE})
     public void smoke() {
         CartResponseExpected expected = CartResponseExpected.getInstance();
-        System.out.println(ToStringBehavior.getInstance(expected.getCart()).execute());
+//        System.out.println(ToStringBehavior.getInstance(expected.getCart()).execute());
         CartResponse actual = CartRequest.getInstance().head();
         then(CartResponseCalibrator.getInstance(expected, actual));
     }
@@ -26,10 +26,16 @@ public class CartResponseTests extends GauntletTest {
         Cart cart = CartProvider.getInstance().get();
         // given(cart)
         CartExpected cartExpected = CartExpected.getInstance(cart);
-        System.out.println(ToStringBehavior.getInstance(cartExpected).execute());
+//        System.out.println(ToStringBehavior.getInstance(cart).execute());
+//        System.out.println(ToStringBehavior.getInstance(cartExpected).execute());
         CartResponseExpected expected = CartResponseExpected.getInstance(cartExpected);
         // when()
         CartResponse actual = CartRequest.getInstance(cart).get();
+//        System.out.println(ToStringBehavior.getInstance(expected).execute());
+//        System.out.println("^^^^^^^^^^^^^^this is the expected ^^^^^^^^^^^^^^^^^^^^^^^");
+//        System.out.println("************this is the actual ********************");
+//        System.out.println(ToStringBehavior.getInstance(actual).execute());
+//        System.out.println("^^^^^^^^^^^^^^this is the actual ^^^^^^^^^^^^^^^^^^^^^^^");
         then(CartResponseCalibrator.getInstance(expected, actual));
     }
     
