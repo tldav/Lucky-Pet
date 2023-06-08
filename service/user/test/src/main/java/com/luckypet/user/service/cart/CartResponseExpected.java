@@ -3,18 +3,11 @@ package com.luckypet.user.service.cart;
 import com.luckypet.user.data.cart.CartCalibratable;
 import com.luckypet.user.data.cart.CartExpected;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CartResponseExpected implements CartResponseCalibratable {
-    private final List<CartCalibratable> carts;
+    private final CartExpected cartExpected;
     
-    private CartResponseExpected(List<CartExpected> cartExpectedList) {
-        this.carts = new ArrayList<>();
-        
-        if (cartExpectedList != null) {
-            this.carts.addAll(cartExpectedList);
-        }
+    public CartResponseExpected(CartExpected cartExpected) {
+        this.cartExpected = cartExpected;
     }
     
     public static CartResponseExpected getInstance() {
@@ -22,17 +15,16 @@ public class CartResponseExpected implements CartResponseCalibratable {
     }
     
     public static CartResponseExpected getInstance(CartExpected cartExpected) {
-        List<CartExpected> cartExpectedList = new ArrayList<>();
-        cartExpectedList.add(cartExpected);
-        return new CartResponseExpected(cartExpectedList);
+        return new CartResponseExpected(cartExpected);
     }
-    
-    public static CartResponseExpected getInstance(List<CartExpected> cartExpectedList) {
-        return new CartResponseExpected(cartExpectedList);
-    }
-    
+
     @Override
     public Boolean isSuccessful() {
         return true;
+    }
+    
+    @Override
+    public CartCalibratable getCart() {
+        return this.cartExpected;
     }
 }

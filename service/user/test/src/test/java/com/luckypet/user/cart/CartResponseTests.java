@@ -1,5 +1,6 @@
 package com.luckypet.user.cart;
 
+import com.luckypet.behavior.ToStringBehavior;
 import com.luckypet.user.data.cart.Cart;
 import com.luckypet.user.data.cart.CartExpected;
 import com.luckypet.user.data.cart.CartProvider;
@@ -24,7 +25,7 @@ public class CartResponseTests extends GauntletTest {
         Cart cart = CartProvider.getInstance().get();
         // given(cart)
         CartExpected cartExpected = CartExpected.getInstance(cart);
-        System.out.println(cartExpected);
+        System.out.println(ToStringBehavior.getInstance(cartExpected).execute());
         CartResponseExpected expected = CartResponseExpected.getInstance(cartExpected);
         // when()
         CartResponse actual = CartRequest.getInstance(cart).get();

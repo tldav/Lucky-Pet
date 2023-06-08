@@ -17,7 +17,7 @@ public class CartCalibrator extends ListCalibrator<ItemCalibrator, ItemCalibrata
         this.addCalibrationsUnexpected(itemListActual);
     }
 
-    public CartCalibrator getInstance(CartCalibratable expected, CartCalibratable actual){
+    public static CartCalibrator getInstance(CartCalibratable expected, CartCalibratable actual){
         return new CartCalibrator(expected, actual);
     }
 
