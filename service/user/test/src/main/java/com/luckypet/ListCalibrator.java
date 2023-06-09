@@ -32,7 +32,7 @@ public abstract class ListCalibrator<C, I> extends Calibrator {
     private void executeAddChildCalibrator(Object calibratableExpected, Object calibratableActual) {
         Method getInstance = setGetInstance();
         try {
-            addChildCalibrator((Calibrator) getInstance.invoke(this.childCalibrator, calibratableExpected, calibratableActual));
+            this.addChildCalibrator((Calibrator) getInstance.invoke(this.childCalibrator, calibratableExpected, calibratableActual));
         } catch (IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }

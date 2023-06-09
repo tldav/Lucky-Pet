@@ -7,14 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cart implements CartCalibratable {
-
+    
     private Integer id;
-    private List<Item> itemList = new ArrayList<>();
-
+    private final List<Item> itemList = new ArrayList<>();
+    
     public Cart() {
-    }
-    public Integer getId() {
-        return this.id;
     }
     
     private boolean itemsAreEquivalent(List<ItemCalibratable> comparatorItemList) {
@@ -28,6 +25,10 @@ public class Cart implements CartCalibratable {
             }
         }
         return areEquivalent;
+    }
+    
+    public Integer getId() {
+        return this.id;
     }
     
     @Override
@@ -45,5 +46,5 @@ public class Cart implements CartCalibratable {
         }
         return itemsAreEquivalent(comparator.getItemList());
     }
-
+    
 }

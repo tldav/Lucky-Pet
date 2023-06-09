@@ -17,7 +17,7 @@ public class ProductResponseTests extends GauntletTest {
         then(ProductResponseCalibrator.getInstance(expected, actual));
     }
     
-    @Test(groups = {TestSuite.ACCEPTANCE, TestSuite.DEBUG}, dependsOnMethods = "smoke")
+    @Test(groups = {TestSuite.ACCEPTANCE}, dependsOnMethods = "smoke")
     public void getAll() {
         ProductResponseExpected expected = ProductResponseExpected.getInstance();
         ProductResponse actual = ProductRequest.getInstance().getAll();

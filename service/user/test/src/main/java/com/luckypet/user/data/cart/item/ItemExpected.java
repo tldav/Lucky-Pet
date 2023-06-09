@@ -4,7 +4,7 @@ import com.luckypet.user.data.product.Product;
 
 public class ItemExpected implements ItemCalibratable {
     private Integer quantity;
-    private Product product;
+    private Product _product;
 
     @Override
     public Integer getQuantity() {
@@ -13,7 +13,7 @@ public class ItemExpected implements ItemCalibratable {
 
     @Override
     public Product get_product() {
-        return this.product;
+        return this._product;
     }
 
     @Override

@@ -3,7 +3,6 @@ package com.luckypet.user.data.cart;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.luckypet.user.data.cart.item.Item;
 import com.luckypet.user.data.product.Product;
 import com.luckypet.user.data.product.ProductCalibratable;
 import org.json.simple.JSONArray;
@@ -27,16 +26,17 @@ public class CartRepository {
     }
     
     public Cart query(CartCalibratable cartDefinition) {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         for (Cart candidate : query()) {
             if (candidate.equivalent(cartDefinition)) {
-//            System.out.println(gson.toJson(candidate));
                 return candidate;
             }
         }
         return null;
     }
-
+    
+    public Product query(ProductCalibratable instance) {
+        return null;
+    }
     
     @SuppressWarnings({"UnusedReturnValue", "unchecked"})
     private List<Cart> query() {
@@ -55,7 +55,7 @@ public class CartRepository {
             while (resultSet.next()) {
                 JSONObject itemInCart = new JSONObject();
                 JSONObject product = new JSONObject();
-
+                
                 int cartIdFromCart = resultSet.getInt("cart_id_from_cart");
                 if (cartIdFromCart != lastId) {
                     jsonArrayItemList = new JSONArray();
@@ -63,43 +63,29 @@ public class CartRepository {
                     lastId = cartIdFromCart;
                     cart.put("id", cartIdFromCart);
                 }
-
+                
                 product.put("id", resultSet.getInt("product_id"));
                 product.put("description", resultSet.getString("description"));
                 product.put("price", resultSet.getInt("price"));
                 product.put("stock", resultSet.getInt("stock"));
-
+                
                 itemInCart.put("quantity", resultSet.getInt("quantity"));
                 itemInCart.put("_product", product);
                 jsonArrayItemList.add(itemInCart);
-
+                
                 cart.put("itemList", jsonArrayItemList);
-                if(jsonArrayCart.contains(cart)){
+                if (jsonArrayCart.contains(cart)) {
                     jsonArrayCart.remove(cart);
                 }
                 jsonArrayCart.add(cart);
             }
-//            System.out.println(jsonArrayCart);
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            carts = gson.fromJson(jsonArrayCart.toJSONString(), new TypeToken<List<Cart>>(){}.getType());
+            Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+            carts = gson.fromJson(jsonArrayCart.toJSONString(), new TypeToken<List<Cart>>() {
+            }.getType());
             connection.close();
         } catch (Exception e) {
-            System.out.println(e);
+            e.getStackTrace();
         }
         return carts;
     }
-
-    public Product query(ProductCalibratable instance) {
-        return null;
-    }
 }
-
-
-//                record.put("itemList", resultset( get the item list))
-//                for (Cart cart : carts) {
-//                    List<Item> items = new ArrayList<>();
-//                    int cartIdFromCart = resultSet.getInt("cart_id_from_cart");
-//                    int cartIdFromItem = resultSet.getInt("cart_id_from_item");
-//                }
-// need to create item object from data and
-// create item list for each cart

@@ -5,11 +5,11 @@ import com.softwareonpurpose.calibrator4test.Calibrator;
 public class ItemCalibrator extends Calibrator {
     private static final String DESCRIPTION = "'Item'";
 
-    private ItemCalibrator(ItemExpected expected, Item actual) {
+    private ItemCalibrator(ItemCalibratable expected, ItemCalibratable actual) {
         super(DESCRIPTION, expected, actual);
     }
 
-    public ItemCalibrator getInstance(ItemExpected expected, Item actual){
+    public static ItemCalibrator getInstance(ItemCalibratable expected, ItemCalibratable actual){
         return new ItemCalibrator(expected, actual);
     }
 

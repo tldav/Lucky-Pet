@@ -1,6 +1,5 @@
 package com.luckypet.user.service.product;
 
-import com.luckypet.behavior.ToStringBehavior;
 import com.luckypet.user.data.product.Product;
 import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.Response;
@@ -14,9 +13,6 @@ public class ProductResponse implements ProductResponseCalibratable {
     
     private ProductResponse(Response response) {
         this.statusInfo = response.getStatusInfo();
-        System.out.println("**************** response *************");
-        System.out.println(ToStringBehavior.getInstance(response).execute());
-        System.out.println("**************** response *************");
         if (response.hasEntity()) {
             this.products = response.readEntity(new GenericType<>() {
             });

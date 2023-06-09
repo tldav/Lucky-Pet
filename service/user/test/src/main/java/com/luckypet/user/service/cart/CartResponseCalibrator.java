@@ -1,6 +1,5 @@
 package com.luckypet.user.service.cart;
 
-import com.luckypet.behavior.ToStringBehavior;
 import com.luckypet.user.data.cart.CartCalibrator;
 import com.softwareonpurpose.calibrator4test.Calibrator;
 
@@ -14,13 +13,7 @@ public class CartResponseCalibrator extends Calibrator {
         super(DESCRIPTION, expected, actual);
         this.expected = expected;
         this.actual = actual;
-
-
         if (expected.getCart() != null && actual.getCart() != null) {
-            System.out.println(ToStringBehavior.getInstance(expected.getCart()).execute());
-            System.out.println(ToStringBehavior.getInstance(actual.getCart()).execute());
-
-
             this.addChildCalibrator(CartCalibrator.getInstance(expected.getCart(), actual.getCart()));
         }
     }
