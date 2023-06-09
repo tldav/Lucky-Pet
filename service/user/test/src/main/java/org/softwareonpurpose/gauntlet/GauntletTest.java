@@ -1,5 +1,6 @@
 package org.softwareonpurpose.gauntlet;
 
+import com.luckypet.behavior.ToStringBehavior;
 import com.softwareonpurpose.calibrator4test.Calibrator;
 import org.apache.commons.io.FileUtils;
 import org.softwareonpurpose.coverage4test.CoverageReport;
@@ -21,18 +22,18 @@ public abstract class GauntletTest {
     private String feature;
     private String testName;
     private List<String> requirements = new ArrayList<>();
-
+    
     @BeforeClass(alwaysRun = true)
     protected void initialize() {
         feature = this.getClass().getSimpleName().replace("Tests", "");
     }
-
+    
     @BeforeMethod(alwaysRun = true)
     protected void initializeTest(Method method) {
         testName = method.getName();
         System.out.println(String.format("Executing %s...", testName));
     }
-
+    
     @AfterMethod(alwaysRun = true)
     protected void terminateTest(ITestResult result) {
         Object[] scenarios = result.getParameters();
@@ -46,7 +47,7 @@ public abstract class GauntletTest {
             reportManager.addTestEntry(testName, feature, scenarios);
         }
     }
-
+    
     @AfterClass(alwaysRun = true)
     protected synchronized void reportClass() {
         String coverageFolder = "build/reports/coverage";
@@ -60,11 +61,28 @@ public abstract class GauntletTest {
             e.printStackTrace();
         }
     }
-
+    
+    protected void given(Object... givenList) {
+        ToStringBehavior tsb = ToStringBehavior.getInstance();
+        System.out.println("=========== GIVEN ===========");
+        int ordinal = 1;
+        for (Object given : givenList) {
+            if (givenList.length > 1) {
+                System.out.print(ordinal + ". ");
+                ordinal += 1;
+            }
+            tsb.print(given);
+        }
+    }
+    
+    protected void when() {
+        System.out.println("=========== WHEN ===========");
+    }
+    
     protected void then(Calibrator calibrator) {
         Assert.assertEquals(calibrator.calibrate(), Calibrator.SUCCESS);
     }
-
+    
     protected void addRequirements(String... requirements) {
         this.requirements.addAll(Arrays.asList(requirements));
     }
@@ -77,7 +95,7 @@ public abstract class GauntletTest {
     public enum Endpoint {
         ;
         public static final String CART = "cart";
-
+        
         public static final String PRODUCT = "product";
     }
     
@@ -87,5 +105,5 @@ public abstract class GauntletTest {
         public static final String RELEASE = "release";
         public static final String ACCEPTANCE = "acceptance";
     }
-
+    
 }

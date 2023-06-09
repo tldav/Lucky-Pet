@@ -1,7 +1,6 @@
 package com.luckypet.user.data.cart;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.luckypet.user.data.product.Product;
 import com.luckypet.user.data.product.ProductCalibratable;
@@ -79,8 +78,7 @@ public class CartRepository {
                 }
                 jsonArrayCart.add(cart);
             }
-            Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
-            carts = gson.fromJson(jsonArrayCart.toJSONString(), new TypeToken<List<Cart>>() {
+            carts = new Gson().fromJson(jsonArrayCart.toJSONString(), new TypeToken<List<Cart>>() {
             }.getType());
             connection.close();
         } catch (Exception e) {

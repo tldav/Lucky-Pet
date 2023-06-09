@@ -22,10 +22,10 @@ public class CartResponseTests extends GauntletTest {
     @Test(groups = {TestSuite.ACCEPTANCE, TestSuite.RELEASE}, dependsOnMethods = "smoke")
     public void getById() {
         Cart cart = CartProvider.getInstance().get();
-        // given(cart)
+        given(cart);
         CartExpected cartExpected = CartExpected.getInstance(cart);
         CartResponseExpected expected = CartResponseExpected.getInstance(cartExpected);
-        // when()
+        when();
         CartResponse actual = CartRequest.getInstance(cart).get();
         then(CartResponseCalibrator.getInstance(expected, actual));
     }
