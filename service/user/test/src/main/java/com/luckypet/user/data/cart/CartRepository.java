@@ -2,8 +2,6 @@ package com.luckypet.user.data.cart;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.luckypet.user.data.product.Product;
-import com.luckypet.user.data.product.ProductCalibratable;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.softwareonpurpose.gauntlet.Environment;
@@ -32,10 +30,7 @@ public class CartRepository {
         }
         return null;
     }
-    
-    public Product query(ProductCalibratable instance) {
-        return null;
-    }
+
     
     @SuppressWarnings({"UnusedReturnValue", "unchecked"})
     private List<Cart> query() {

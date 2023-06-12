@@ -1,19 +1,27 @@
 package com.luckypet.user.service.product;
 
-import com.softwareonpurpose.calibrator4test.Calibrator;
+import com.luckypet.ListCalibrator;
+import com.luckypet.user.data.product.ProductCalibratable;
+import com.luckypet.user.data.product.ProductCalibrator;
 
-public class ProductResponseCalibrator extends Calibrator {
+import java.util.List;
+
+public class ProductResponseCalibrator extends ListCalibrator<ProductCalibrator, ProductCalibratable> {
     private static final String DESCRIPTION = "'Product' Response";
-    private final ProductResponseExpected expected;
-    private final ProductResponse actual;
+    private final ProductResponseCalibratable expected;
+    private final ProductResponseCalibratable actual;
     
-    protected ProductResponseCalibrator(ProductResponseExpected expected, ProductResponse actual) {
-        super(DESCRIPTION, expected, actual);
+    protected ProductResponseCalibrator(ProductResponseCalibratable expected, ProductResponseCalibratable actual) {
+        super(DESCRIPTION, expected, actual, ProductCalibrator.class, ProductCalibratable.class);
         this.expected = expected;
         this.actual = actual;
+        List<ProductCalibratable> productListExpected = expected.getProducts();
+        List<ProductCalibratable> productListActual = actual.getProducts();
+        this.addCalibrationsExpected(productListExpected, productListActual);
+        this.addCalibrationsUnexpected(productListActual);
     }
     
-    public static ProductResponseCalibrator getInstance(ProductResponseExpected expected, ProductResponse actual) {
+    public static ProductResponseCalibrator getInstance(ProductResponseCalibratable expected, ProductResponseCalibratable actual) {
         return new ProductResponseCalibrator(expected, actual);
     }
     

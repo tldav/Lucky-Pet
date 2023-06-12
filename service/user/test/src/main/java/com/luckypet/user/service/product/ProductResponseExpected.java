@@ -25,4 +25,9 @@ public class ProductResponseExpected implements ProductResponseCalibratable {
     public Boolean isSuccessful() {
         return true;
     }
+
+    @Override
+    public List<ProductCalibratable> getProducts() {
+        return this.products;
+    }
 }
