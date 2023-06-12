@@ -10,7 +10,7 @@ import java.util.List;
 public class ProductResponseExpected implements ProductResponseCalibratable {
     private final List<ProductCalibratable> products;
     
-    public ProductResponseExpected(List<ProductExpected> productExpectedList) {
+    private ProductResponseExpected(List<ProductExpected> productExpectedList) {
         this.products = new ArrayList<>();
         
         if (productExpectedList != null) {
@@ -24,6 +24,12 @@ public class ProductResponseExpected implements ProductResponseCalibratable {
 
     public static ProductResponseExpected getInstance(List<ProductExpected> productList) {
         return new ProductResponseExpected(productList);
+    }
+
+    public static ProductResponseExpected getInstance(ProductExpected productExpected){
+        List<ProductExpected> productExpectedList = new ArrayList<>();
+        productExpectedList.add(productExpected);
+        return new ProductResponseExpected(productExpectedList);
     }
 
     @Override

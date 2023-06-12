@@ -12,4 +12,8 @@ public class ProductRequestPayload {
     public static ProductRequestPayload getInstance(ProductCalibratable product) {
         return new ProductRequestPayload(product);
     }
+
+    public ProductCalibratable getProduct(){
+        return this.product;
+    }
 }

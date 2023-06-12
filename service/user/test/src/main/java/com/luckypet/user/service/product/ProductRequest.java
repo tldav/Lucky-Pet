@@ -1,7 +1,8 @@
 package com.luckypet.user.service.product;
 
+import com.luckypet.behavior.ToStringBehavior;
+import com.luckypet.user.data.product.Product;
 import com.luckypet.user.data.product.ProductCalibratable;
-import com.luckypet.user.service.cart.CartResponse;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.WebTarget;
@@ -21,6 +22,10 @@ public class ProductRequest {
     
     public static ProductRequest getInstance() {
         return new ProductRequest(null);
+    }
+
+    public static ProductRequest getInstance(Product product){
+        return new ProductRequest(product);
     }
     
     public ProductResponse head() {
@@ -42,6 +47,19 @@ public class ProductRequest {
         } finally {
             client.close();
         }
+        return productResponse;
+    }
+
+    public ProductResponse get() {
+        String url = String.format("%s/%s", PRODUCT_SERVICE_URI, this.productRequestPayload.getProduct().getId());
+        WebTarget target = client.target(url);
+        ProductResponse productResponse;
+        try (Response response = target.request().get()) {
+            productResponse = ProductResponse.getInstance(response);
+        } finally {
+            client.close();
+        }
+
         return productResponse;
     }
 }

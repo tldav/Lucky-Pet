@@ -3,10 +3,7 @@ package com.luckypet.user.product;
 import com.luckypet.user.data.product.Product;
 import com.luckypet.user.data.product.ProductExpected;
 import com.luckypet.user.data.product.ProductProvider;
-import com.luckypet.user.service.product.ProductRequest;
-import com.luckypet.user.service.product.ProductResponse;
-import com.luckypet.user.service.product.ProductResponseCalibrator;
-import com.luckypet.user.service.product.ProductResponseExpected;
+import com.luckypet.user.service.product.*;
 import org.softwareonpurpose.gauntlet.GauntletTest;
 import org.testng.annotations.Test;
 
@@ -34,6 +31,16 @@ public class ProductResponseTests extends GauntletTest {
         ProductResponseExpected expected = ProductResponseExpected.getInstance(productListExpected);
         when();
         ProductResponse actual = ProductRequest.getInstance().getAll();
+        then(ProductResponseCalibrator.getInstance(expected, actual));
+    }
+
+    @Test(groups = {TestSuite.ACCEPTANCE, TestSuite.DEBUG}, dependsOnMethods = "smoke")
+    public void getById(){
+        Product product = ProductProvider.getInstance().get();
+        given(product);
+        ProductExpected productExpected = ProductExpected.getInstance(product);
+        ProductResponseExpected expected = ProductResponseExpected.getInstance(productExpected);
+        ProductResponse actual = ProductRequest.getInstance(product).get();
         then(ProductResponseCalibrator.getInstance(expected, actual));
     }
 }

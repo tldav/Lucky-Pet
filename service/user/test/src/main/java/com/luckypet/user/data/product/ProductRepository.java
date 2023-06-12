@@ -19,7 +19,12 @@ public class ProductRepository {
         return new ProductRepository();
     }
 
-    public Product query(ProductCalibratable instance) {
+    public Product query(ProductCalibratable productDefinition) {
+        for (Product candidate : query()){
+            if (candidate.equivalent(productDefinition)) {
+                return candidate;
+            }
+        }
         return null;
     }
 

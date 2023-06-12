@@ -31,7 +31,6 @@ public class CartRepository {
         return null;
     }
 
-    
     @SuppressWarnings({"UnusedReturnValue", "unchecked"})
     private List<Cart> query() {
         List<Cart> carts = new ArrayList<>();
