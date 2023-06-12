@@ -12,6 +12,10 @@ public class ProductCalibrator extends Calibrator {
         this.expected = expected;
         this.actual = actual;
     }
+
+    public static ProductCalibrator getInstance(ProductExpected expected, Product actual){
+        return new ProductCalibrator(expected, actual);
+    }
     
     @Override
     protected void executeVerifications() {
