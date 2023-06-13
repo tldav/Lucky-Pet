@@ -1,6 +1,5 @@
 package com.luckypet.user.service.product;
 
-import com.luckypet.behavior.ToStringBehavior;
 import com.luckypet.user.data.product.Product;
 import com.luckypet.user.data.product.ProductCalibratable;
 import jakarta.ws.rs.core.GenericType;
@@ -29,7 +28,7 @@ public class ProductResponse implements ProductResponseCalibratable {
     public Boolean isSuccessful() {
         return "OK".equals(this.statusInfo.getReasonPhrase());
     }
-
+    
     @Override
     public List<ProductCalibratable> getProducts() {
         return new ArrayList<>(this.products);
