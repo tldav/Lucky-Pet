@@ -31,7 +31,7 @@ public class ProductRegionExpected implements ProductRegionCalibratable {
     
     @Override
     public String getId() {
-        return this.product.getId();
+        return String.valueOf(this.product.getId());
     }
 
     @Override

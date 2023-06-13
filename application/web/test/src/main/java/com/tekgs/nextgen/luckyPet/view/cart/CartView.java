@@ -24,8 +24,8 @@ public class CartView extends UiView implements CartViewCalibratable {
         return UiView.expect(CartView.class);
     }
 
-    public static CartView directNav(String cartId) {
-        new CartView().load(String.format("?cart_id=%s", cartId));
+    public static CartView directNav(Integer cartId) {
+        new CartView().load(String.format("?cart_id=%s", String.valueOf(cartId)));
         return UiView.expect(CartView.class);
     }
 

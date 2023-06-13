@@ -27,7 +27,7 @@ public class CartDefinition implements CartCalibratable {
     }
 
     @Override
-    public String getId() {
+    public Integer getId() {
         return null;
     }
 

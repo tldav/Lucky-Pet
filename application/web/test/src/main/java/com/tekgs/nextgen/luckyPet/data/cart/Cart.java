@@ -8,9 +8,9 @@ import java.util.List;
 
 public class Cart implements CartCalibratable {
     private final List<Item> items = new ArrayList<>();
-    private final String id;
+    private final Integer id;
     
-    private Cart(String id) {
+    private Cart(Integer id) {
         this.id = id;
     }
     
@@ -31,7 +31,7 @@ public class Cart implements CartCalibratable {
     }
 
     @Override
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 

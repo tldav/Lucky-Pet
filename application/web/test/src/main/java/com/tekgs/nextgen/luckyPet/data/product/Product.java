@@ -1,12 +1,12 @@
 package com.tekgs.nextgen.luckyPet.data.product;
 
 public class Product implements ProductCalibratable {
-    private final String id;
+    private final Integer id;
     private final Integer price;
     private final String description;
     private final Integer stock;
 
-    private Product(String id, Integer price, String description, Integer stock) {
+    private Product(Integer id, Integer price, String description, Integer stock) {
         this.id = id;
         this.price = price;
         this.description = description;
@@ -46,7 +46,7 @@ public class Product implements ProductCalibratable {
     }
     
     @Override
-    public String getId() {
+    public Integer getId() {
         return this.id;
     }
     

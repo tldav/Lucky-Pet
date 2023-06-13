@@ -11,5 +11,5 @@ public interface ProductCalibratable {
     
     boolean equivalent(ProductCalibratable comparator);
     
-    String getId();
+    Integer getId();
 }

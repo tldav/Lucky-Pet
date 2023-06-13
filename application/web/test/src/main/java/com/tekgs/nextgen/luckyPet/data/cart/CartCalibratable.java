@@ -9,7 +9,7 @@ public interface CartCalibratable {
 
     List<ItemCalibratable> getItems();
 
-    String getId();
+    Integer getId();
 
     Integer getItemCount();
 }
