@@ -7,10 +7,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.softwareonpurpose.gauntlet.Environment;
 
-import java.io.BufferedReader;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -22,11 +18,11 @@ public class CartRepository {
     public static final String DB_URL = "jdbc:mysql://localhost:3306/lucky_pet_db";
     public static final String MYSQL_USER = Environment.getInstance().getProperty("user");
     public static final String MYSQL_PASSWORD = Environment.getInstance().getProperty("password");
-
+    
     public static CartRepository getInstance() {
         return new CartRepository();
     }
-
+    
     public Cart query(CartCalibratable cartDefinition) {
         for (Cart candidate : query()) {
             if (candidate.equivalent(cartDefinition)) {
@@ -35,7 +31,7 @@ public class CartRepository {
         }
         return null;
     }
-
+    
     @SuppressWarnings({"UnusedReturnValue", "unchecked"})
     private List<Cart> query() {
         List<Cart> carts = new ArrayList<>();
@@ -43,17 +39,17 @@ public class CartRepository {
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             Connection connection = DriverManager.getConnection(DB_URL, MYSQL_USER, MYSQL_PASSWORD);
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("    select c.cart_id as cart_id_from_cart, i.cart_id as cart_id_from_item, i.quantity, i.product_id, p.description, p.price, p.stock from _cart as c\n" +
-                    "    JOIN _item i on c.cart_id=i.cart_id\n" +
-                    "    JOIN _product p on p.product_id=i.product_id;");
+            ResultSet resultSet = statement.executeQuery("""
+                    select c.cart_id as cart_id_from_cart, i.cart_id as cart_id_from_item, i.quantity, i.product_id, p.description, p.price, p.stock from _cart as c
+                    LEFT JOIN _item i on c.cart_id=i.cart_id
+                    LEFT JOIN _product p on p.product_id=i.product_id;""".indent(4));
             JSONArray jsonArrayCart = new JSONArray();
             JSONArray jsonArrayItemList = new JSONArray();
             JSONObject cart = new JSONObject();
             int lastId = 0;
             while (resultSet.next()) {
                 JSONObject itemInCart = new JSONObject();
-                JSONObject product = new JSONObject();
-
+                
                 int cartIdFromCart = resultSet.getInt("cart_id_from_cart");
                 if (cartIdFromCart != lastId) {
                     jsonArrayItemList = new JSONArray();
@@ -61,16 +57,18 @@ public class CartRepository {
                     lastId = cartIdFromCart;
                     cart.put("id", cartIdFromCart);
                 }
-
-                product.put("id", resultSet.getInt("product_id"));
-                product.put("description", resultSet.getString("description"));
-                product.put("price", resultSet.getInt("price"));
-                product.put("stock", resultSet.getInt("stock"));
-
-                itemInCart.put("quantity", resultSet.getInt("quantity"));
-                itemInCart.put("product", product);
-                jsonArrayItemList.add(itemInCart);
-
+                
+                if (resultSet.getObject("cart_id_from_item") != null) {
+                    JSONObject product = new JSONObject();
+                    product.put("id", resultSet.getInt("product_id"));
+                    product.put("description", resultSet.getString("description"));
+                    product.put("price", resultSet.getInt("price"));
+                    product.put("stock", resultSet.getInt("stock"));
+                    itemInCart.put("quantity", resultSet.getInt("quantity"));
+                    itemInCart.put("product", product);
+                    jsonArrayItemList.add(itemInCart);
+                }
+                
                 cart.put("items", jsonArrayItemList);
                 if (jsonArrayCart.contains(cart)) {
                     jsonArrayCart.remove(cart);
@@ -83,7 +81,9 @@ public class CartRepository {
         } catch (Exception e) {
             e.getStackTrace();
         }
+        System.out.println("Carts from DB: " + ToStringBehavior.getInstance(carts).execute());
+        
         return carts;
     }
-
+    
 }

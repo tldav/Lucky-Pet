@@ -29,7 +29,7 @@ public class PurchaseConfirmationViewTests extends GauntletTest {
         then(PurchaseConfirmationViewCalibrator.getInstance(expected, actual));
     }
 
-    @Test(groups = {TestSuite.RELEASE, TestSuite.DEBUG}, dependsOnMethods = "smoke", dataProvider = "validScenarios")
+    @Test(groups = {TestSuite.RELEASE}, dependsOnMethods = "smoke", dataProvider = "validScenarios")
     public void fromCheckout(PaymentDefinition paymentDefinition) {
         Payment payment = PaymentProvider.getInstance().get(paymentDefinition);
         PurchaseConfirmationViewExpected expected = PurchaseConfirmationViewExpected.getInstance(payment);

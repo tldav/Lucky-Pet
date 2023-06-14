@@ -19,6 +19,10 @@ public class CartViewTests extends GauntletTest {
         ItemDefinition fiftyCentItem = ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withPrice(50));
         ItemDefinition fortyNineCentItem = ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withPrice(49));
         ItemDefinition oneLessThanAMillionItem = ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withPrice(99999999));
+        ItemDefinition productDescriptionNull = ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withDescription(null));
+        ItemDefinition productDescriptionEmptyString = ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withDescription(""));
+        ItemDefinition productDescriptionScriptInjection = ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withDescriptionContaining("<script>"));
+        ItemDefinition productDescriptionSQLInjection = ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withDescriptionContaining("SELECT * FROM CartItem"));
         return new Object[][]{
                 {CartDefinition.getInstance().withItem(oneLessThanAMillionItem)},
                 {CartDefinition.getInstance().withItem(fortyNineCentItem)},
@@ -27,13 +31,13 @@ public class CartViewTests extends GauntletTest {
                 {CartDefinition.getInstance().withItem(zeroCostItem)},
                 {CartDefinition.getInstance().withItem(fortyNineCentItem).withItem(fiftyCentItem)},
                 {CartDefinition.getInstance().withItemCount(0)},
-                {CartDefinition.getInstance().withItem(ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withDescription(null)))},
-                {CartDefinition.getInstance().withItem(ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withDescription("")))},
-                {CartDefinition.getInstance().withItem(ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withDescriptionContaining("<script>")))},
-                {CartDefinition.getInstance().withItem(ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withDescriptionContaining("SELECT * FROM CartItem")))}
+                {CartDefinition.getInstance().withItem(productDescriptionNull)},
+                {CartDefinition.getInstance().withItem(productDescriptionEmptyString)},
+                {CartDefinition.getInstance().withItem(productDescriptionScriptInjection)},
+                {CartDefinition.getInstance().withItem(productDescriptionSQLInjection)}
         };
     }
-
+    
     @Test(groups = {TestSuite.SMOKE})
     public void smoke() {
         CartViewExpected expected = CartViewExpected.getInstance();
@@ -41,8 +45,8 @@ public class CartViewTests extends GauntletTest {
         CartView actual = CartView.directNav();
         then(CartViewCalibrator.getInstance(expected, actual));
     }
-
-    @Test(groups = {TestSuite.RELEASE, TestSuite.ACCEPTANCE, TestSuite.DEBUG}, dependsOnMethods = "smoke")
+    
+    @Test(groups = {TestSuite.RELEASE, TestSuite.ACCEPTANCE}, dependsOnMethods = "smoke")
     public void directNav() {
         addRequirements("53 - Cart View - line item total", "78 - Cart View - item quantity");
         CartDefinition shoppingCartDefinition =
@@ -54,8 +58,8 @@ public class CartViewTests extends GauntletTest {
         CartView actual = CartView.directNav(shoppingCart.getId());
         then(CartViewCalibrator.getInstance(expected, actual));
     }
-
-    @Test(groups = {TestSuite.DEBUG}, dependsOnMethods = "smoke", dataProvider = "scenarios")
+    
+    @Test(groups = {TestSuite.DEBUG}, dataProvider = "scenarios")
     public void regression_directNav(CartDefinition shoppingCartDefinition) {
         addRequirements("53 - Cart View - line item total", "78 - Cart View - item quantity");
         Cart shoppingCart = CartProvider.getInstance().get(shoppingCartDefinition);
