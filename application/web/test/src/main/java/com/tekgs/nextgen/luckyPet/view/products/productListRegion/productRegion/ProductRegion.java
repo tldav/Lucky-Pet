@@ -24,7 +24,12 @@ public class ProductRegion extends UiRegion implements ProductRegionCalibratable
     
     @Override
     public boolean equivalent(ProductRegionCalibratable comparator) {
-        return comparator.getId() == null || this.getId().equals(comparator.getId());
+        if (comparator == null){
+            return false;
+        }
+        boolean isEquivalent = comparator.getPrice() == null || this.getPrice().equals(comparator.getPrice());
+        isEquivalent &= comparator.getProductDescription() == null || this.getProductDescription().equals(comparator.getProductDescription());
+        return isEquivalent;
     }
     
     @Override

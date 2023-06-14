@@ -6,7 +6,6 @@ public class Payment implements PaymentCalibratable {
     private final Integer amount;
     private final String currency;
     private final String source;
-    private transient final ToStringBehavior toStringBehavior = ToStringBehavior.getInstance(this);
 
     public Payment(PaymentDefinition paymentDefinition) {
         this.amount = paymentDefinition == null ? null : paymentDefinition.getAmount();
@@ -35,10 +34,5 @@ public class Payment implements PaymentCalibratable {
     @Override
     public String getCurrency() {
         return currency;
-    }
-
-    @Override
-    public String toString() {
-        return toStringBehavior.execute();
     }
 }

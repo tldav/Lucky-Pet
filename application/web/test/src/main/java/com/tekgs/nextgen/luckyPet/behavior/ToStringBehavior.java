@@ -4,18 +4,22 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class ToStringBehavior {
-    private final Object toStringObject;
+    private static ToStringBehavior toStringBehavior;
+    private final Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().disableHtmlEscaping().create();
 
-    public ToStringBehavior(Object toStringObject) {
-        this.toStringObject = toStringObject;
+    public static ToStringBehavior getInstance() {
+        if (toStringBehavior == null) {
+            return new ToStringBehavior();
+        }
+        return toStringBehavior;
     }
 
-    public static ToStringBehavior getInstance(Object toStringObject) {
-        return new ToStringBehavior(toStringObject);
+    public String execute(Object objectToJsonify) {
+        return this.gson.toJson(objectToJsonify);
     }
 
-    public String execute() {
-        Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
-        return gson.toJson(this.toStringObject);
+    public void print(Object objectToPrint) {
+        System.out.printf(objectToPrint.getClass().getSimpleName() + ": ");
+        System.out.println(this.gson.toJson(objectToPrint));
     }
 }

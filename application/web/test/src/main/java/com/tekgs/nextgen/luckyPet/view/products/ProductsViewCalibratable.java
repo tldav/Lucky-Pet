@@ -4,5 +4,5 @@ import com.tekgs.nextgen.luckyPet.view.products.productListRegion.ProductListReg
 
 public interface ProductsViewCalibratable {
 
-    ProductListRegionCalibratable inProductListRegion();
+    ProductListRegionCalibratable getProductListRegion();
 }

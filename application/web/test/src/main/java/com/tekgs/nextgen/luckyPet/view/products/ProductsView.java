@@ -32,11 +32,11 @@ public class ProductsView extends UiView implements ProductsViewCalibratable {
 
     @Override
     protected boolean confirmElementStates() {
-        return false;
+        return this.getElement().waitUntilVisible();
     }
 
     @Override
-    public ProductListRegionCalibratable inProductListRegion() {
+    public ProductListRegionCalibratable getProductListRegion() {
         return ProductListRegion.getInstance(this.getElement());
     }
 }

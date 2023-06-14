@@ -81,7 +81,6 @@ public class CartRepository {
         } catch (Exception e) {
             e.getStackTrace();
         }
-        System.out.println("Carts from DB: " + ToStringBehavior.getInstance(carts).execute());
         
         return carts;
     }

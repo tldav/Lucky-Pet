@@ -17,7 +17,7 @@ public class ProductsViewTests extends GauntletTest {
         then(ProductsViewCalibrator.getInstance(expected, actual));
     }
 
-    @Test(groups = {TestSuite.ACCEPTANCE, TestSuite.RELEASE}, dependsOnMethods = "smoke")
+    @Test(groups = {TestSuite.ACCEPTANCE, TestSuite.RELEASE, TestSuite.DEBUG}, dependsOnMethods = "smoke")
     public void directNav(){
         addRequirements("70 - Products - 'add to cart UI'");
         CartDefinition cartDefinition = CartDefinition.getInstance();

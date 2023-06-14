@@ -1,5 +1,6 @@
 package com.tekgs.nextgen.luckyPet.view.products.productListRegion.productRegion;
 
+import com.tekgs.nextgen.luckyPet.behavior.ToStringBehavior;
 import com.tekgs.nextgen.luckyPet.data.financial.Cents;
 import com.tekgs.nextgen.luckyPet.data.product.ProductCalibratable;
 

@@ -10,16 +10,12 @@ import java.util.List;
 
 public class ProductsViewCalibrator extends Calibrator {
     private static final String DESCRIPTION = "'Products' view";
-    private final ProductsViewExpected expected;
-    private final ProductsView actual;
     
     private ProductsViewCalibrator(ProductsViewExpected expected, ProductsView actual) {
         super(DESCRIPTION, expected, actual);
-        this.expected = expected;
-        this.actual = actual;
         UiRegion.suppressConstructionLogging(true);
-        List<ProductRegionCalibratable> productsExpected = expected.inProductListRegion().getProductRegions();
-        List<ProductRegionCalibratable> productsActual = new ArrayList<>(actual.inProductListRegion().getProductRegions());
+        List<ProductRegionCalibratable> productsExpected = expected.getProductListRegion().getProductRegions();
+        List<ProductRegionCalibratable> productsActual = actual.getProductListRegion().getProductRegions();
         addCalibrationsExpected(productsExpected, productsActual);
         addCalibrationsUnexpected(productsActual);
         UiRegion.suppressConstructionLogging(false);

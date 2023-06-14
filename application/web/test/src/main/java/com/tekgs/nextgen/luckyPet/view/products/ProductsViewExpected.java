@@ -1,5 +1,6 @@
 package com.tekgs.nextgen.luckyPet.view.products;
 
+import com.tekgs.nextgen.luckyPet.behavior.ToStringBehavior;
 import com.tekgs.nextgen.luckyPet.data.cart.Cart;
 import com.tekgs.nextgen.luckyPet.data.product.ProductCalibratable;
 import com.tekgs.nextgen.luckyPet.data.product.ProductProvider;
@@ -17,7 +18,6 @@ public class ProductsViewExpected implements ProductsViewCalibratable {
     private ProductsViewExpected(Cart cart) {
         this.productList.addAll(ProductProvider.getInstance().get());
         this.cart = cart;
-        
     }
     
     public static ProductsViewExpected getInstance() {
@@ -29,7 +29,7 @@ public class ProductsViewExpected implements ProductsViewCalibratable {
     }
     
     @Override
-    public ProductListRegionCalibratable inProductListRegion() {
+    public ProductListRegionCalibratable getProductListRegion() {
         return ProductListRegionExpected.getInstance(this.productList, this.cart);
     }
 }

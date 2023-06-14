@@ -71,10 +71,17 @@ public abstract class GauntletTest {
         System.out.printf("WHEN:%n");
     }
 
-    protected void given(Object testData) {
-        String testDataDescription = testData == null ? "<NULL>" : ToStringBehavior.getInstance(testData).execute();
-        System.out.printf("GIVEN: %s%n", testData==null ? "" : testData.getClass().getSimpleName());
-        System.out.println(testDataDescription);
+    protected void given(Object... givenList) {
+        ToStringBehavior tsb = ToStringBehavior.getInstance();
+        System.out.println("=========== GIVEN ===========");
+        int ordinal = 1;
+        for (Object given : givenList) {
+            if (givenList.length > 1) {
+                System.out.print(ordinal + ". ");
+                ordinal += 1;
+            }
+            tsb.print(given);
+        }
     }
 
     protected void then(Calibrator calibrator) {

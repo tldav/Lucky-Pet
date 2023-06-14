@@ -59,7 +59,7 @@ public class CartViewTests extends GauntletTest {
         then(CartViewCalibrator.getInstance(expected, actual));
     }
     
-    @Test(groups = {TestSuite.DEBUG}, dataProvider = "scenarios")
+    @Test(groups = {}, dependsOnMethods = "smoke", dataProvider = "scenarios")
     public void regression_directNav(CartDefinition shoppingCartDefinition) {
         addRequirements("53 - Cart View - line item total", "78 - Cart View - item quantity");
         Cart shoppingCart = CartProvider.getInstance().get(shoppingCartDefinition);
