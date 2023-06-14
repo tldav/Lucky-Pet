@@ -33,7 +33,7 @@
 				"product": {
 					"id": "103",
 					"price": -100,
-					"description": "Item w/ cost negative one dollar"
+					"description": "Item w/ price negative one dollar"
 				}
 			}
 		]
@@ -119,7 +119,7 @@
 				"product": {
 					"id": "110",
 					"price": 0,
-					"description": "Sample Description"
+					"description": "Sample description"
 				}
 			}
 		]
@@ -130,7 +130,7 @@
 			{
 				"quantity": 5,
 				"product": {
-					"id": "110",
+					"id": "150",
 					"price": 500,
 					"description": null
 				}
