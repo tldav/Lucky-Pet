@@ -47,17 +47,15 @@
     "description": "Sample description",
     "stock": -1
   },
-
   {
     "id": "110",
     "description": null,
     "price": 500,
     "stock": 30
   },
-
   {
     "id": "111",
-    "price": 49,
+    "price": 0,
     "description": "Sample description",
     "stock": 50
   },
