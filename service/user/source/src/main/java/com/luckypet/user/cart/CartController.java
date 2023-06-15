@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping(value = "/cart")
-//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 public class CartController {
     @Autowired
     private CartService cartService;

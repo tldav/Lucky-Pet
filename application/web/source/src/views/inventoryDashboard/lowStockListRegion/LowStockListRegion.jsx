@@ -1,17 +1,23 @@
-import React from "react"; 
+import React, { useEffect, useState } from "react";
 import LowStockRegion from "./lowStockRegion/LowStockRegion";
-import products from "../../../data/product.json";
+import getProducts from "../../../api/product";
 import hasLowStock from "./hasLowStock";
 
 function LowStockListRegion() {
 
-    const renderLowStockProducts= () => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        getProducts().then(response => setProducts(response))
+    }, [])
+
+    const renderLowStockProducts = () => {
         return products.map((product) => {
             return hasLowStock(product) ? <LowStockRegion product={product} key={product.id} /> : null;
         })
     }
 
-    return <div id="low-stock-list-region">  
+    return <div id="low-stock-list-region">
         {renderLowStockProducts()}
     </div>
 }
