@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import ProductRegion from "./productRegion/ProductRegion";
-import carts from "../../../data/cart.json";
+import getCart from "../../../api/cart";
 import isInCart from "./productRegion/isInCart";
 import getProducts from "../../../api/product";
 
 function ProductListRegion() {
   const params = new URL(window.location.href).searchParams;
   const cartId = params.get("cart_id") ? params.get("cart_id") : null;
-  const cart = carts.find((cart) => cartId === cart.id);
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState(null);
 
   useEffect(() => {
     getProducts().then(response => setProducts(response))
+    if (cartId) {
+      getCart(cartId).then(response => setCart(response));
+    }
   }, [])
 
   const renderProducts = () => {

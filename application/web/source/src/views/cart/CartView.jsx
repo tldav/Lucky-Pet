@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ItemListRegion from "./itemListRegion/ItemListRegion";
 import { calculateSubtotal, formatCurrency } from "../../currency/currency";
 import getUrlParam from "../../urlParam/urlParam";
-import carts from "../../data/cart.json";
+import getCart from "../../api/cart";
 import "./cart.css";
 
 function Cart() {
@@ -12,21 +12,20 @@ function Cart() {
   useEffect(() => {
     const cartId = getUrlParam("cart_id");
     if (cartId) {
-      const shoppingCart = carts.find((cart) => cartId === cart.id);
-      setCart(shoppingCart);
+      getCart(cartId).then(response => setCart(response));
     }
   }, []);
 
   useEffect(() => {
-    if (cart.items) {
-      const subtotal = calculateSubtotal(cart.items);
+    if (cart.itemList) {
+      const subtotal = calculateSubtotal(cart.itemList);
       setCartTotal(subtotal);
     }
   }, [cart]);
 
   return (
     <div id="cart">
-      <ItemListRegion items={cart.items} />
+      <ItemListRegion items={cart.itemList} />
       <h4>Cart Total</h4>
       <div id="total">{formatCurrency(cartTotal)}</div>
     </div>

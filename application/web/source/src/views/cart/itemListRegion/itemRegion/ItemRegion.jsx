@@ -8,11 +8,11 @@ function ItemRegion({ item }) {
 		<div className="item-region">
 			<div>
 				Product Price:{" "}
-				<span className="product-price">{formatCurrency(item.product.price)} </span>
+				<span className="product-price">{formatCurrency(item._product.price)} </span>
 			</div>
 			<div>
 				Product Description:{" "}
-				<span className="product-description">{item.product.description}</span>
+				<span className="product-description">{item._product.description}</span>
 			</div>
 			<div>
 				Item Quantity: <span className="line-item-quantity">{item.quantity}</span>
