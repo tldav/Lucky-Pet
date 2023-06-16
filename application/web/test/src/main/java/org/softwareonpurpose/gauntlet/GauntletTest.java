@@ -25,19 +25,19 @@ public abstract class GauntletTest {
     private String feature;
     private String testName;
     private List<String> requirements = new ArrayList<>();
-
+    
     @BeforeClass(alwaysRun = true)
     protected void initialize() {
         feature = this.getClass().getSimpleName().replace("Tests", "");
         WebUiHost.setUiDriver(driver);
     }
-
+    
     @BeforeMethod(alwaysRun = true)
     protected void initializeTest(Method method) {
         testName = method.getName();
         System.out.println(String.format("Executing %s...", testName));
     }
-
+    
     @AfterMethod(alwaysRun = true)
     protected void terminateTest(ITestResult result) {
         Object[] scenarios = result.getParameters();
@@ -52,7 +52,7 @@ public abstract class GauntletTest {
         }
         WebUiHost.quitInstance();
     }
-
+    
     @AfterClass(alwaysRun = true)
     protected synchronized void reportClass() {
         String coverageFolder = "build/reports/coverage";
@@ -66,11 +66,11 @@ public abstract class GauntletTest {
             e.printStackTrace();
         }
     }
-
+    
     protected void when() {
         System.out.printf("WHEN:%n");
     }
-
+    
     protected void given(Object... givenList) {
         ToStringBehavior tsb = ToStringBehavior.getInstance();
         System.out.println("=========== GIVEN ===========");
@@ -83,25 +83,25 @@ public abstract class GauntletTest {
             tsb.print(given);
         }
     }
-
+    
     protected void then(Calibrator calibrator) {
         Assert.assertEquals(calibrator.calibrate(), Calibrator.SUCCESS);
     }
-
+    
     protected void addRequirements(String... requirements) {
         this.requirements.addAll(Arrays.asList(requirements));
     }
-
+    
     public enum Endpoint {
         ;
         public static final String CHARGES = "charges";
     }
-
+    
     public enum Service {
         ;
         public static final String STRIPE = "stripe";
     }
-
+    
     public enum View {
         ;
         public static final String PURCHASE_CONFIRMATION = "purchase-confirmation";
@@ -115,12 +115,12 @@ public abstract class GauntletTest {
         public static final String FINANCIAL_DASHBOARD = "financial-dashboard";
         public static final String PETS = "pets";
     }
-
+    
     public enum Application {
         ;
         public static final String LUCKY_PET_WEB = "lucky-pet-web";
     }
-
+    
     public static class TestSuite {
         public static final String SMOKE = "smoke";
         public static final String RELEASE = "release";
