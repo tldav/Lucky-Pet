@@ -1,25 +1,17 @@
 const testData = require("./testData/product.test.json");
 const unitTest = require("./unit-test-tester");
 const strictEqual = require("./execute-verification");
-const paymentServiceResponse = require("../src/views/checkout/paymentServiceResponse");
-const getOutOfStockMessage = require("../src/views/products/productListRegion/productRegion/getOutOfStockMessage");
+const paymentServiceResponse = require("../src/view/checkout/paymentServiceResponse");
+const getOutOfStockMessage = require("../src/view/products/productListRegion/productRegion/getOutOfStockMessage");
 const { formatCurrency } = require("../src/currency/currency");
 const { calculateSubtotal } = require("../src/currency/currency");
 const { calculateLineItemTotal } = require("../src/currency/currency");
-const isInCart = require("../src/views/products/productListRegion/productRegion/isInCart");
-const areItemsInCart = require("../src/views/cart/itemListRegion/cartHasItems");
-const hasLowStock = require("../src/views/inventoryDashboard/lowStockListRegion/hasLowStock");
+const isInCart = require("../src/view/products/productListRegion/productRegion/isInCart");
+const areItemsInCart = require("../src/view/cart/itemListRegion/cartHasItems");
+const hasLowStock = require("../src/view/inventoryDashboard/lowStockListRegion/hasLowStock");
 const getProducts = require("../src/api/product");
 const postToStripe = require("../src/api/stripe");
-const { isValidCurrency, isValidSource } = require("../src/views/checkout/checkout");
-
-unitTest("should return dollar amount formatted", () => {
-	//TODO may need to be separated into separate unit tests
-	strictEqual(formatCurrency(50), `$0.50`);
-	strictEqual(formatCurrency(0), `$0.00`);
-	strictEqual(formatCurrency(-1), `-$0.01`);
-	strictEqual(formatCurrency(200000000), `$2,000,000.00`);
-});
+const { isValidCurrency, isValidSource } = require("../src/view/checkout/checkout");
 
 unitTest("should return paid as true", () => {
 	strictEqual(paymentServiceResponse().paid, true);
@@ -27,76 +19,6 @@ unitTest("should return paid as true", () => {
 
 unitTest("should return status as `succeed`", () => {
 	strictEqual(paymentServiceResponse().status, "succeeded");
-});
-
-unitTest("should return 'Out Of Stock'", () => {
-	const stock = 0;
-	strictEqual(getOutOfStockMessage(stock), "Out Of Stock");
-});
-
-unitTest("should return 'isInCart' true", () => {
-	const expected = true;
-	const productId = "101";
-	const cart = {
-		"id": "1",
-		"items": [
-			{
-				"quantity": 5,
-				"product": {
-					"id": "101",
-					"price": 500,
-					"description": "Sample text"
-				}
-			}
-		]
-	}
-	const actual = isInCart(productId, cart);
-	strictEqual(actual, expected);
-});
-
-unitTest("should return'isInCart' false", () => {
-	const expected = false;
-	const productId = "112";
-	const cart = {
-		"id": "1",
-		"items": [
-			{
-				"quantity": 5,
-				"product": {
-					"id": "101",
-					"price": 500,
-					"description": "Sample text"
-				}
-			}
-		]
-	}
-	const actual = isInCart(productId, cart);
-	strictEqual(actual, expected);
-});
-
-unitTest("should calculate subtotal", () => {
-	const items = [
-		{
-			quantity: 2,
-			product: {
-				id: "101",
-				price: 500,
-				description: "Sample text",
-			},
-		},
-		{
-			quantity: 7,
-			product: {
-				id: "102",
-				price: 60,
-				description: "",
-			},
-		},
-	];
-
-	const expected = 1420;
-	const actual = calculateSubtotal(items);
-	strictEqual(actual, expected);
 });
 
 unitTest("given a cart with items", () => {

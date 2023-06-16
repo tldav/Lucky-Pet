@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "test": "node ./tests/test.js",
+    "test": "jest --noStackTrace",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "deploy": "npm install && npm run build && cd ../../../deployment/infra && npm install && npm run cdk-synth && npm run cdk-deploy"
@@ -39,5 +39,8 @@
     "type": "module",
     "proxy": "http://localhost:3000",
     "homepage": "."
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
   }
 }
