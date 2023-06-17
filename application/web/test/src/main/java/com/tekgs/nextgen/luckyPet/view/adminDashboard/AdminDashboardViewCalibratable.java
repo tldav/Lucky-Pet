@@ -1,7 +1,7 @@
 package com.tekgs.nextgen.luckyPet.view.adminDashboard;
 
-import com.tekgs.nextgen.luckyPet.view.adminDashboard.failedLoginListRegion.FailedLoginReportCalibratable;
+import com.tekgs.nextgen.luckyPet.view.adminDashboard.loginFailureListRegion.LoginFailureListRegionCalibratable;
 
 public interface AdminDashboardViewCalibratable {
-    FailedLoginReportCalibratable inFailedLoginReport();
+    LoginFailureListRegionCalibratable getLoginFailureListRegion();
 }

@@ -22,7 +22,7 @@ public class AdminDashboardViewTests extends GauntletTest {
         then(AdminDashboardViewCalibrator.getInstance(expected, actual));
     }
 
-    @Test(dependsOnMethods = "smoke", dataProvider = "scenarios")
+    @Test(groups = {TestSuite.DEBUG}, dependsOnMethods = "smoke", dataProvider = "scenarios")
     public void directNav(String loginFailureLogFile) {
         given(loginFailureLogFile);
         AdminDashboardViewExpected expected = AdminDashboardViewExpected.getInstance(loginFailureLogFile);

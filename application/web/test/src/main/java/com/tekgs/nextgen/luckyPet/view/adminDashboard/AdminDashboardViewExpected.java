@@ -1,6 +1,6 @@
 package com.tekgs.nextgen.luckyPet.view.adminDashboard;
 
-import com.tekgs.nextgen.luckyPet.view.adminDashboard.failedLoginListRegion.FailedLoginReportExpected;
+import com.tekgs.nextgen.luckyPet.view.adminDashboard.loginFailureListRegion.LoginFailureListRegionExpected;
 
 public class AdminDashboardViewExpected implements AdminDashboardViewCalibratable {
     private final String loginFailureLogFile;
@@ -18,7 +18,7 @@ public class AdminDashboardViewExpected implements AdminDashboardViewCalibratabl
     }
 
     @Override
-    public FailedLoginReportExpected inFailedLoginReport() {
-        return FailedLoginReportExpected.getInstance(loginFailureLogFile);
+    public LoginFailureListRegionExpected getLoginFailureListRegion() {
+        return LoginFailureListRegionExpected.getInstance(loginFailureLogFile);
     }
 }

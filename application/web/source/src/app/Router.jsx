@@ -1,17 +1,16 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import React from "react";
+import AdminDashboardView from "../view/adminDashboard/AdminDashboardView";
 import CartView from "../view/cart/CartView";
 import CheckoutView from "../view/checkout/CheckoutView";
-import PurchaseConfirmation from "../view/purchase-confirmation/PurchaseConfirmation";
-import AdminDashboardView from "../view/admin/AdminDashboardView";
 import ErrorGenerator from "../view/error/ErrorGenerator";
-import HighOrderBoundary from "./ErrorBoundary";
 import ErrorView from "../view/error/ErrorView";
-import Home from "../view/Home/Home";
-import ProductsView from "../view/products/ProductsView";
-import InventoryDashboardView from "../view/inventoryDashboard/InventoryDashboardView";
 import FinancialDashboardView from "../view/financialDashboard/FinancialDashboardView";
+import HighOrderBoundary from "./ErrorBoundary";
+import Home from "../view/Home/Home";
+import InventoryDashboardView from "../view/inventoryDashboard/InventoryDashboardView";
 import PetsView from "../view/pets/PetsView";
+import ProductsView from "../view/products/ProductsView";
+import PurchaseConfirmation from "../view/purchase-confirmation/PurchaseConfirmation";
 
 function Router() {
 	return (

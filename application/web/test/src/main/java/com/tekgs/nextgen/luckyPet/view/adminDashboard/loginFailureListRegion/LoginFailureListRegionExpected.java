@@ -1,7 +1,7 @@
-package com.tekgs.nextgen.luckyPet.view.adminDashboard.failedLoginListRegion;
+package com.tekgs.nextgen.luckyPet.view.adminDashboard.loginFailureListRegion;
 
-import com.tekgs.nextgen.luckyPet.view.adminDashboard.failedLoginListRegion.failedLoginRegion.FailedLoginRegionCalibratable;
-import com.tekgs.nextgen.luckyPet.view.adminDashboard.failedLoginListRegion.failedLoginRegion.FailedLoginRegionExpected;
+import com.tekgs.nextgen.luckyPet.view.adminDashboard.loginFailureListRegion.loginFailureRegion.LoginFailureRegionCalibratable;
+import com.tekgs.nextgen.luckyPet.view.adminDashboard.loginFailureListRegion.loginFailureRegion.LoginFailureRegionExpected;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,13 +9,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-public class FailedLoginReportExpected implements FailedLoginReportCalibratable {
+public class LoginFailureListRegionExpected implements LoginFailureListRegionCalibratable {
     @SuppressWarnings("FieldCanBeLocal")
     private static final String FAILURE_FILES_PATH = "../source/public/logs/%s.log";
     @SuppressWarnings("FieldCanBeLocal")
     private final SortedMap<String, Integer> aggregatedDates = new TreeMap<>();
 
-    private FailedLoginReportExpected(String expectedFilename) {
+    private LoginFailureListRegionExpected(String expectedFilename) {
         expectedFilename = expectedFilename == null ? "loginfailure" : expectedFilename;
             File failureFile = new File(String.format(FAILURE_FILES_PATH, expectedFilename));
             try (BufferedReader failureFileReader = new BufferedReader(new FileReader(failureFile))) {
@@ -32,19 +32,19 @@ public class FailedLoginReportExpected implements FailedLoginReportCalibratable 
         }
 
 
-    public static FailedLoginReportExpected getInstance() {
-        return new FailedLoginReportExpected(null);
+    public static LoginFailureListRegionExpected getInstance() {
+        return new LoginFailureListRegionExpected(null);
     }
 
-    public static FailedLoginReportExpected getInstance(String loginFailureLogFile) {
-        return new FailedLoginReportExpected(loginFailureLogFile);
+    public static LoginFailureListRegionExpected getInstance(String loginFailureLogFile) {
+        return new LoginFailureListRegionExpected(loginFailureLogFile);
     }
 
     @Override
-    public List<FailedLoginRegionCalibratable> getFailureDates() {
-        List<FailedLoginRegionCalibratable> failures = new ArrayList<>();
+    public List<LoginFailureRegionCalibratable> getLoginFailureRegions() {
+        List<LoginFailureRegionCalibratable> failures = new ArrayList<>();
         for (String key : aggregatedDates.keySet()) {
-            failures.add(FailedLoginRegionExpected.getInstance(key, aggregatedDates.get(key)));
+            failures.add(LoginFailureRegionExpected.getInstance(key, aggregatedDates.get(key)));
         }
         // Reverse list to match actual to add child calibrators more efficiently
         Collections.reverse(failures);
