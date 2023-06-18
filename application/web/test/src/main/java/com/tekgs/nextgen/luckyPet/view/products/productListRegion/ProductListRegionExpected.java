@@ -1,8 +1,8 @@
 package com.tekgs.nextgen.luckyPet.view.products.productListRegion;
 
+import com.tekgs.nextgen.luckyPet.data.cart.Cart;
 import com.tekgs.nextgen.luckyPet.data.cart.item.ItemCalibratable;
 import com.tekgs.nextgen.luckyPet.data.product.ProductCalibratable;
-import com.tekgs.nextgen.luckyPet.data.cart.Cart;
 import com.tekgs.nextgen.luckyPet.view.products.productListRegion.productRegion.ProductRegionCalibratable;
 import com.tekgs.nextgen.luckyPet.view.products.productListRegion.productRegion.ProductRegionExpected;
 
@@ -22,6 +22,16 @@ public class ProductListRegionExpected implements ProductListRegionCalibratable 
         return new ProductListRegionExpected(productList, cart);
     }
     
+    private boolean isInCart(ProductCalibratable product) {
+        boolean isInCart = false;
+        if (this.cart != null) {
+            for (ItemCalibratable item : this.cart.getItems()) {
+                isInCart = product.getId().equals(item.getProduct().getId());
+            }
+        }
+        return isInCart;
+    }
+    
     @Override
     public List<ProductRegionCalibratable> getProductRegions() {
         List<ProductRegionCalibratable> productRegionExpectedList = new ArrayList<>();
@@ -30,15 +40,5 @@ public class ProductListRegionExpected implements ProductListRegionCalibratable 
             productRegionExpectedList.add(ProductRegionExpected.getInstance(product, isInCart));
         });
         return productRegionExpectedList;
-    }
-
-    private boolean isInCart(ProductCalibratable product) {
-        boolean isInCart = false;
-        if (cart != null) {
-            for (ItemCalibratable item : cart.getItems()) {
-                isInCart = product.getId().equals(item.getProduct().getId());
-            }
-        }
-        return isInCart;
     }
 }

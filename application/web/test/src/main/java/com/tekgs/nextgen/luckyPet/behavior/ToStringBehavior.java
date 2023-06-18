@@ -15,10 +15,6 @@ public class ToStringBehavior {
         return toStringBehavior;
     }
     
-    public String execute(Object objectToJsonify) {
-        return this.gson.toJson(objectToJsonify);
-    }
-    
     public void print(Object objectToPrint) {
         if (objectToPrint != null) {
             System.out.print(objectToPrint.getClass().getSimpleName() + ": ");

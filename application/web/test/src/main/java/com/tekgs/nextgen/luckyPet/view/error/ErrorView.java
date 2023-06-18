@@ -12,29 +12,29 @@ public class ErrorView extends UiView implements ErrorViewCalibratable {
     private static final String DESCRIPTION = "'Error' view";
     private static final String LOCATOR_TYPE = UiLocatorType.ID;
     private static final String LOCATOR_VALUE = "error-view";
-
+    
     public ErrorView() {
         super(VIEW_URL, UiElement.getInstance(DESCRIPTION, LOCATOR_TYPE, LOCATOR_VALUE));
     }
-
+    
     public static ErrorView directNav() {
         new ErrorView().load();
         return UiView.expect(ErrorView.class);
     }
-
-    @Override
-    protected boolean confirmElementStates() {
-        return this.getElement().waitUntilVisible();
-    }
-
-    @Override
-    public String getMessage() {
-        return getMessageElement().getText();
-    }
-
+    
     private UiElement getMessageElement() {
         String description = "Message";
         String locatorValue = "error-message";
         return UiElement.getInstance(description, UiLocatorType.CLASS, locatorValue, this.getElement());
+    }
+    
+    @Override
+    public String getMessage() {
+        return this.getMessageElement().getText();
+    }
+    
+    @Override
+    protected boolean confirmElementStates() {
+        return this.getElement().waitUntilVisible();
     }
 }

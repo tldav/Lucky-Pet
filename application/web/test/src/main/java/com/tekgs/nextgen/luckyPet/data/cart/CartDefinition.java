@@ -11,43 +11,46 @@ public class CartDefinition implements CartCalibratable {
     @SuppressWarnings("unused")
     private Integer total;
     private Integer itemCount;
-
+    
+    private CartDefinition() {
+    }
+    
     public static CartDefinition getInstance() {
         return new CartDefinition();
     }
-
-    @Override
-    public Integer getTotal() {
-        return total;
-    }
-
-    @Override
-    public List<ItemCalibratable> getItems() {
-        return items;
-    }
-
-    @Override
-    public Integer getId() {
-        return null;
-    }
-
-    @Override
-    public Integer getItemCount() {
-        return itemCount;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("ShoppingCartDefinition %s", new Gson().toJson(this));
-    }
-
+    
     public CartDefinition withItem(ItemCalibratable item) {
         this.items.add(item);
         return this;
     }
-
+    
     public CartDefinition withItemCount(int itemCount) {
         this.itemCount = itemCount;
         return this;
+    }
+    
+    @Override
+    public Integer getId() {
+        return null;
+    }
+    
+    @Override
+    public List<ItemCalibratable> getItems() {
+        return this.items;
+    }
+    
+    @Override
+    public Integer getTotal() {
+        return this.total;
+    }
+    
+    @Override
+    public Integer getItemCount() {
+        return this.itemCount;
+    }
+    
+    @Override
+    public String toString() {
+        return String.format("ShoppingCartDefinition %s", new Gson().toJson(this));
     }
 }

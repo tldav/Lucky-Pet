@@ -5,7 +5,6 @@ import com.softwareonpurpose.uinavigator.UiRegion;
 import com.tekgs.nextgen.luckyPet.view.products.productListRegion.productRegion.ProductRegionCalibratable;
 import com.tekgs.nextgen.luckyPet.view.products.productListRegion.productRegion.ProductRegionCalibrator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductsViewCalibrator extends Calibrator {
@@ -25,8 +24,7 @@ public class ProductsViewCalibrator extends Calibrator {
         return new ProductsViewCalibrator(expected, actual);
     }
     
-    private void addCalibrationsExpected(List<ProductRegionCalibratable> productsExpected,
-                                         List<ProductRegionCalibratable> productsActual) {
+    private void addCalibrationsExpected(List<ProductRegionCalibratable> productsExpected, List<ProductRegionCalibratable> productsActual) {
         for (ProductRegionCalibratable productExpected : productsExpected) {
             ProductRegionCalibratable productFound = addCalibrationFound(productsActual, productExpected);
             if (productFound != null) {
@@ -37,8 +35,7 @@ public class ProductsViewCalibrator extends Calibrator {
         }
     }
     
-    private ProductRegionCalibratable addCalibrationFound(List<ProductRegionCalibratable> productsActual,
-                                                          ProductRegionCalibratable productExpected) {
+    private ProductRegionCalibratable addCalibrationFound(List<ProductRegionCalibratable> productsActual, ProductRegionCalibratable productExpected) {
         ProductRegionCalibratable productFound = null;
         for (ProductRegionCalibratable productActual : productsActual) {
             if (productActual.equivalent(productExpected)) {

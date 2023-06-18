@@ -14,9 +14,13 @@ public class ItemRegionExpected implements ItemRegionCalibratable {
         return new ItemRegionExpected(item);
     }
     
+    private int calculateLineItemTotal() {
+        return this.item.getQuantity() * this.item.getProduct().getPrice();
+    }
+    
     @Override
-    public boolean equivalent(ItemRegionCalibratable comparator) {
-        return false;
+    public String getLineItemQuantity() {
+        return String.valueOf(this.item.getQuantity());
     }
     
     @Override
@@ -27,20 +31,16 @@ public class ItemRegionExpected implements ItemRegionCalibratable {
     
     @Override
     public String getProductDescription() {
-        return item.getProduct().getDescription();
+        return this.item.getProduct().getDescription();
     }
     
     @Override
     public String getLineItemTotal() {
         return Cents.getInstance(calculateLineItemTotal()).inUsdFormat();
     }
-
+    
     @Override
-    public String getLineItemQuantity() {
-        return String.valueOf(this.item.getQuantity());
-    }
-
-    private int calculateLineItemTotal(){
-       return this.item.getQuantity() * this.item.getProduct().getPrice();
+    public boolean equivalent(ItemRegionCalibratable comparator) {
+        return false;
     }
 }

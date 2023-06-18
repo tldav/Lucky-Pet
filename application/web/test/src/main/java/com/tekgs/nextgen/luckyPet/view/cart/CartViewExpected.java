@@ -11,24 +11,25 @@ import java.util.List;
 
 public class CartViewExpected implements CartViewCalibratable {
     private final Cart cart;
-
+    
     private CartViewExpected(Cart cart) {
         this.cart = cart;
     }
-
+    
     public static CartViewExpected getInstance() {
         return new CartViewExpected(null);
     }
-
+    
     public static CartViewExpected getInstance(Cart shoppingCart) {
         return new CartViewExpected(shoppingCart);
     }
-
+    
     @Override
     public String getTotal() {
         Integer total = this.cart == null ? 0 : this.cart.getTotal();
         return Cents.getInstance(total).inUsdFormat();
     }
+    
     @Override
     public ItemListRegionCalibratable getItemListRegion() {
         List<ItemCalibratable> items = this.cart == null ? new ArrayList<>() : this.cart.getItems();

@@ -24,14 +24,14 @@ public class AdminDashboardView extends UiView implements AdminDashboardViewCali
         return UiView.expect(AdminDashboardView.class);
     }
     
-    public static AdminDashboardView directNav(String logFilename) {
-        new AdminDashboardView().load(String.format(QUERY_STRING, logFilename));
+    public static AdminDashboardView directNav(String fileName) {
+        new AdminDashboardView().load(String.format(QUERY_STRING, fileName));
         return UiView.expect(AdminDashboardView.class);
     }
     
     @Override
     protected boolean confirmElementStates() {
-        return this.getElement().isDisplayed();
+        return this.getElement().waitUntilVisible();
     }
     
     @Override

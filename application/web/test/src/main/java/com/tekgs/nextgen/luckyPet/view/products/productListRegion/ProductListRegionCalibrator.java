@@ -8,16 +8,16 @@ import com.tekgs.nextgen.luckyPet.view.products.productListRegion.productRegion.
 import java.util.List;
 
 /* =================================================================****************************************
-*                           Do not Delete this is for future refactoring
-*
-* =====================================================***************************************************
-* */
+ *                           Do not Delete this is for future refactoring
+ *
+ * =====================================================***************************************************
+ * */
 
 
 public class ProductListRegionCalibrator extends Calibrator {
-
+    
     private static final String DESCRIPTION = "'Product List' region";
-
+    
     protected ProductListRegionCalibrator(ProductListRegionExpected expected, ProductListRegion actual) {
         super(DESCRIPTION, expected, actual);
         UiRegion.suppressConstructionLogging(true);
@@ -27,28 +27,28 @@ public class ProductListRegionCalibrator extends Calibrator {
         addCalibrationsUnexpected(productsActual);
         UiRegion.suppressConstructionLogging(false);
     }
-
+    
     private void addCalibrationsUnexpected(List<ProductRegionCalibratable> productsActual) {
         for (ProductRegionCalibratable productActual : productsActual) {
             addChildCalibrator(ProductRegionCalibrator.getInstance(null, productActual));
         }
     }
-
+    
     private void addCalibrationsExpected(List<ProductRegionCalibratable> productsExpected, List<ProductRegionCalibratable> productsActual) {
-        for (ProductRegionCalibratable productExpected: productsExpected) {
+        for (ProductRegionCalibratable productExpected : productsExpected) {
             ProductRegionCalibratable productFound = addCalibrationFound(productsActual, productExpected);
-            if(productFound != null) {
+            if (productFound != null) {
                 productsActual.remove(productFound);
             } else {
                 addChildCalibrator(ProductRegionCalibrator.getInstance(productExpected, null));
             }
         }
     }
-
+    
     private ProductRegionCalibratable addCalibrationFound(List<ProductRegionCalibratable> productsActual, ProductRegionCalibratable productExpected) {
         ProductRegionCalibratable productFound = null;
         for (ProductRegionCalibratable productActual : productsActual) {
-            if(productActual.equivalent(productExpected)) {
+            if (productActual.equivalent(productExpected)) {
                 productFound = productActual;
                 addChildCalibrator(ProductRegionCalibrator.getInstance(productExpected, productActual));
                 break;
@@ -56,8 +56,10 @@ public class ProductListRegionCalibrator extends Calibrator {
         }
         return productFound;
     }
-
+    
     @Override
     protected void executeVerifications() {
+    
     }
+    
 }

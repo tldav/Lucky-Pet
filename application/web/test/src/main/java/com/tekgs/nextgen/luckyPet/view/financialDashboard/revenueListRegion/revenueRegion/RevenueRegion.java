@@ -6,37 +6,40 @@ import com.softwareonpurpose.uinavigator.UiRegion;
 
 public class RevenueRegion extends UiRegion implements RevenueRegionCalibratable {
     private RevenueRegion(UiElement regionElement) {
-        super(regionElement);}
-
+        super(regionElement);
+    }
+    
     public static RevenueRegion getInstance(UiElement regionElement) {
         return new RevenueRegion(regionElement);
     }
-
+    
     private UiElement getGrossElement() {
         return UiElement.getInstance("'Revenue' gross", UiLocatorType.CLASS, "revenue-gross", this.getElement());
     }
-
+    
     private UiElement getMonthElement() {
         return UiElement.getInstance("'Revenue' month", UiLocatorType.CLASS, "revenue-month", this.getElement());
     }
-
+    
     private UiElement getYearElement() {
         return UiElement.getInstance("'Revenue' year", UiLocatorType.CLASS, "revenue-year", this.getElement());
     }
-
+    
     @Override
     public String getRevenueGross() {
         return this.getGrossElement().getText();
     }
-
+    
     @Override
     public String getRevenueMonth() {
         return this.getMonthElement().getText();
     }
-
+    
     @Override
-    public String getRevenueYear() { return this.getYearElement().getText(); }
-
+    public String getRevenueYear() {
+        return this.getYearElement().getText();
+    }
+    
     @Override
     public boolean equivalent(RevenueRegionCalibratable comparator) {
         if (comparator == null) {

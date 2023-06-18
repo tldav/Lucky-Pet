@@ -15,26 +15,26 @@ public class ProductsView extends UiView implements ProductsViewCalibratable {
     private static final String DESCRIPTION = "'Products' view";
     private static final String LOCATOR_TYPE = UiLocatorType.ID;
     private static final String LOCATOR_VALUE = "products-view";
-
+    
     public ProductsView() {
         super(VIEW_URL, UiElement.getInstance(DESCRIPTION, LOCATOR_TYPE, LOCATOR_VALUE));
     }
-
+    
     public static ProductsView directNav() {
         new ProductsView().load();
         return UiView.expect(ProductsView.class);
     }
-
+    
     public static ProductsView directNav(Cart cart) {
         new ProductsView().load(String.format("?cart_id=%s", cart.getId()));
         return UiView.expect(ProductsView.class);
     }
-
+    
     @Override
     protected boolean confirmElementStates() {
         return this.getElement().waitUntilVisible();
     }
-
+    
     @Override
     public ProductListRegionCalibratable getProductListRegion() {
         return ProductListRegion.getInstance(this.getElement());

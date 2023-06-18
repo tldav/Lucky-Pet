@@ -2,7 +2,6 @@ package com.tekgs.nextgen.luckyPet.data.cart;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.tekgs.nextgen.luckyPet.behavior.ToStringBehavior;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.softwareonpurpose.gauntlet.Environment;
@@ -18,6 +17,10 @@ public class CartRepository {
     public static final String DB_URL = "jdbc:mysql://localhost:3306/lucky_pet_db";
     public static final String MYSQL_USER = Environment.getInstance().getProperty("user");
     public static final String MYSQL_PASSWORD = Environment.getInstance().getProperty("password");
+    
+    private CartRepository() {
+    
+    }
     
     public static CartRepository getInstance() {
         return new CartRepository();

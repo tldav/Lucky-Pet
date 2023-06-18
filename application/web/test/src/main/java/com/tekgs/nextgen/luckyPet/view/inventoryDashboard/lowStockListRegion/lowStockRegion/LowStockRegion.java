@@ -26,8 +26,8 @@ public class LowStockRegion extends UiRegion implements LowStockRegionCalibratab
     }
     
     @Override
-    public String getProductStock() {
-        return this.getStockElement().getText();
+    public String getProductPrice() {
+        return this.getPriceElement().getText();
     }
     
     @Override
@@ -36,8 +36,8 @@ public class LowStockRegion extends UiRegion implements LowStockRegionCalibratab
     }
     
     @Override
-    public String getProductPrice() {
-        return this.getPriceElement().getText();
+    public String getProductStock() {
+        return this.getStockElement().getText();
     }
     
     @Override

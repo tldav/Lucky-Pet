@@ -26,7 +26,7 @@ public class InventoryDashboardView extends UiView implements InventoryDashboard
     
     @Override
     protected boolean confirmElementStates() {
-        return true;
+        return this.getElement().waitUntilVisible();
     }
     
     @Override

@@ -1,10 +1,11 @@
 package com.tekgs.nextgen.luckyPet.view.checkout;
 
 public interface CheckoutViewCalibratable {
-    String getCurrencyErrorMessage();
-
-    String getSourceErrorMessage();
     String getTotalOwed();
-
+    
+    String getCurrencyErrorMessage();
+    
+    String getSourceErrorMessage();
+    
     boolean isSubmitButtonDisplayed();
 }

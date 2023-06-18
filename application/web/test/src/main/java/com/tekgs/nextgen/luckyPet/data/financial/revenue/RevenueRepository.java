@@ -12,12 +12,15 @@ import java.util.List;
 
 public class RevenueRepository {
     private static final String REVENUE_DATA_FILE = "../source/src/data/revenue.json";
-
-    public static RevenueRepository getInstance(){
+    
+    private RevenueRepository() {
+    }
+    
+    public static RevenueRepository getInstance() {
         return new RevenueRepository();
     }
-
-    public List<Revenue> query(){
+    
+    public List<Revenue> query() {
         List<Revenue> revenueList = new ArrayList<>();
         Path path = Paths.get(REVENUE_DATA_FILE);
         try (BufferedReader reader = Files.newBufferedReader(path)) {

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RevenueListRegionExpected implements RevenueListRegionCalibratable {
-    
     List<Revenue> revenueList = new ArrayList<>();
     
     private RevenueListRegionExpected() {
@@ -24,7 +23,7 @@ public class RevenueListRegionExpected implements RevenueListRegionCalibratable 
     public List<RevenueRegionCalibratable> getRevenueRegions() {
         List<RevenueRegionCalibratable> revenueRegionsExpected = new ArrayList<>();
         
-        this.revenueList.forEach(revenue ->{
+        this.revenueList.forEach(revenue -> {
             revenueRegionsExpected.add(RevenueRegionExpected.getInstance(revenue));
         });
         return revenueRegionsExpected;

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cart implements CartCalibratable {
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     private final List<Item> items = new ArrayList<>();
     private final Integer id;
     
@@ -28,11 +29,11 @@ public class Cart implements CartCalibratable {
         List<ItemCalibratable> itemDefinitions = comparator.getItems();
         boolean isEquivalent = areEquivalent(comparator.getTotal(), this.getTotal());
         isEquivalent &= areEquivalent(comparator.getItemCount(), this.getItemCount());
-        isEquivalent &= areItemsEquivalent(itemDefinitions);
+        isEquivalent &= itemsAreEquivalent(itemDefinitions);
         return isEquivalent;
     }
     
-    private boolean areItemsEquivalent(List<ItemCalibratable> comparators) {
+    private boolean itemsAreEquivalent(List<ItemCalibratable> comparators) {
         List<ItemCalibratable> thisItems = new ArrayList<>(this.getItems());
         for (ItemCalibratable itemDefinition : comparators) {
             ItemCalibratable foundItem = null;
@@ -52,6 +53,16 @@ public class Cart implements CartCalibratable {
     }
     
     @Override
+    public Integer getId() {
+        return this.id;
+    }
+    
+    @Override
+    public List<ItemCalibratable> getItems() {
+        return new ArrayList<>(this.items);
+    }
+    
+    @Override
     public Integer getTotal() {
         Integer totalInCents = 0;
         for (ItemCalibratable item : this.items) {
@@ -63,17 +74,7 @@ public class Cart implements CartCalibratable {
     }
     
     @Override
-    public List<ItemCalibratable> getItems() {
-        return new ArrayList<>(this.items);
-    }
-    
-    @Override
-    public Integer getId() {
-        return id;
-    }
-    
-    @Override
     public Integer getItemCount() {
-        return items.size();
+        return this.items.size();
     }
 }

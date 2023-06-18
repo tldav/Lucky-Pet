@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PetListRegionExpected implements PetListRegionCalibratable{
-    private List<Pet> pets;
+    private final List<Pet> pets;
 
     private PetListRegionExpected() {
         this.pets = PetProvider.getInstance().get();

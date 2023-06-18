@@ -7,18 +7,18 @@ public class PetRegion extends UiRegion implements PetRegionCalibratable {
     private PetRegion(UiElement petRegionElement) {
         super(petRegionElement);
     }
-
+    
     public static PetRegion getInstance(UiElement petElement) {
         return new PetRegion(petElement);
     }
-
-    @Override
-    public boolean equivalent(PetRegionCalibratable comparator) {
-        return comparator.getName() == null || this.getName().equals(comparator.getName());
-    }
-
+    
     @Override
     public String getName() {
         return this.getElement().getText();
+    }
+    
+    @Override
+    public boolean equivalent(PetRegionCalibratable comparator) {
+        return comparator.getName() == null || this.getName().equals(comparator.getName());
     }
 }

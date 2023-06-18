@@ -4,11 +4,15 @@ import java.util.List;
 
 public class ProductProvider {
     private final ProductRepository repository = ProductRepository.getInstance();
-
+    
+    private ProductProvider() {
+    }
+    
     public static ProductProvider getInstance() {
         return new ProductProvider();
     }
+    
     public List<Product> get() {
-        return repository.query();
+        return this.repository.query();
     }
 }

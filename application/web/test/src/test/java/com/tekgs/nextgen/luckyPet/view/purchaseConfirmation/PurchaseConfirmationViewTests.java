@@ -19,7 +19,7 @@ public class PurchaseConfirmationViewTests extends GauntletTest {
                 , {PaymentDefinition.getInstance().withAmount(oneCentLessThanAMillionDollars).withCurrency("usd").withSource("tok_amex")}
         };
     }
-
+    
     @Test(groups = {TestSuite.SMOKE})
     public void smoke() {
         PaymentDefinition paymentDefinition = PaymentDefinition.getInstance().withCurrency("usd").withSource("tok_amex").withAmount(50);
@@ -28,7 +28,7 @@ public class PurchaseConfirmationViewTests extends GauntletTest {
         PurchaseConfirmationView actual = CheckoutView.directNav(paymentData.getAmount()).enter(paymentData).submit(paymentData);
         then(PurchaseConfirmationViewCalibrator.getInstance(expected, actual));
     }
-
+    
     @Test(groups = {TestSuite.RELEASE}, dependsOnMethods = "smoke", dataProvider = "validScenarios")
     public void fromCheckout(PaymentDefinition paymentDefinition) {
         Payment payment = PaymentProvider.getInstance().get(paymentDefinition);

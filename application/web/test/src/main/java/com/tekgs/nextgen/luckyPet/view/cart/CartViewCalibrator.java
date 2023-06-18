@@ -24,7 +24,6 @@ public class CartViewCalibrator extends Calibrator {
     
     @Override
     protected void executeVerifications() {
-        // executeChildCalibrators()
         verify("Total", this.expected.getTotal(), this.actual.getTotal());
     }
 }

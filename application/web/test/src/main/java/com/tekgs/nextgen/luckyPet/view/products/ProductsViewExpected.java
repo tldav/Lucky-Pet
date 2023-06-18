@@ -1,6 +1,5 @@
 package com.tekgs.nextgen.luckyPet.view.products;
 
-import com.tekgs.nextgen.luckyPet.behavior.ToStringBehavior;
 import com.tekgs.nextgen.luckyPet.data.cart.Cart;
 import com.tekgs.nextgen.luckyPet.data.product.ProductCalibratable;
 import com.tekgs.nextgen.luckyPet.data.product.ProductProvider;

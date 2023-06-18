@@ -8,9 +8,8 @@ import com.tekgs.nextgen.luckyPet.view.pets.petListRegion.petRegion.PetRegionCal
 import java.util.List;
 
 public class PetListRegionCalibrator extends ListCalibrator<PetRegionCalibrator, PetRegionCalibratable> {
-
     private static final String DESCRIPTION = "'Pet List' region";
-
+    
     private PetListRegionCalibrator(PetListRegionCalibratable expected, PetListRegionCalibratable actual) {
         super(DESCRIPTION, expected, actual, PetRegionCalibrator.class, PetRegionCalibratable.class);
         UiRegion.suppressConstructionLogging(true);
@@ -20,13 +19,13 @@ public class PetListRegionCalibrator extends ListCalibrator<PetRegionCalibrator,
         addCalibrationsUnexpected(petsActual);
         UiRegion.suppressConstructionLogging(false);
     }
-
+    
     public static PetListRegionCalibrator getInstance(PetListRegionCalibratable expected, PetListRegionCalibratable actual) {
         return new PetListRegionCalibrator(expected, actual);
     }
-
+    
     @Override
     protected void executeVerifications() {
-
+    
     }
 }

@@ -13,17 +13,15 @@ public class PetListRegion extends UiRegion implements PetListRegionCalibratable
     private PetListRegion(UiElement parentElement) {
         super(UiElement.getInstance("'Pet List' region", UiLocatorType.ID, "pet-list-region", parentElement));
     }
-
+    
     public static PetListRegionCalibratable getInstance(UiElement element) {
         return new PetListRegion(element);
     }
-
+    
     @Override
     public List<PetRegionCalibratable> getPetRegions() {
         List<PetRegionCalibratable> petRegions = new ArrayList<>();
-        String description = "'Pet' region";
-        String locatorValue = "pet-region";
-        for (UiElement petElement : UiElement.getList(description, UiLocatorType.CLASS, locatorValue, this.getElement())){
+        for (UiElement petElement : UiElement.getList("'Pet' region", UiLocatorType.CLASS, "pet-region", this.getElement())) {
             petRegions.add(PetRegion.getInstance(petElement));
         }
         return petRegions;

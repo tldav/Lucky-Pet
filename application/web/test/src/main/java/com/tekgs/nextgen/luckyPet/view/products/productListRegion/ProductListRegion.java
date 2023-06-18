@@ -13,7 +13,7 @@ public class ProductListRegion extends UiRegion implements ProductListRegionCali
     private static final String DESCRIPTION = "'Product List' region";
     private static final String LOCATOR_TYPE = UiLocatorType.ID;
     private static final String LOCATOR_VALUE = "product-list-region";
-
+    
     private ProductListRegion(UiElement parent) {
         super(UiElement.getInstance(DESCRIPTION, LOCATOR_TYPE, LOCATOR_VALUE, parent));
     }
@@ -21,13 +21,13 @@ public class ProductListRegion extends UiRegion implements ProductListRegionCali
     public static ProductListRegion getInstance(UiElement parent) {
         return new ProductListRegion(parent);
     }
-
+    
     @Override
     public List<ProductRegionCalibratable> getProductRegions() {
         List<ProductRegionCalibratable> productRegions = new ArrayList<>();
         List<UiElement> productElementList = UiElement.getList("'Product' region", UiLocatorType.CLASS, "product-region",
                 this.getElement());
-        for(UiElement productElement : productElementList) {
+        for (UiElement productElement : productElementList) {
             productRegions.add(ProductRegion.getInstance(productElement));
         }
         return productRegions;

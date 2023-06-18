@@ -12,25 +12,25 @@ public class ProductDefinition implements ProductCalibratable {
     public static ProductDefinition getInstance() {
         return new ProductDefinition();
     }
-
+    
     public ProductDefinition withPrice(int price) {
         this.price = price;
         return this;
     }
-
-    public ProductDefinition withDescription(String description){
+    
+    public ProductDefinition withDescription(String description) {
         this.description = description;
         return this;
     }
-
+    
     public ProductDefinition withDescriptionContaining(String characters) {
         this.invalidDescription = characters;
         return this;
     }
-
+    
     @Override
-    public String getInvalidDescription() {
-        return invalidDescription;
+    public Integer getId() {
+        return null;
     }
     
     @Override
@@ -42,19 +42,19 @@ public class ProductDefinition implements ProductCalibratable {
     public String getDescription() {
         return this.description;
     }
-
+    
     @Override
     public Integer getStock() {
         return this.stock;
     }
-
+    
     @Override
-    public boolean equivalent(ProductCalibratable comparator) {
-        return false;
+    public String getInvalidDescription() {
+        return this.invalidDescription;
     }
     
     @Override
-    public Integer getId() {
-        return null;
+    public boolean equivalent(ProductCalibratable comparator) {
+        return false;
     }
 }

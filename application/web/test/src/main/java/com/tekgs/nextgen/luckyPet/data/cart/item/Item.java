@@ -23,7 +23,7 @@ public class Item implements ItemCalibratable {
     
     @Override
     public boolean equivalent(ItemCalibratable comparator) {
-        if (comparator == null){
+        if (comparator == null) {
             return false;
         }
         

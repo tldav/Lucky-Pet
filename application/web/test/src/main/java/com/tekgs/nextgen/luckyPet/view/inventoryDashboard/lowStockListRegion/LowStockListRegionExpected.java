@@ -9,17 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LowStockListRegionExpected implements LowStockListRegionCalibratable {
-
     private final List<Product> products = new ArrayList<>();
-
+    
     private LowStockListRegionExpected() {
         this.products.addAll(ProductProvider.getInstance().get());
     }
-
-    public static LowStockListRegionCalibratable getInstance() {
+    
+    public static LowStockListRegionExpected getInstance() {
         return new LowStockListRegionExpected();
     }
-
+    
+    private boolean hasLowStock(Product product) {
+        return product.getStock() < 6;
+    }
+    
     @Override
     public List<LowStockRegionCalibratable> getLowStockRegions() {
         List<LowStockRegionCalibratable> lowStockRegionsExpected = new ArrayList<>();
@@ -30,9 +33,5 @@ public class LowStockListRegionExpected implements LowStockListRegionCalibratabl
             }
         });
         return lowStockRegionsExpected;
-    }
-
-    private boolean hasLowStock(Product product) {
-        return product.getStock() < 6;
     }
 }

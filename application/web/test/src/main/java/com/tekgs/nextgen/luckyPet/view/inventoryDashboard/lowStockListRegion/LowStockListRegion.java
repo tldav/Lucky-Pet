@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LowStockListRegion extends UiRegion implements LowStockListRegionCalibratable {
-    
     private static final String DESCRIPTION = "'Low Inventory' region ";
     private static final String LOCATOR_TYPE = UiLocatorType.ID;
     private static final String LOCATOR_VALUE = "low-stock-list-region";
@@ -26,8 +25,7 @@ public class LowStockListRegion extends UiRegion implements LowStockListRegionCa
     @Override
     public List<LowStockRegionCalibratable> getLowStockRegions() {
         List<LowStockRegionCalibratable> lowStockRegions = new ArrayList<>();
-        List<UiElement> lowStockElementList = UiElement.getList("'Low Stock' region", UiLocatorType.CLASS, "low-stock-region",
-                this.getElement());
+        List<UiElement> lowStockElementList = UiElement.getList("'Low Stock' region", UiLocatorType.CLASS, "low-stock-region", this.getElement());
         for (UiElement lowStockElement : lowStockElementList) {
             lowStockRegions.add(LowStockRegion.getInstance(lowStockElement));
         }

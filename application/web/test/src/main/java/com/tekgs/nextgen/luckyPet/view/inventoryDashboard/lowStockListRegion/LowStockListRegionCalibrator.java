@@ -9,10 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LowStockListRegionCalibrator extends Calibrator {
-
     private static final String DESCRIPTION = "'Low Inventory List' region";
-
-
+    
     private LowStockListRegionCalibrator(LowStockListRegionCalibratable expected, LowStockListRegionCalibratable actual) {
         super(DESCRIPTION, expected, actual);
         UiRegion.suppressConstructionLogging(true);
@@ -22,11 +20,11 @@ public class LowStockListRegionCalibrator extends Calibrator {
         addCalibrationsUnexpected(stockListActual);
         UiRegion.suppressConstructionLogging(false);
     }
-
-public static LowStockListRegionCalibrator getInstance(LowStockListRegionCalibratable expected, LowStockListRegionCalibratable actual) {
+    
+    public static LowStockListRegionCalibrator getInstance(LowStockListRegionCalibratable expected, LowStockListRegionCalibratable actual) {
         return new LowStockListRegionCalibrator(expected, actual);
     }
-
+    
     private void addCalibrationsExpected(List<LowStockRegionCalibratable> stockListExpected, List<LowStockRegionCalibratable> stockListActual) {
         for (LowStockRegionCalibratable stockExpected : stockListExpected) {
             LowStockRegionCalibratable stockFound = addCalibrationFound(stockListActual, stockExpected);
@@ -37,7 +35,7 @@ public static LowStockListRegionCalibrator getInstance(LowStockListRegionCalibra
             }
         }
     }
-
+    
     private LowStockRegionCalibratable addCalibrationFound(List<LowStockRegionCalibratable> stockListActual, LowStockRegionCalibratable stockExpected) {
         LowStockRegionCalibratable stockFound = null;
         for (LowStockRegionCalibratable stockActual : stockListActual) {
@@ -49,13 +47,13 @@ public static LowStockListRegionCalibrator getInstance(LowStockListRegionCalibra
         }
         return stockFound;
     }
-
+    
     private void addCalibrationsUnexpected(List<LowStockRegionCalibratable> stockListActual) {
         for (LowStockRegionCalibratable stockActual : stockListActual) {
             addChildCalibrator(LowStockRegionCalibrator.getInstance(null, stockActual));
         }
     }
-
+    
     @Override
     protected void executeVerifications() {
     

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class LoginFailureListCalibrator extends Calibrator {
     private static final String DESCRIPTION = "'Failed Login' report";
-
+    
     private LoginFailureListCalibrator(LoginFailureListRegionExpected expected, LoginFailureListRegion actual) {
         super(DESCRIPTION, expected, actual);
         UiRegion.suppressConstructionLogging(true);
@@ -36,13 +36,13 @@ public class LoginFailureListCalibrator extends Calibrator {
         }
         UiRegion.suppressConstructionLogging(false);
     }
-
+    
     public static LoginFailureListCalibrator getInstance(LoginFailureListRegionExpected expected, LoginFailureListRegion actual) {
         return new LoginFailureListCalibrator(expected, actual);
     }
-
+    
     @Override
     protected void executeVerifications() {
-
+    
     }
 }

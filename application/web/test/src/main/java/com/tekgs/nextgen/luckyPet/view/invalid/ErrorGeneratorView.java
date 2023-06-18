@@ -14,16 +14,16 @@ public class ErrorGeneratorView extends UiView {
     private static final String DESCRIPTION = "'Generic Error' view";
     private static final String LOCATOR_TYPE = UiLocatorType.ID;
     private static final String LOCATOR_VALUE = "error-generator";
-
+    
     public ErrorGeneratorView() {
         super(VIEW_URL, UiElement.getInstance(DESCRIPTION, LOCATOR_TYPE, LOCATOR_VALUE));
     }
-
+    
     public static ErrorView directNav() {
         new ErrorGeneratorView().load();
         return UiView.expect(ErrorView.class);
     }
-
+    
     @Override
     protected boolean confirmElementStates() {
         return WebUiHost.getInstance().getAddress().contains(this.getAddress());

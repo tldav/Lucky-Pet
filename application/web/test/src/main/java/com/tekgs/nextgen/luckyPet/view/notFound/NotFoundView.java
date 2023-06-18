@@ -10,19 +10,18 @@ public class NotFoundView extends UiView {
     private static final String LOCATOR_VALUE = "body";
     private static final String DESCRIPTION = "'Page Not Found'";
     private static final String LOCATOR_TYPE = UiLocatorType.TAG;
-
+    
     public NotFoundView() {
         super(VIEW_URL, UiElement.getInstance(DESCRIPTION, LOCATOR_TYPE, LOCATOR_VALUE));
     }
-
-
+    
     public static ErrorView directNav() {
         new NotFoundView().load();
         return UiView.expect(ErrorView.class);
     }
-
+    
     @Override
     protected boolean confirmElementStates() {
-        return false;
+        return this.getElement().waitUntilVisible();
     }
 }

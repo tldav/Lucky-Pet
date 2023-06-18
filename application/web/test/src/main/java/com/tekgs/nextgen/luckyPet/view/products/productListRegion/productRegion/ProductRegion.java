@@ -13,23 +13,20 @@ public class ProductRegion extends UiRegion implements ProductRegionCalibratable
         return new ProductRegion(productRegionElement);
     }
     
-    @Override
-    public String getOutOfStockMessage() {
-        return getOutOfStockElement().getText();
-    }
-    
     private UiElement getOutOfStockElement() {
-        return UiElement.getInstance("'Out Of Stock' message", UiLocatorType.CLASS, "out-of-stock", this.getElement());
+        return UiElement.getInstance("'Out of Stock' message", UiLocatorType.CLASS, "out-of-stock", this.getElement());
     }
     
-    @Override
-    public boolean equivalent(ProductRegionCalibratable comparator) {
-        if (comparator == null){
-            return false;
-        }
-        boolean isEquivalent = comparator.getPrice() == null || this.getPrice().equals(comparator.getPrice());
-        isEquivalent &= comparator.getProductDescription() == null || this.getProductDescription().equals(comparator.getProductDescription());
-        return isEquivalent;
+    private UiElement getPriceElement() {
+        return UiElement.getInstance("Product 'Price'", UiLocatorType.CLASS, "price", this.getElement());
+    }
+    
+    private UiElement getAddToCartButton() {
+        return UiElement.getInstance("'Add to Cart' button", UiLocatorType.CLASS, "add-to-cart-button", this.getElement());
+    }
+    
+    private UiElement getProductDescriptionElement() {
+        return UiElement.getInstance("Product 'Description'", UiLocatorType.CLASS, "description", this.getElement());
     }
     
     @Override
@@ -39,29 +36,31 @@ public class ProductRegion extends UiRegion implements ProductRegionCalibratable
     
     @Override
     public String getPrice() {
-        return getPriceElement().getText();
-    }
-    
-    private UiElement getPriceElement() {
-        return UiElement.getInstance("Product 'Price'", UiLocatorType.CLASS, "price", this.getElement());
+        return this.getPriceElement().getText();
     }
     
     @Override
     public String getProductDescription() {
-        return getProductDescriptionElement().getText();
+        return this.getProductDescriptionElement().getText();
     }
-
+    
+    @Override
+    public String getOutOfStockMessage() {
+        return this.getOutOfStockElement().getText();
+    }
+    
     @Override
     public Boolean isAddToCartEnabled() {
-        return getAddToCartButton().getAttribute("disabled")== null;
+        return this.getAddToCartButton().getAttribute("disabled") == null;
     }
     
-    private UiElement getAddToCartButton() {
-        return UiElement.getInstance("'Add to Cart' button", UiLocatorType.CLASS, "add-to-cart-button", this.getElement());
-    }
-    
-    
-    private UiElement getProductDescriptionElement() {
-        return UiElement.getInstance("Product 'Description'", UiLocatorType.CLASS, "description", this.getElement());
+    @Override
+    public boolean equivalent(ProductRegionCalibratable comparator) {
+        if (comparator == null) {
+            return false;
+        }
+        boolean isEquivalent = comparator.getPrice() == null || this.getPrice().equals(comparator.getPrice());
+        isEquivalent &= comparator.getProductDescription() == null || this.getProductDescription().equals(comparator.getProductDescription());
+        return isEquivalent;
     }
 }

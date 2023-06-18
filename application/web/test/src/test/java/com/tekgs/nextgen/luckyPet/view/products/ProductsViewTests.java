@@ -8,17 +8,17 @@ import org.testng.annotations.Test;
 
 @Test(groups = {GauntletTest.Application.LUCKY_PET_WEB, GauntletTest.View.PRODUCTS})
 public class ProductsViewTests extends GauntletTest {
-
-    @Test(groups = {TestSuite.SMOKE, TestSuite.ACCEPTANCE,TestSuite.RELEASE})
+    
+    @Test(groups = {TestSuite.SMOKE, TestSuite.ACCEPTANCE, TestSuite.RELEASE})
     public void smoke() {
         addRequirements("71 - Products - Display from inventory");
         ProductsViewExpected expected = ProductsViewExpected.getInstance();
         ProductsView actual = ProductsView.directNav();
         then(ProductsViewCalibrator.getInstance(expected, actual));
     }
-
-    @Test(groups = {TestSuite.ACCEPTANCE, TestSuite.RELEASE, TestSuite.DEBUG}, dependsOnMethods = "smoke")
-    public void directNav(){
+    
+    @Test(groups = {TestSuite.ACCEPTANCE, TestSuite.RELEASE}, dependsOnMethods = "smoke")
+    public void directNav() {
         addRequirements("70 - Products - 'add to cart UI'");
         CartDefinition cartDefinition = CartDefinition.getInstance();
         Cart cart = CartProvider.getInstance().get(cartDefinition);

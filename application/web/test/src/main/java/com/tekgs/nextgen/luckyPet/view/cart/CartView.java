@@ -18,35 +18,35 @@ public class CartView extends UiView implements CartViewCalibratable {
     public CartView() {
         super(VIEW_URI, UiElement.getInstance(DESCRIPTION, LOCATOR_TYPE, LOCATOR_VALUE));
     }
-
+    
     public static CartView directNav() {
         new CartView().load();
         return UiView.expect(CartView.class);
     }
-
+    
     public static CartView directNav(Integer cartId) {
         new CartView().load(String.format("?cart_id=%s", String.valueOf(cartId)));
         return UiView.expect(CartView.class);
     }
-
-    @Override
-    protected boolean confirmElementStates() {
-        return this.getElement().waitUntilVisible();
-    }
-
-    @Override
-    public String getTotal() {
-        return getTotalElement().getText();
-    }
-
-    @Override
-    public ItemListRegionCalibratable getItemListRegion() {
-        return ItemListRegion.getInstance(this.getElement());
-    }
-
+    
     private UiElement getTotalElement() {
         String description = "Total";
         String locatorValue = "total";
         return UiElement.getInstance(description, UiLocatorType.ID, locatorValue, this.getElement());
+    }
+    
+    @Override
+    protected boolean confirmElementStates() {
+        return this.getElement().waitUntilVisible();
+    }
+    
+    @Override
+    public String getTotal() {
+        return getTotalElement().getText();
+    }
+    
+    @Override
+    public ItemListRegionCalibratable getItemListRegion() {
+        return ItemListRegion.getInstance(this.getElement());
     }
 }

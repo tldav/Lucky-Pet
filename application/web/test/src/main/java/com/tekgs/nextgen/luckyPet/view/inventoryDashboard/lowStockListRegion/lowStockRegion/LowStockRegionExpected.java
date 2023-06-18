@@ -14,13 +14,8 @@ public class LowStockRegionExpected implements LowStockRegionCalibratable {
     }
     
     @Override
-    public boolean equivalent(LowStockRegionCalibratable comparator) {
-        return false;
-    }
-    
-    @Override
-    public String getProductStock() {
-        return String.valueOf(this.product.getStock());
+    public String getProductPrice() {
+        return String.valueOf(this.product.getPrice());
     }
     
     @Override
@@ -29,7 +24,12 @@ public class LowStockRegionExpected implements LowStockRegionCalibratable {
     }
     
     @Override
-    public String getProductPrice() {
-        return String.valueOf(this.product.getPrice());
+    public String getProductStock() {
+        return String.valueOf(this.product.getStock());
+    }
+    
+    @Override
+    public boolean equivalent(LowStockRegionCalibratable comparator) {
+        return false;
     }
 }

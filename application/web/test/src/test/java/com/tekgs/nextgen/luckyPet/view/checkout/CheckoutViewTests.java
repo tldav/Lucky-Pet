@@ -22,12 +22,12 @@ public class CheckoutViewTests extends GauntletTest {
         PaymentDefinition withInvalidSourceAndCurrency = PaymentDefinition.getInstance().withCurrency(invalidCurrency).withSource(invalidSource);
         return new Object[][]{{withInvalidSource}, {withValidValues}, {withEmptyValues}, {withInvalidCurrency}, {withInvalidSourceAndCurrency}};
     }
-
+    
     @DataProvider
     public static Object[][] amountScenarios() {
         return new Object[][]{{PaymentDefinition.getInstance().withAmount(49)}, {PaymentDefinition.getInstance().withAmount(50)}, {PaymentDefinition.getInstance().withAmount(99999999)}, {PaymentDefinition.getInstance().withAmount(100000000)}, {PaymentDefinition.getInstance().withAmount(-500)}, {PaymentDefinition.getInstance().withAmount(0)}};
     }
-
+    
     @Test(groups = {TestSuite.SMOKE})
     public void smoke() {
         CheckoutViewExpected expected = CheckoutViewExpected.getInstance();
@@ -35,7 +35,7 @@ public class CheckoutViewTests extends GauntletTest {
         CheckoutView actual = CheckoutView.directNav();
         then(CheckoutViewCalibrator.getInstance(expected, actual));
     }
-
+    
     @Test(groups = {TestSuite.RELEASE}, dependsOnMethods = "smoke")
     public void release() {
         int amount = 50;
@@ -47,7 +47,7 @@ public class CheckoutViewTests extends GauntletTest {
         CheckoutView actual = CheckoutView.directNav(amount).enter(paymentData);
         then(CheckoutViewCalibrator.getInstance(expected, actual));
     }
-
+    
     @Test(groups = {}, dependsOnMethods = "smoke", dataProvider = "scenarios")
     public void dataEntryValidation(PaymentDefinition paymentDefinition) {
         Payment paymentData = paymentDefinition.toPayment();
@@ -57,7 +57,7 @@ public class CheckoutViewTests extends GauntletTest {
         CheckoutView actual = CheckoutView.directNav().enter(paymentData);
         then(CheckoutViewCalibrator.getInstance(expected, actual));
     }
-
+    
     @Test(groups = {}, dependsOnMethods = "smoke", dataProvider = "amountScenarios")
     public void amountDirectNav(PaymentDefinition paymentDefinition) {
         Payment payment = PaymentProvider.getInstance().get(paymentDefinition);

@@ -5,7 +5,7 @@ import com.tekgs.nextgen.luckyPet.view.cart.itemListRegion.itemRegion.ItemRegion
 import java.util.List;
 
 public interface ItemListRegionCalibratable {
-    List<ItemRegionCalibratable> getItemRegions();
-
     String getCartEmptyMessage();
+    
+    List<ItemRegionCalibratable> getItemRegions();
 }

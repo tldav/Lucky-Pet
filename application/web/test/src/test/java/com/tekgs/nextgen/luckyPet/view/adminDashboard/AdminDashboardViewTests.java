@@ -14,15 +14,15 @@ public class AdminDashboardViewTests extends GauntletTest {
                 {"failedLoginReportLessThanTwentyEightDays"}
         };
     }
-
+    
     @Test(groups = {TestSuite.SMOKE})
     public void smoke() {
         AdminDashboardViewExpected expected = AdminDashboardViewExpected.getInstance();
         AdminDashboardView actual = AdminDashboardView.directNav();
         then(AdminDashboardViewCalibrator.getInstance(expected, actual));
     }
-
-    @Test(groups = {TestSuite.DEBUG}, dependsOnMethods = "smoke", dataProvider = "scenarios")
+    
+    @Test(groups = {}, dependsOnMethods = "smoke", dataProvider = "scenarios")
     public void directNav(String loginFailureLogFile) {
         given(loginFailureLogFile);
         AdminDashboardViewExpected expected = AdminDashboardViewExpected.getInstance(loginFailureLogFile);

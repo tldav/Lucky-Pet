@@ -4,11 +4,13 @@ import com.tekgs.nextgen.luckyPet.view.inventoryDashboard.lowStockListRegion.Low
 import com.tekgs.nextgen.luckyPet.view.inventoryDashboard.lowStockListRegion.LowStockListRegionExpected;
 
 public class InventoryDashboardViewExpected implements InventoryDashboardViewCalibratable {
+    private InventoryDashboardViewExpected() {
+    }
     
     public static InventoryDashboardViewExpected getInstance() {
         return new InventoryDashboardViewExpected();
     }
-
+    
     @Override
     public LowStockListRegionCalibratable getLowStockListRegion() {
         return LowStockListRegionExpected.getInstance();

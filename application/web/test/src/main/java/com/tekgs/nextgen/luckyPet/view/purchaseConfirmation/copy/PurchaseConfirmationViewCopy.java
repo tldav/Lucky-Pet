@@ -4,19 +4,19 @@ import com.tekgs.nextgen.luckyPet.view.copy.LuckyPetCopy;
 
 public class PurchaseConfirmationViewCopy {
     private LuckyPetCopy copy;
-
+    
     public static PurchaseConfirmationViewCopy getInstance() {
         return new PurchaseConfirmationViewCopy();
     }
-
+    
     public String getConfirmation() {
-        return getCopySource().getPurchaseConfirmationMessage();
+        return this.getCopySource().getPurchaseConfirmationMessage();
     }
-
+    
     private LuckyPetCopy getCopySource() {
-        if (copy == null) {
-            copy = LuckyPetCopy.getInstance();
+        if (this.copy == null) {
+            this.copy = LuckyPetCopy.getInstance();
         }
-        return copy;
+        return this.copy;
     }
 }
