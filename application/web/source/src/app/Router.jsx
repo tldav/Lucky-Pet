@@ -6,7 +6,7 @@ import ErrorGenerator from "../view/error/ErrorGenerator";
 import ErrorView from "../view/error/ErrorView";
 import FinancialDashboardView from "../view/financialDashboard/FinancialDashboardView";
 import HighOrderBoundary from "./ErrorBoundary";
-import Home from "../view/Home/Home";
+import LandingView from "../view/landing/LandingView";
 import InventoryDashboardView from "../view/inventoryDashboard/InventoryDashboardView";
 import PetsView from "../view/pets/PetsView";
 import ProductsView from "../view/products/ProductsView";
@@ -15,7 +15,7 @@ import PurchaseConfirmation from "../view/purchase-confirmation/PurchaseConfirma
 function Router() {
 	return (
 		<Routes>
-			<Route path="/" element={<Home />} />
+			<Route path="/" element={<LandingView />} />
 			<Route path="/products" element={<ProductsView />} />
 			<Route path="/cart" element={<CartView />} />
 			<Route path="/checkout" element={<CheckoutView />} />
