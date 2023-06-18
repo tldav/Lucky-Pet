@@ -9,9 +9,10 @@ import com.tekgs.nextgen.luckyPet.view.products.productListRegion.ProductListReg
 import org.softwareonpurpose.gauntlet.Environment;
 
 public class ProductsView extends UiView implements ProductsViewCalibratable {
-    private static final String RELATIVE_URL = "products";
     private static final String DOMAIN_URL = Environment.getInstance().getDomainUrl();
+    private static final String RELATIVE_URL = "products";
     private static final String VIEW_URL = String.format("%s/%s", DOMAIN_URL, RELATIVE_URL);
+    private static final String URL_PARAM = "?cart_id=%s";
     private static final String DESCRIPTION = "'Products' view";
     private static final String LOCATOR_TYPE = UiLocatorType.ID;
     private static final String LOCATOR_VALUE = "products-view";
@@ -26,17 +27,17 @@ public class ProductsView extends UiView implements ProductsViewCalibratable {
     }
     
     public static ProductsView directNav(Cart cart) {
-        new ProductsView().load(String.format("?cart_id=%s", cart.getId()));
+        new ProductsView().load(String.format(URL_PARAM, cart.getId()));
         return UiView.expect(ProductsView.class);
-    }
-    
-    @Override
-    protected boolean confirmElementStates() {
-        return this.getElement().waitUntilVisible();
     }
     
     @Override
     public ProductListRegionCalibratable getProductListRegion() {
         return ProductListRegion.getInstance(this.getElement());
+    }
+    
+    @Override
+    protected boolean confirmElementStates() {
+        return this.getElement().waitUntilVisible();
     }
 }

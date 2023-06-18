@@ -8,15 +8,16 @@ import com.tekgs.nextgen.luckyPet.view.cart.itemListRegion.ItemListRegionCalibra
 import org.softwareonpurpose.gauntlet.Environment;
 
 public class CartView extends UiView implements CartViewCalibratable {
-    private static final String DOMAIN_URI = Environment.getInstance().getDomainUrl();
-    private static final String RELATIVE_URI = "cart";
-    private static final String VIEW_URI = String.format("%s/%s", DOMAIN_URI, RELATIVE_URI);
+    private static final String DOMAIN_URL = Environment.getInstance().getDomainUrl();
+    private static final String RELATIVE_URL = "cart";
+    private static final String VIEW_URL = String.format("%s/%s", DOMAIN_URL, RELATIVE_URL);
+    private static final String URL_PARAM = "?cart_id=%s";
     private static final String DESCRIPTION = "'Shopping Cart' view";
     private static final String LOCATOR_TYPE = UiLocatorType.ID;
     private static final String LOCATOR_VALUE = "cart";
     
     public CartView() {
-        super(VIEW_URI, UiElement.getInstance(DESCRIPTION, LOCATOR_TYPE, LOCATOR_VALUE));
+        super(VIEW_URL, UiElement.getInstance(DESCRIPTION, LOCATOR_TYPE, LOCATOR_VALUE));
     }
     
     public static CartView directNav() {
@@ -25,7 +26,7 @@ public class CartView extends UiView implements CartViewCalibratable {
     }
     
     public static CartView directNav(Integer cartId) {
-        new CartView().load(String.format("?cart_id=%s", String.valueOf(cartId)));
+        new CartView().load(String.format(URL_PARAM, cartId));
         return UiView.expect(CartView.class);
     }
     
@@ -36,17 +37,17 @@ public class CartView extends UiView implements CartViewCalibratable {
     }
     
     @Override
-    protected boolean confirmElementStates() {
-        return this.getElement().waitUntilVisible();
-    }
-    
-    @Override
     public String getTotal() {
-        return getTotalElement().getText();
+        return this.getTotalElement().getText();
     }
     
     @Override
     public ItemListRegionCalibratable getItemListRegion() {
         return ItemListRegion.getInstance(this.getElement());
+    }
+    
+    @Override
+    protected boolean confirmElementStates() {
+        return this.getElement().waitUntilVisible();
     }
 }

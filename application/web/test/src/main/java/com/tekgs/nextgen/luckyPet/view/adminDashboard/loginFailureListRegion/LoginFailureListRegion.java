@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoginFailureListRegion extends UiRegion implements LoginFailureListRegionCalibratable {
-    private static final String DESCRIPTION = "'Failed Login' report";
+    private static final String DESCRIPTION = "'Failed Login' region";
     private static final String LOCATOR_TYPE = UiLocatorType.ID;
     private static final String LOCATOR_VALUE = "login-failure-list-region";
     

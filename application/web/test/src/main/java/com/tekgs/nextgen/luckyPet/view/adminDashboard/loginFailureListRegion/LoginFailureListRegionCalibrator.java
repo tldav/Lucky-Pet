@@ -8,10 +8,10 @@ import com.tekgs.nextgen.luckyPet.view.adminDashboard.loginFailureListRegion.log
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginFailureListCalibrator extends Calibrator {
+public class LoginFailureListRegionCalibrator extends Calibrator {
     private static final String DESCRIPTION = "'Failed Login' report";
     
-    private LoginFailureListCalibrator(LoginFailureListRegionExpected expected, LoginFailureListRegion actual) {
+    private LoginFailureListRegionCalibrator(LoginFailureListRegionExpected expected, LoginFailureListRegion actual) {
         super(DESCRIPTION, expected, actual);
         UiRegion.suppressConstructionLogging(true);
         List<LoginFailureRegionCalibratable> actualFailureDates = new ArrayList<>(actual.getLoginFailureRegions());
@@ -37,8 +37,8 @@ public class LoginFailureListCalibrator extends Calibrator {
         UiRegion.suppressConstructionLogging(false);
     }
     
-    public static LoginFailureListCalibrator getInstance(LoginFailureListRegionExpected expected, LoginFailureListRegion actual) {
-        return new LoginFailureListCalibrator(expected, actual);
+    public static LoginFailureListRegionCalibrator getInstance(LoginFailureListRegionExpected expected, LoginFailureListRegion actual) {
+        return new LoginFailureListRegionCalibrator(expected, actual);
     }
     
     @Override

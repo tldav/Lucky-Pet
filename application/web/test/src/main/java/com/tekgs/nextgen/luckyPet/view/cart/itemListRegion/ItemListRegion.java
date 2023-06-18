@@ -10,9 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemListRegion extends UiRegion implements ItemListRegionCalibratable {
+    private static final String DESCRIPTION = "'Item List' region";
+    private static final String LOCATOR_TYPE = UiLocatorType.ID;
+    private static final String LOCATOR_VALUE = "item-list-region";
     
-    protected ItemListRegion(UiElement parentElement) {
-        super(UiElement.getInstance("'Item List' region", UiLocatorType.ID, "item-list-region", parentElement));
+    private ItemListRegion(UiElement parentElement) {
+        super(UiElement.getInstance(DESCRIPTION, LOCATOR_TYPE, LOCATOR_VALUE, parentElement));
     }
     
     public static ItemListRegionCalibratable getInstance(UiElement element) {

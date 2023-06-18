@@ -11,7 +11,7 @@ function ErrorView({ errorCode }) {
 
 	return (
 		<div id="error-view">
-			<h2 className="error-message">{getErrorMessage(errorCode)} 🐕</h2>
+			<h2 id="error-message">{getErrorMessage(errorCode)} 🐕</h2>
 		</div>
 	);
 }

@@ -8,12 +8,12 @@ import com.tekgs.nextgen.luckyPet.view.pets.petListRegion.PetListRegionCalibrata
 import org.softwareonpurpose.gauntlet.Environment;
 
 public class PetsView extends UiView implements PetsViewCalibratable {
-    private static final String DESCRIPTION = "'Pets' View";
-    private static final String LOCATOR_TYPE = UiLocatorType.ID;
-    private static final String LOCATOR_VALUE = "pets-view";
     private static final String DOMAIN_URL = Environment.getInstance().getDomainUrl();
     private static final String RELATIVE_URL = "pets";
     private static final String VIEW_URL = String.format("%s/%s", DOMAIN_URL, RELATIVE_URL);
+    private static final String DESCRIPTION = "'Pets' View";
+    private static final String LOCATOR_TYPE = UiLocatorType.ID;
+    private static final String LOCATOR_VALUE = "pets-view";
     
     public PetsView() {
         super(VIEW_URL, UiElement.getInstance(DESCRIPTION, LOCATOR_TYPE, LOCATOR_VALUE));
@@ -25,12 +25,12 @@ public class PetsView extends UiView implements PetsViewCalibratable {
     }
     
     @Override
-    protected boolean confirmElementStates() {
-        return this.getElement().waitUntilVisible();
+    public PetListRegionCalibratable getPetListRegion() {
+        return PetListRegion.getInstance(this.getElement());
     }
     
     @Override
-    public PetListRegionCalibratable getPetListRegion() {
-        return PetListRegion.getInstance(this.getElement());
+    protected boolean confirmElementStates() {
+        return this.getElement().waitUntilVisible();
     }
 }

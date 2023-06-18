@@ -10,8 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PetListRegion extends UiRegion implements PetListRegionCalibratable {
+    private static final String DESCRIPTION = "'Pet List' region";
+    private static final String LOCATOR_TYPE = UiLocatorType.ID;
+    private static final String LOCATOR_VALUE = "pet-list-region";
+    
     private PetListRegion(UiElement parentElement) {
-        super(UiElement.getInstance("'Pet List' region", UiLocatorType.ID, "pet-list-region", parentElement));
+        super(UiElement.getInstance(DESCRIPTION, LOCATOR_TYPE, LOCATOR_VALUE, parentElement));
     }
     
     public static PetListRegionCalibratable getInstance(UiElement element) {

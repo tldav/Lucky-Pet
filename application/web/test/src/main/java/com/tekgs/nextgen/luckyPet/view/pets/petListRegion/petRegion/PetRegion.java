@@ -4,12 +4,12 @@ import com.softwareonpurpose.uinavigator.UiElement;
 import com.softwareonpurpose.uinavigator.UiRegion;
 
 public class PetRegion extends UiRegion implements PetRegionCalibratable {
-    private PetRegion(UiElement petRegionElement) {
-        super(petRegionElement);
+    private PetRegion(UiElement regionElement) {
+        super(regionElement);
     }
     
-    public static PetRegion getInstance(UiElement petElement) {
-        return new PetRegion(petElement);
+    public static PetRegion getInstance(UiElement regionElement) {
+        return new PetRegion(regionElement);
     }
     
     @Override

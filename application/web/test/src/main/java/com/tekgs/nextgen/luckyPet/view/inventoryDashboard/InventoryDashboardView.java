@@ -25,12 +25,12 @@ public class InventoryDashboardView extends UiView implements InventoryDashboard
     }
     
     @Override
-    protected boolean confirmElementStates() {
-        return this.getElement().waitUntilVisible();
+    public LowStockListRegionCalibratable getLowStockListRegion() {
+        return LowStockListRegion.getInstance(this.getElement());
     }
     
     @Override
-    public LowStockListRegionCalibratable getLowStockListRegion() {
-        return LowStockListRegion.getInstance(this.getElement());
+    protected boolean confirmElementStates() {
+        return this.getElement().waitUntilVisible();
     }
 }

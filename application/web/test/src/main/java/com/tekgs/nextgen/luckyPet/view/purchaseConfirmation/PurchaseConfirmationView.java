@@ -18,18 +18,16 @@ public class PurchaseConfirmationView extends UiView implements PurchaseConfirma
     }
     
     private UiElement getConfirmationMessageElement() {
-        String description = "Confirmation Message";
-        String locatorValue = "confirmation-message";
-        return UiElement.getInstance(description, UiLocatorType.ID, locatorValue, this.getElement());
-    }
-    
-    @Override
-    protected boolean confirmElementStates() {
-        return this.getElement().waitUntilVisible();
+        return UiElement.getInstance("'Confirmation' message", LOCATOR_TYPE, "confirmation-message", this.getElement());
     }
     
     @Override
     public String getConfirmationMessage() {
         return this.getConfirmationMessageElement().getText();
+    }
+    
+    @Override
+    protected boolean confirmElementStates() {
+        return this.getElement().waitUntilVisible();
     }
 }

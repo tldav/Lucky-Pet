@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LowStockListRegion extends UiRegion implements LowStockListRegionCalibratable {
-    private static final String DESCRIPTION = "'Low Inventory' region ";
+    private static final String DESCRIPTION = "'Low Stock List' region ";
     private static final String LOCATOR_TYPE = UiLocatorType.ID;
     private static final String LOCATOR_VALUE = "low-stock-list-region";
     

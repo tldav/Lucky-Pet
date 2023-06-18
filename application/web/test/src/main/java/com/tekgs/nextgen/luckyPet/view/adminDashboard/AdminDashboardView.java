@@ -10,10 +10,10 @@ public class AdminDashboardView extends UiView implements AdminDashboardViewCali
     private static final String DOMAIN_URL = Environment.getInstance().getDomainUrl();
     private static final String RELATIVE_URL = "admin-dashboard";
     private static final String VIEW_URL = String.format("%s/%s", DOMAIN_URL, RELATIVE_URL);
+    private static final String URL_PARAM = "?fileName=%s";
     private static final String DESCRIPTION = "'Admin Dashboard' view";
     private static final String LOCATOR_TYPE = UiLocatorType.ID;
     private static final String LOCATOR_VALUE = "admin-dashboard-view";
-    private static final String QUERY_STRING = "?fileName=%s";
     
     public AdminDashboardView() {
         super(VIEW_URL, UiElement.getInstance(DESCRIPTION, LOCATOR_TYPE, LOCATOR_VALUE));
@@ -25,17 +25,17 @@ public class AdminDashboardView extends UiView implements AdminDashboardViewCali
     }
     
     public static AdminDashboardView directNav(String fileName) {
-        new AdminDashboardView().load(String.format(QUERY_STRING, fileName));
+        new AdminDashboardView().load(String.format(URL_PARAM, fileName));
         return UiView.expect(AdminDashboardView.class);
-    }
-    
-    @Override
-    protected boolean confirmElementStates() {
-        return this.getElement().waitUntilVisible();
     }
     
     @Override
     public LoginFailureListRegion getLoginFailureListRegion() {
         return LoginFailureListRegion.getInstance(this.getElement());
+    }
+    
+    @Override
+    protected boolean confirmElementStates() {
+        return this.getElement().waitUntilVisible();
     }
 }
