@@ -1,10 +1,10 @@
-import postToStripe from "../../api/stripe";
-import getUrlParam from "../../urlParam/urlParam";
-import "./checkout.css";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import getUrlParam from "../../urlParam/urlParam";
 import { formatCurrency } from "../../currency/currency";
-const { isValidCurrency, isValidSource } = require("./checkout");
+import postToStripe from "../../api/stripe";
+import "./checkout.css";
+const { isValidCurrency, isValidSource } = require("./checkout"); // <- require import cannot sit between es6 imports
 
 function CheckoutView() {
 	const [sourceErrorMessage, setSourceErrorMessage] = useState("");

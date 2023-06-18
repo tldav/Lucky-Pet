@@ -1,4 +1,3 @@
-import React from "react";
 import ItemRegion from "./itemRegion/ItemRegion";
 import cartHasItems from "./cartHasItems";
 

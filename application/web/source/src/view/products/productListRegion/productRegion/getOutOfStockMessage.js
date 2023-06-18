@@ -1,5 +1,5 @@
 const getOutOfStockMessage = (stock) => {
-    return stock <= 0 ? "Out of Stock" : ""
-}
+	return stock <= 0 ? "Out of Stock" : "";
+};
 
-module.exports = getOutOfStockMessage
+module.exports = getOutOfStockMessage;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import fetchLoginFailures from "./loginFailures";
 import LoginFailureRegion from "./loginFailureRegion/LoginFailureRegion";
+import fetchLoginFailures from "./loginFailures";
 import getUrlParam from "../../../urlParam/urlParam";
 
 function LoginFailureListRegion() {

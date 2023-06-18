@@ -1,4 +1,3 @@
-import React from "react";
 import RevenueRegion from "./revenueRegion/RevenueRegion";
 import revenueList from "../../../data/revenue.json";
 

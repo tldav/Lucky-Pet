@@ -1,4 +1,3 @@
-import React from "react";
 import getOutOfStockMessage from "./getOutOfStockMessage";
 import { formatCurrency } from "../../../../currency/currency";
 

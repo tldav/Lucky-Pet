@@ -1,4 +1,3 @@
-import React from "react";
 import { formatCurrency } from "../../../../currency/currency";
 
 function RevenueRegion({ revenue }) {
