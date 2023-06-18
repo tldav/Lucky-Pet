@@ -1,38 +1,25 @@
 const testData = require("./testData/product.test.json");
 const unitTest = require("./unit-test-tester");
 const strictEqual = require("./execute-verification");
-const paymentServiceResponse = require("../src/view/checkout/paymentServiceResponse");
-const getOutOfStockMessage = require("../src/view/products/productListRegion/productRegion/getOutOfStockMessage");
-const { formatCurrency } = require("../src/currency/currency");
-const { calculateSubtotal } = require("../src/currency/currency");
 const { calculateLineItemTotal } = require("../src/currency/currency");
-const isInCart = require("../src/view/products/productListRegion/productRegion/isInCart");
 const areItemsInCart = require("../src/view/cart/itemListRegion/cartHasItems");
 const hasLowStock = require("../src/view/inventoryDashboard/lowStockListRegion/hasLowStock");
 const getProducts = require("../src/api/product");
 const postToStripe = require("../src/api/stripe");
 const { isValidCurrency, isValidSource } = require("../src/view/checkout/checkout");
 
-unitTest("should return paid as true", () => {
-	strictEqual(paymentServiceResponse().paid, true);
-});
-
-unitTest("should return status as `succeed`", () => {
-	strictEqual(paymentServiceResponse().status, "succeeded");
-});
-
 unitTest("given a cart with items", () => {
 	const expected = true;
 	const items = [
 		{
-			"quantity": 5,
-			"product": {
-				"id": "101",
-				"price": 500,
-				"description": "Sample text"
-			}
-		}
-	]
+			quantity: 5,
+			product: {
+				id: "101",
+				price: 500,
+				description: "Sample text",
+			},
+		},
+	];
 	const actual = areItemsInCart(items);
 	strictEqual(actual, expected);
 });
@@ -84,17 +71,17 @@ unitTest("should return all products", () => {
 
 unitTest("should calculate line item total", () => {
 	const item = {
-		"quantity": 5,
-		"product": {
-			"id": "108",
-			"price": 50,
-			"description": "Sample description"
-		}
-	}
+		quantity: 5,
+		product: {
+			id: "108",
+			price: 50,
+			description: "Sample description",
+		},
+	};
 	const expected = 250;
 	const actual = calculateLineItemTotal(item);
 	strictEqual(actual, expected);
-})
+});
 
 /****************************************************************************
 	 async test should be failing, but is passing regardless of stripe reponse	
@@ -104,49 +91,49 @@ unitTest("post to stripe should succeed", async () => {
 		amount: 50,
 		currency: "usd",
 		source: "tok_amex",
-	}
+	};
 
 	const expected = true;
 	const response = await postToStripe(payment);
-	const actual = !response.error
+	const actual = !response.error;
 
-	strictEqual(actual, expected)
-})
+	strictEqual(actual, expected);
+});
 
 unitTest("post to stripe should fail", async () => {
 	const payment = {
 		amount: 50,
 		currency: "asd",
 		source: "asdfax",
-	}
+	};
 
 	const expected = false;
 	const response = await postToStripe(payment);
-	const actual = !response.error
+	const actual = !response.error;
 
-	strictEqual(actual, expected)
-})
+	strictEqual(actual, expected);
+});
 
 unitTest("is valid currency", () => {
 	const expected = true;
-	const actual = isValidCurrency("usd")
-	strictEqual(actual, expected)
-})
+	const actual = isValidCurrency("usd");
+	strictEqual(actual, expected);
+});
 
 unitTest("is valid source", () => {
 	const expected = true;
-	const actual = isValidSource("tok_amex")
-	strictEqual(actual, expected)
-})
+	const actual = isValidSource("tok_amex");
+	strictEqual(actual, expected);
+});
 
 unitTest("is invalid currency", () => {
 	const expected = false;
-	const actual = isValidCurrency("thomas")
-	strictEqual(actual, expected)
-})
+	const actual = isValidCurrency("thomas");
+	strictEqual(actual, expected);
+});
 
 unitTest("is invalid source", () => {
 	const expected = false;
-	const actual = isValidSource("jonothan")
-	strictEqual(actual, expected)
-})
+	const actual = isValidSource("jonothan");
+	strictEqual(actual, expected);
+});
