@@ -24,10 +24,10 @@ function Cart() {
 	}, [cart]);
 
 	return (
-		<div id="cart">
+		<div id="cart-view">
 			<ItemListRegion items={cart.itemList} />
 			<h4>Cart Total</h4>
-			<div id="total">{formatCurrency(cartTotal)}</div>
+			<div id="cart-total">{formatCurrency(cartTotal)}</div>
 		</div>
 	);
 }

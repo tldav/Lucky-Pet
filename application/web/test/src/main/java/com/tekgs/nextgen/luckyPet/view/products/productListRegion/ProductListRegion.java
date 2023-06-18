@@ -25,8 +25,7 @@ public class ProductListRegion extends UiRegion implements ProductListRegionCali
     @Override
     public List<ProductRegionCalibratable> getProductRegions() {
         List<ProductRegionCalibratable> productRegions = new ArrayList<>();
-        List<UiElement> productElementList = UiElement.getList("'Product' region", UiLocatorType.CLASS, "product-region",
-                this.getElement());
+        List<UiElement> productElementList = UiElement.getList("'Product' region", UiLocatorType.CLASS, "product-region", this.getElement());
         for (UiElement productElement : productElementList) {
             productRegions.add(ProductRegion.getInstance(productElement));
         }

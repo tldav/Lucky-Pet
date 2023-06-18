@@ -5,9 +5,12 @@ import com.softwareonpurpose.uinavigator.UiLocatorType;
 import com.softwareonpurpose.uinavigator.UiView;
 import com.tekgs.nextgen.luckyPet.data.payment.Payment;
 import com.tekgs.nextgen.luckyPet.view.purchaseConfirmation.PurchaseConfirmationView;
+import org.softwareonpurpose.gauntlet.Environment;
 
 public class CheckoutView extends UiView implements CheckoutViewCalibratable {
-    private static final String VIEW_URL = "http://localhost:3000/checkout";
+    private static final String DOMAIN_URL = Environment.getInstance().getDomainUrl();
+    private static final String RELATIVE_URL = "checkout";
+    private static final String VIEW_URL = String.format("%s/%s", DOMAIN_URL, RELATIVE_URL);
     private static final String DESCRIPTION = "'Checkout'' view";
     private static final String LOCATOR_TYPE = UiLocatorType.ID;
     private static final String LOCATOR_VALUE = "checkout-view";
@@ -27,7 +30,7 @@ public class CheckoutView extends UiView implements CheckoutViewCalibratable {
     }
     
     public CheckoutView enter(Payment paymentData) {
-        //  Clicking the other field after setting a value is to trigger the on-blur function
+        //  Clicking the other input after setting a value is to trigger the on-blur function
         getCurrencyElement().set(paymentData.getCurrency());
         getSourceElement().click();
         getSourceElement().set(paymentData.getSource());
@@ -35,45 +38,34 @@ public class CheckoutView extends UiView implements CheckoutViewCalibratable {
         return UiView.expect(CheckoutView.class);
     }
     
-    public PurchaseConfirmationView submit(@SuppressWarnings("unused") Payment paymentData) {
-        getSubmitButtonElement().click();
+    @SuppressWarnings("unused")
+    public PurchaseConfirmationView submit(Payment paymentData) {
+        this.getSubmitPaymentBtnElement().click();
         return UiView.expect(PurchaseConfirmationView.class);
     }
     
     private UiElement getCurrencyElement() {
-        String description = "'Currency' field";
-        String locatorValue = "currency";
-        return UiElement.getInstance(description, UiLocatorType.NAME, locatorValue, this.getElement());
+        return UiElement.getInstance("'Currency' input", UiLocatorType.NAME, "currency-input", this.getElement());
     }
     
     private UiElement getSourceElement() {
-        String description = "'Source' field";
-        String locatorValue = "source";
-        return UiElement.getInstance(description, UiLocatorType.NAME, locatorValue, this.getElement());
+        return UiElement.getInstance("'Source' input", UiLocatorType.NAME, "source-input", this.getElement());
     }
     
-    private UiElement getSubmitButtonElement() {
-        String description = "'Submit' button";
-        String locatorValue = "submit";
-        return UiElement.getInstance(description, UiLocatorType.ID, locatorValue, this.getElement());
+    private UiElement getSubmitPaymentBtnElement() {
+        return UiElement.getInstance("'Submit Payment' button", UiLocatorType.ID, "submit-payment-btn", this.getElement());
     }
     
     private UiElement getTotalOwedElement() {
-        String description = "Total Owed";
-        String locatorValue = "total-owed";
-        return UiElement.getInstance(description, UiLocatorType.ID, locatorValue, this.getElement());
+        return UiElement.getInstance("'Total Owed'", UiLocatorType.ID, "total-owed", this.getElement());
     }
     
     private UiElement getSourceErrorElement() {
-        String description = "'Source' error message";
-        String locatorValue = "source-error";
-        return UiElement.getInstance(description, UiLocatorType.ID, locatorValue, this.getElement());
+        return UiElement.getInstance("'Source Error' message", UiLocatorType.ID, "source-error", this.getElement());
     }
     
     private UiElement getCurrencyErrorElement() {
-        String description = "'Currency' error message";
-        String locatorValue = "currency-error";
-        return UiElement.getInstance(description, UiLocatorType.ID, locatorValue, this.getElement());
+        return UiElement.getInstance("'Currency Error' message", UiLocatorType.ID, "currency-error", this.getElement());
     }
     
     @Override
@@ -93,7 +85,7 @@ public class CheckoutView extends UiView implements CheckoutViewCalibratable {
     
     @Override
     public boolean isSubmitButtonDisplayed() {
-        return this.getSubmitButtonElement().isDisplayed();
+        return this.getSubmitPaymentBtnElement().isDisplayed();
     }
     
     @Override

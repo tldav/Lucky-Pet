@@ -27,7 +27,7 @@ function CheckoutView() {
 			: setSourceErrorMessage("Invalid Source");
 	};
 
-	async function submitPayment(e) {
+	const submitPayment = async (e) => {
 		e.preventDefault();
 		const source = sourceRef.current.value;
 		const currency = currencyRef.current.value;
@@ -41,15 +41,15 @@ function CheckoutView() {
 		if (response.status === "succeeded" && response.paid) {
 			navigate("/purchase-confirmation");
 		}
-	}
+	};
 
 	return (
 		<div id="checkout-view">
 			<form id="payment-form-region">
 				<label htmlFor="currency">Currency</label>
 				<input
-					id="currency"
-					name="currency"
+					id="currency-input"
+					name="currency-input"
 					onBlur={getCurrencyErrorMessage}
 					ref={currencyRef}
 				></input>
@@ -58,8 +58,8 @@ function CheckoutView() {
 				</p>
 				<label htmlFor="source">Source</label>
 				<input
-					id="source"
-					name="source"
+					id="source-input"
+					name="source-input"
 					ref={sourceRef}
 					onBlur={getSourceErrorMessage}
 				></input>
@@ -70,7 +70,7 @@ function CheckoutView() {
 					<p>Total:</p>
 					<p id="total-owed">{formatCurrency(amountOwed)}</p>
 				</div>
-				<button id="submit" onClick={submitPayment}>
+				<button id="submit-payment-btn" onClick={submitPayment}>
 					Place Order
 				</button>
 			</form>

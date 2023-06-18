@@ -7,8 +7,6 @@ import com.tekgs.nextgen.luckyPet.view.error.ErrorView;
 import org.softwareonpurpose.gauntlet.Environment;
 
 public class NotFoundView extends UiView {
-//    private static final String VIEW_URL = "http://localhost:3000/notfound";
-    
     private static final String DOMAIN_URL = Environment.getInstance().getDomainUrl();
     private static final String RELATIVE_URL = "not-found";
     private static final String VIEW_URL = String.format("%s/%s", DOMAIN_URL, RELATIVE_URL);

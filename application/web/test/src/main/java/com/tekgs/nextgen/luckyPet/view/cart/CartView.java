@@ -14,7 +14,7 @@ public class CartView extends UiView implements CartViewCalibratable {
     private static final String URL_PARAM = "?cart_id=%s";
     private static final String DESCRIPTION = "'Shopping Cart' view";
     private static final String LOCATOR_TYPE = UiLocatorType.ID;
-    private static final String LOCATOR_VALUE = "cart";
+    private static final String LOCATOR_VALUE = "cart-view";
     
     public CartView() {
         super(VIEW_URL, UiElement.getInstance(DESCRIPTION, LOCATOR_TYPE, LOCATOR_VALUE));
@@ -31,9 +31,7 @@ public class CartView extends UiView implements CartViewCalibratable {
     }
     
     private UiElement getTotalElement() {
-        String description = "Total";
-        String locatorValue = "total";
-        return UiElement.getInstance(description, UiLocatorType.ID, locatorValue, this.getElement());
+        return UiElement.getInstance("'Cart' total", LOCATOR_TYPE, "cart-total", this.getElement());
     }
     
     @Override
