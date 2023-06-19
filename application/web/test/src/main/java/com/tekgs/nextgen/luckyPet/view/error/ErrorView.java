@@ -3,18 +3,16 @@ package com.tekgs.nextgen.luckyPet.view.error;
 import com.softwareonpurpose.uinavigator.UiElement;
 import com.softwareonpurpose.uinavigator.UiLocatorType;
 import com.softwareonpurpose.uinavigator.UiView;
-import org.softwareonpurpose.gauntlet.Environment;
+import com.tekgs.nextgen.luckyPet.view.LuckyPetView;
 
-public class ErrorView extends UiView implements ErrorViewCalibratable {
-    private static final String DOMAIN_URL = Environment.getInstance().getDomainUrl();
+public class ErrorView extends LuckyPetView implements ErrorViewCalibratable {
     private static final String RELATIVE_URL = "error";
-    private static final String VIEW_URL = String.format("%s/%s", DOMAIN_URL, RELATIVE_URL);
     private static final String DESCRIPTION = "'Error' view";
     private static final String LOCATOR_TYPE = UiLocatorType.ID;
     private static final String LOCATOR_VALUE = "error-view";
     
     public ErrorView() {
-        super(VIEW_URL, UiElement.getInstance(DESCRIPTION, LOCATOR_TYPE, LOCATOR_VALUE));
+        super(RELATIVE_URL, UiElement.getInstance(DESCRIPTION, LOCATOR_TYPE, LOCATOR_VALUE));
     }
     
     public static ErrorView directNav() {
@@ -32,7 +30,7 @@ public class ErrorView extends UiView implements ErrorViewCalibratable {
     }
     
     @Override
-    protected boolean confirmElementStates() {
-        return this.getElement().waitUntilVisible();
+    protected boolean areKeyElementsLoaded() {
+        return false;
     }
 }

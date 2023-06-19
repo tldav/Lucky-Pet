@@ -4,19 +4,17 @@ import com.softwareonpurpose.uinavigator.UiElement;
 import com.softwareonpurpose.uinavigator.UiLocatorType;
 import com.softwareonpurpose.uinavigator.UiView;
 import com.tekgs.nextgen.luckyPet.data.payment.Payment;
+import com.tekgs.nextgen.luckyPet.view.LuckyPetView;
 import com.tekgs.nextgen.luckyPet.view.purchaseConfirmation.PurchaseConfirmationView;
-import org.softwareonpurpose.gauntlet.Environment;
 
-public class CheckoutView extends UiView implements CheckoutViewCalibratable {
-    private static final String DOMAIN_URL = Environment.getInstance().getDomainUrl();
+public class CheckoutView extends LuckyPetView implements CheckoutViewCalibratable {
     private static final String RELATIVE_URL = "checkout";
-    private static final String VIEW_URL = String.format("%s/%s", DOMAIN_URL, RELATIVE_URL);
     private static final String DESCRIPTION = "'Checkout'' view";
     private static final String LOCATOR_TYPE = UiLocatorType.ID;
     private static final String LOCATOR_VALUE = "checkout-view";
     
     public CheckoutView() {
-        super(VIEW_URL, UiElement.getInstance(DESCRIPTION, LOCATOR_TYPE, LOCATOR_VALUE));
+        super(RELATIVE_URL, UiElement.getInstance(DESCRIPTION, LOCATOR_TYPE, LOCATOR_VALUE));
     }
     
     public static CheckoutView directNav() {
@@ -89,7 +87,7 @@ public class CheckoutView extends UiView implements CheckoutViewCalibratable {
     }
     
     @Override
-    protected boolean confirmElementStates() {
-        return this.getElement().waitUntilVisible();
+    protected boolean areKeyElementsLoaded() {
+        return true;
     }
 }
