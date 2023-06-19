@@ -1,60 +1,45 @@
-#checkout {
-  padding: 5%;
-  border: 2px solid #000;
-  margin: 10%;
-  margin: 10%;
+#checkout-view {
+	padding: 5%;
+	border: 2px solid #000;
+	margin: 10%;
+	margin: 10%;
 }
 
 p {
-  font-size: 25px;
-  padding: 5px;
+	font-size: 25px;
+	padding: 5px;
 }
 
-#payment-submission {
-  padding: 5%;
-}
-
-#submission-form-region {
-  display: grid;
-  margin-top: 100px;
+#payment-form-region {
+	display: grid;
 }
 
 label {
-  padding: 5px;
-  margin-bottom: 5px;
-  margin-top: 12px;
-  font-size: 22px;
-  color: #000;
+	padding: 5px;
+	margin-bottom: 5px;
+	margin-top: 12px;
+	font-size: 22px;
+	color: #000;
 }
 
 input {
-  border: 2px solid #000;
-  text-align: center;
-  padding: 5px;
+	border: 2px solid #000;
+	text-align: center;
+	padding: 5px;
 }
 
-.hide-error {
-  display: none;
-}
-
-.error {
-  color: red;
-  font-style: italic;
-}
-
-#submit {
-  background-color: #FEC5BB;
-  color: #e8f9fd;
-  border: none;
-  border-radius: 2px;
-  text-align: center;
-  padding: 5px 10px;
-  margin-top: 20px;
-  cursor: pointer;
-  font-size: 18px;
+#submit-payment-btn {
+	background-color: #fec5bb;
+	color: #e8f9fd;
+	border: none;
+	border-radius: 2px;
+	text-align: center;
+	padding: 5px 10px;
+	margin-top: 20px;
+	cursor: pointer;
+	font-size: 18px;
 }
 
 #total-owed {
-  padding-left: 5px;
+	padding-left: 5px;
 }
-
