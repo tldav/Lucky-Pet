@@ -1,4 +1,4 @@
-import "./purchase-confirmation.css";
+import "./purchaseConfirmation.css";
 
 function PurchaseConfirmation() {
 	return (

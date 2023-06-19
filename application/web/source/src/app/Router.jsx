@@ -10,7 +10,7 @@ import LandingView from "../view/landing/LandingView";
 import InventoryDashboardView from "../view/inventoryDashboard/InventoryDashboardView";
 import PetsView from "../view/pets/PetsView";
 import ProductsView from "../view/products/ProductsView";
-import PurchaseConfirmation from "../view/purchase-confirmation/PurchaseConfirmation";
+import PurchaseConfirmation from "../view/purchaseConfirmation/PurchaseConfirmation";
 
 function Router() {
 	return (
