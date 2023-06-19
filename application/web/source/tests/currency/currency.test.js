@@ -31,6 +31,12 @@ const calculateLineItemTotalScenarios = [
         price: 500,
       },
     }, 1000],
+    [{
+      quantity: 5,
+      _product: {
+        price: 50,
+      },
+    }, 250]
 ]
 
 test.each(formatCurrencyScenarios)('format currency with cents: %d', (input, expected) => {
