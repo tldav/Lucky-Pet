@@ -20,12 +20,12 @@ public class CartView extends LuckyPetView implements CartViewCalibratable {
     
     public static CartView directNav() {
         new CartView().load();
-        return UiView.expect(CartView.class);
+        return LuckyPetView.expect(CartView.class);
     }
     
     public static CartView directNav(Integer cartId) {
         new CartView().load(String.format(URL_PARAM, cartId));
-        return UiView.expect(CartView.class);
+        return LuckyPetView.expect(CartView.class);
     }
     
     @Override

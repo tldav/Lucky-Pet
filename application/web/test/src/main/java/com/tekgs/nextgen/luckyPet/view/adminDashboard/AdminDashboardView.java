@@ -19,12 +19,12 @@ public class AdminDashboardView extends LuckyPetView implements AdminDashboardVi
     
     public static AdminDashboardView directNav() {
         new AdminDashboardView().load();
-        return UiView.expect(AdminDashboardView.class);
+        return LuckyPetView.expect(AdminDashboardView.class);
     }
     
     public static AdminDashboardView directNav(String fileName) {
         new AdminDashboardView().load(String.format(URL_PARAM, fileName));
-        return UiView.expect(AdminDashboardView.class);
+        return LuckyPetView.expect(AdminDashboardView.class);
     }
     
     @Override

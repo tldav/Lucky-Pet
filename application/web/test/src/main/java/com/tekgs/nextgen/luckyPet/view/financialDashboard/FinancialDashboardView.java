@@ -19,7 +19,7 @@ public class FinancialDashboardView extends LuckyPetView implements FinancialDas
     
     public static FinancialDashboardView directNav() {
         new FinancialDashboardView().load();
-        return UiView.expect(FinancialDashboardView.class);
+        return LuckyPetView.expect(FinancialDashboardView.class);
     }
     
     @Override
@@ -32,8 +32,5 @@ public class FinancialDashboardView extends LuckyPetView implements FinancialDas
         return true;
     }
     
-    @Override
-    protected boolean confirmElementStates() {
-        return this.getElement().waitUntilVisible();
-    }
+
 }

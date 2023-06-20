@@ -17,7 +17,7 @@ public class ErrorView extends LuckyPetView implements ErrorViewCalibratable {
     
     public static ErrorView directNav() {
         new ErrorView().load();
-        return UiView.expect(ErrorView.class);
+        return LuckyPetView.expect(ErrorView.class);
     }
     
     private UiElement getMessageElement() {

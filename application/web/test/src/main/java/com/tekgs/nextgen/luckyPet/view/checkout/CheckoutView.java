@@ -19,12 +19,12 @@ public class CheckoutView extends LuckyPetView implements CheckoutViewCalibratab
     
     public static CheckoutView directNav() {
         new CheckoutView().load();
-        return UiView.expect(CheckoutView.class);
+        return LuckyPetView.expect(CheckoutView.class);
     }
     
     public static CheckoutView directNav(Integer amountOwed) {
         new CheckoutView().load(String.format("?total=%d", amountOwed));
-        return UiView.expect(CheckoutView.class);
+        return LuckyPetView.expect(CheckoutView.class);
     }
     
     public CheckoutView enter(Payment paymentData) {
@@ -33,13 +33,13 @@ public class CheckoutView extends LuckyPetView implements CheckoutViewCalibratab
         getSourceElement().click();
         getSourceElement().set(paymentData.getSource());
         getCurrencyElement().click();
-        return UiView.expect(CheckoutView.class);
+        return LuckyPetView.expect(CheckoutView.class);
     }
     
     @SuppressWarnings("unused")
     public PurchaseConfirmationView submit(Payment paymentData) {
         this.getSubmitPaymentBtnElement().click();
-        return UiView.expect(PurchaseConfirmationView.class);
+        return LuckyPetView.expect(PurchaseConfirmationView.class);
     }
     
     private UiElement getCurrencyElement() {

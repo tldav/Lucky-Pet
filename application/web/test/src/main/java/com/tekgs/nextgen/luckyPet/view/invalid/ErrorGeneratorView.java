@@ -18,7 +18,7 @@ public class ErrorGeneratorView extends LuckyPetView {
     
     public static ErrorView directNav() {
         new ErrorGeneratorView().load();
-        return UiView.expect(ErrorView.class);
+        return LuckyPetView.expect(ErrorView.class);
     }
     
     @Override
