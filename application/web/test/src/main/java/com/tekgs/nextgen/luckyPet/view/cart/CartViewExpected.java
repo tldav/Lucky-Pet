@@ -32,7 +32,7 @@ public class CartViewExpected implements CartViewCalibratable {
     
     @Override
     public ItemListRegionCalibratable getItemListRegion() {
-        List<ItemCalibratable> items = this.cart == null ? new ArrayList<>() : this.cart.getItems();
+        List<ItemCalibratable> items = this.cart == null ? new ArrayList<>() : this.cart.getItemList();
         return ItemListRegionExpected.getInstance(items);
     }
 }

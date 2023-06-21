@@ -25,7 +25,7 @@ public class ProductListRegionExpected implements ProductListRegionCalibratable 
     private boolean isInCart(ProductCalibratable product) {
         boolean isInCart = false;
         if (this.cart != null) {
-            for (ItemCalibratable item : this.cart.getItems()) {
+            for (ItemCalibratable item : this.cart.getItemList()) {
                 isInCart = product.getId().equals(item.getProduct().getId());
             }
         }

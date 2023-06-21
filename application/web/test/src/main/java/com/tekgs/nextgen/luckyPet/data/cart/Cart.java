@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Cart implements CartCalibratable {
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
-    private final List<Item> items = new ArrayList<>();
+    private final List<Item> itemList = new ArrayList<>();
     private final Integer id;
     
     private Cart(Integer id) {
@@ -26,7 +26,7 @@ public class Cart implements CartCalibratable {
         if (comparator.getId() != null && this.getId().equals(comparator.getId())) {
             return true;
         }
-        List<ItemCalibratable> itemDefinitions = comparator.getItems();
+        List<ItemCalibratable> itemDefinitions = comparator.getItemList();
         boolean isEquivalent = areEquivalent(comparator.getTotal(), this.getTotal());
         isEquivalent &= areEquivalent(comparator.getItemCount(), this.getItemCount());
         isEquivalent &= itemsAreEquivalent(itemDefinitions);
@@ -34,7 +34,7 @@ public class Cart implements CartCalibratable {
     }
     
     private boolean itemsAreEquivalent(List<ItemCalibratable> comparators) {
-        List<ItemCalibratable> thisItems = new ArrayList<>(this.getItems());
+        List<ItemCalibratable> thisItems = new ArrayList<>(this.getItemList());
         for (ItemCalibratable itemDefinition : comparators) {
             ItemCalibratable foundItem = null;
             for (ItemCalibratable candidate : thisItems) {
@@ -58,14 +58,14 @@ public class Cart implements CartCalibratable {
     }
     
     @Override
-    public List<ItemCalibratable> getItems() {
-        return new ArrayList<>(this.items);
+    public List<ItemCalibratable> getItemList() {
+        return new ArrayList<>(this.itemList);
     }
     
     @Override
     public Integer getTotal() {
         Integer totalInCents = 0;
-        for (ItemCalibratable item : this.items) {
+        for (ItemCalibratable item : this.itemList) {
             if (item.getProduct().getPrice() != null) {
                 totalInCents += item.getProduct().getPrice() * item.getQuantity();
             }
@@ -75,6 +75,6 @@ public class Cart implements CartCalibratable {
     
     @Override
     public Integer getItemCount() {
-        return this.items.size();
+        return this.itemList.size();
     }
 }

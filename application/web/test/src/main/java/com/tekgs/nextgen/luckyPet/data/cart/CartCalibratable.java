@@ -7,7 +7,7 @@ import java.util.List;
 public interface CartCalibratable {
     Integer getId();
     
-    List<ItemCalibratable> getItems();
+    List<ItemCalibratable> getItemList();
     
     Integer getTotal();
     

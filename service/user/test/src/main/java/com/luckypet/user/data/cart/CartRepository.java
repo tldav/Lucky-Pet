@@ -2,6 +2,7 @@ package com.luckypet.user.data.cart;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.luckypet.behavior.ToStringBehavior;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.softwareonpurpose.gauntlet.Environment;
@@ -50,7 +51,6 @@ public class CartRepository {
             int lastId = 0;
             while (resultSet.next()) {
                 JSONObject itemInCart = new JSONObject();
-                JSONObject product = new JSONObject();
 
                 int cartIdFromCart = resultSet.getInt("cart_id_from_cart");
                 if (cartIdFromCart != lastId) {
@@ -60,14 +60,17 @@ public class CartRepository {
                     cart.put("id", cartIdFromCart);
                 }
 
-                product.put("id", resultSet.getInt("product_id"));
-                product.put("description", resultSet.getString("description"));
-                product.put("price", resultSet.getInt("price"));
-                product.put("stock", resultSet.getInt("stock"));
+                if (resultSet.getObject("cart_id_from_item") != null) {
+                    JSONObject product = new JSONObject();
+                    product.put("id", resultSet.getInt("product_id"));
+                    product.put("description", resultSet.getString("description"));
+                    product.put("price", resultSet.getInt("price"));
+                    product.put("stock", resultSet.getInt("stock"));
 
-                itemInCart.put("quantity", resultSet.getInt("quantity"));
-                itemInCart.put("_product", product);
-                jsonArrayItemList.add(itemInCart);
+                    itemInCart.put("quantity", resultSet.getInt("quantity"));
+                    itemInCart.put("_product", product);
+                    jsonArrayItemList.add(itemInCart);
+                }
 
                 cart.put("itemList", jsonArrayItemList);
                 if (jsonArrayCart.contains(cart)) {
@@ -81,13 +84,15 @@ public class CartRepository {
         } catch (Exception e) {
             e.getStackTrace();
         }
+        ToStringBehavior.getInstance().print(carts);
         return carts;
     }
 
     private ResultSet executeQuery() throws SQLException {
         Statement statement = connection.createStatement();
-        return statement.executeQuery("    select c.cart_id as cart_id_from_cart, i.cart_id as cart_id_from_item, i.quantity, i.product_id, p.description, p.price, p.stock from _cart as c\n" +
-                "    JOIN _item i on c.cart_id=i.cart_id\n" +
-                "    JOIN _product p on p.product_id=i.product_id;");
+        return statement.executeQuery("""
+                    select c.cart_id as cart_id_from_cart, i.cart_id as cart_id_from_item, i.quantity, i.product_id, p.description, p.price, p.stock from _cart as c
+                    LEFT JOIN _item i on c.cart_id=i.cart_id
+                    LEFT JOIN _product p on p.product_id=i.product_id;""".indent(4));
     }
 }

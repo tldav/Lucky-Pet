@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CartDefinition implements CartCalibratable {
-    private final List<ItemCalibratable> items = new ArrayList<>();
+    private final List<ItemCalibratable> itemList = new ArrayList<>();
     @SuppressWarnings("unused")
     private Integer total;
     private Integer itemCount;
@@ -20,7 +20,7 @@ public class CartDefinition implements CartCalibratable {
     }
     
     public CartDefinition withItem(ItemCalibratable item) {
-        this.items.add(item);
+        this.itemList.add(item);
         return this;
     }
     
@@ -35,8 +35,8 @@ public class CartDefinition implements CartCalibratable {
     }
     
     @Override
-    public List<ItemCalibratable> getItems() {
-        return this.items;
+    public List<ItemCalibratable> getItemList() {
+        return this.itemList;
     }
     
     @Override
