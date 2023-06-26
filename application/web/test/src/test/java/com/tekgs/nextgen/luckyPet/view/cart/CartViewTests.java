@@ -49,24 +49,24 @@ public class CartViewTests extends GauntletTest {
     @Test(groups = {TestSuite.RELEASE, TestSuite.ACCEPTANCE, TestSuite.DEBUG}, dependsOnMethods = "smoke")
     public void directNav() {
         addRequirements("53 - Cart View - line item total", "78 - Cart View - item quantity");
-        CartDefinition shoppingCartDefinition =
+        CartDefinition cartDefinition =
                 CartDefinition.getInstance().withItem(ItemDefinition.getInstance().withProduct(ProductDefinition.getInstance().withPrice(50)));
-        given(shoppingCartDefinition);
-        Cart shoppingCart = CartProvider.getInstance().get(shoppingCartDefinition);
-        CartViewExpected expected = CartViewExpected.getInstance(shoppingCart);
+        Cart cart = CartProvider.getInstance().get(cartDefinition);
+//        given(cart);
+        CartViewExpected expected = CartViewExpected.getInstance(cart);
         when();
-        CartView actual = CartView.directNav(shoppingCart.getId());
+        CartView actual = CartView.directNav(cart.getId());
         then(CartViewCalibrator.getInstance(expected, actual));
     }
     
     @Test(groups = {}, dependsOnMethods = "smoke", dataProvider = "scenarios")
-    public void regression_directNav(CartDefinition shoppingCartDefinition) {
+    public void regression_directNav(CartDefinition cartDefinition) {
         addRequirements("53 - Cart View - line item total", "78 - Cart View - item quantity");
-        Cart shoppingCart = CartProvider.getInstance().get(shoppingCartDefinition);
-        given(shoppingCart);
-        CartViewExpected expected = CartViewExpected.getInstance(shoppingCart);
+        Cart cart = CartProvider.getInstance().get(cartDefinition);
+        given(cart);
+        CartViewExpected expected = CartViewExpected.getInstance(cart);
         when();
-        CartView actual = CartView.directNav(shoppingCart.getId());
+        CartView actual = CartView.directNav(cart.getId());
         then(CartViewCalibrator.getInstance(expected, actual));
     }
 }

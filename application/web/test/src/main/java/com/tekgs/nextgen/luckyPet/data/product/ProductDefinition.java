@@ -46,7 +46,7 @@ public class ProductDefinition implements ProductCalibratable {
     
     @Override
     public Integer getId() {
-        return null;
+        return this.id;
     }
     
     @Override

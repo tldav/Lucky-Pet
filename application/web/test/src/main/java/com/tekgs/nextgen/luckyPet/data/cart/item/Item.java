@@ -12,7 +12,7 @@ public class Item implements ItemCalibratable {
     }
     
     static Item getInstance(ItemDefinition definition) {
-        return new Item(definition.getQuantity(), (Product) definition.getProduct());
+        return new Item(definition.getQuantity(), (Product) definition.getProduct()); // cast to Product or make Product field ProductCalibratable
     }
     
     @Override

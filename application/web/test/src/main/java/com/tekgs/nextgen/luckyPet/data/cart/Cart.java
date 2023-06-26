@@ -1,6 +1,5 @@
 package com.tekgs.nextgen.luckyPet.data.cart;
 
-import com.tekgs.nextgen.luckyPet.data.cart.item.Item;
 import com.tekgs.nextgen.luckyPet.data.cart.item.ItemCalibratable;
 
 import java.util.ArrayList;
@@ -8,19 +7,20 @@ import java.util.List;
 
 public class Cart implements CartCalibratable {
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
-    private final List<Item> itemList = new ArrayList<>();
+    private final List<ItemCalibratable> itemList = new ArrayList<>(); // List of ItemCalibratable bc of CartRepository
     private final Integer id;
     
-    private Cart(Integer id) {
+    private Cart(Integer id, List<ItemCalibratable> itemList) {
         this.id = id;
+        this.itemList.addAll(itemList);
+    }
+    
+    static Cart getInstance(CartDefinition cartDefinition) {
+        return new Cart(cartDefinition.getId(), cartDefinition.getItemList());
     }
     
     private static boolean areEquivalent(Integer comparatorCartTotal, Integer thisTotal) {
         return comparatorCartTotal == null || thisTotal.equals(comparatorCartTotal);
-    }
-    
-    static Cart getInstance(CartDefinition cartDefinition) {
-        return new Cart(cartDefinition.getId());
     }
     
     public boolean equivalent(CartCalibratable comparator) {

@@ -5,7 +5,7 @@ import com.softwareonpurpose.uinavigator.UiRegion;
 import com.tekgs.nextgen.luckyPet.view.cart.itemListRegion.ItemListRegionCalibrator;
 
 public class CartViewCalibrator extends Calibrator {
-    private static final String DESCRIPTION = "'Shopping Cart' view";
+    private static final String DESCRIPTION = "'Cart' view";
     private final CartViewExpected expected;
     private final CartView actual;
     
