@@ -6,9 +6,10 @@ import com.tekgs.nextgen.luckyPet.data.cart.item.ItemCalibratable;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class CartDefinition implements CartCalibratable {
     private final List<ItemCalibratable> itemList = new ArrayList<>();
-    @SuppressWarnings("unused")
+    private Integer id;
     private Integer total;
     private Integer itemCount;
     
@@ -29,9 +30,23 @@ public class CartDefinition implements CartCalibratable {
         return this;
     }
     
+    public CartDefinition withId(Integer id) {
+        this.id = id;
+        return this;
+    }
+    
+    public CartDefinition withItemList(List<ItemCalibratable> itemList) {
+        this.itemList.addAll(itemList);
+        return this;
+    }
+    
+    public Cart toCart() {
+        return Cart.getInstance(this);
+    }
+    
     @Override
     public Integer getId() {
-        return null;
+        return this.id;
     }
     
     @Override

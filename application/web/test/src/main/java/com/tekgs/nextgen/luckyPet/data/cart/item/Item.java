@@ -11,6 +11,10 @@ public class Item implements ItemCalibratable {
         this.product = product;
     }
     
+    static Item getInstance(ItemDefinition definition) {
+        return new Item(definition.getQuantity(), (Product) definition.getProduct());
+    }
+    
     @Override
     public Integer getQuantity() {
         return this.quantity;

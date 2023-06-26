@@ -1,10 +1,12 @@
 package com.tekgs.nextgen.luckyPet.data.product;
 
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class ProductDefinition implements ProductCalibratable {
+    private Integer id;
     private Integer price;
-    private String invalidDescription = "";
     private String description;
     private Integer stock;
+    private String invalidDescription = "";
     
     private ProductDefinition() {
     }
@@ -26,6 +28,20 @@ public class ProductDefinition implements ProductCalibratable {
     public ProductDefinition withDescriptionContaining(String characters) {
         this.invalidDescription = characters;
         return this;
+    }
+    
+    public ProductDefinition withId(Integer id) {
+        this.id = id;
+        return this;
+    }
+    
+    public ProductDefinition withStock(Integer stock) {
+        this.stock = stock;
+        return this;
+    }
+    
+    public Product toProduct() {
+        return Product.getInstance(this);
     }
     
     @Override

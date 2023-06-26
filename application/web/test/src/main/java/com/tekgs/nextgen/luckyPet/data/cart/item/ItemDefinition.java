@@ -24,6 +24,10 @@ public class ItemDefinition implements ItemCalibratable {
         return this;
     }
     
+    public Item toItem() {
+        return Item.getInstance(this);
+    }
+    
     @Override
     public Integer getQuantity() {
         return this.quantity;

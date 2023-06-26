@@ -19,6 +19,10 @@ public class Cart implements CartCalibratable {
         return comparatorCartTotal == null || thisTotal.equals(comparatorCartTotal);
     }
     
+    static Cart getInstance(CartDefinition cartDefinition) {
+        return new Cart(cartDefinition.getId());
+    }
+    
     public boolean equivalent(CartCalibratable comparator) {
         if (comparator == null) {
             return false;

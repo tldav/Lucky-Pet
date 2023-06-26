@@ -13,6 +13,10 @@ public class Product implements ProductCalibratable {
         this.stock = stock;
     }
     
+    static Product getInstance(ProductDefinition definition) {
+        return new Product(definition.getId(), definition.getPrice(), definition.getDescription(), definition.getStock());
+    }
+    
     @Override
     public Integer getId() {
         return this.id;
