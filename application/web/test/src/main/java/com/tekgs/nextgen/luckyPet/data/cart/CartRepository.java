@@ -1,8 +1,10 @@
 package com.tekgs.nextgen.luckyPet.data.cart;
 
 import com.tekgs.nextgen.luckyPet.behavior.ToStringBehavior;
+import com.tekgs.nextgen.luckyPet.data.cart.item.Item;
 import com.tekgs.nextgen.luckyPet.data.cart.item.ItemCalibratable;
 import com.tekgs.nextgen.luckyPet.data.cart.item.ItemDefinition;
+import com.tekgs.nextgen.luckyPet.data.product.Product;
 import com.tekgs.nextgen.luckyPet.data.product.ProductDefinition;
 import org.softwareonpurpose.gauntlet.Environment;
 
@@ -55,25 +57,18 @@ public class CartRepository {
                     lastId = cartIdFromCart;
                     cartDefinition.withId(cartIdFromCart);
                 }
-                
                 if (resultSet.getObject("cart_id_from_item") != null) {
-                    ItemDefinition itemDefinition = ItemDefinition.getInstance();
-                    ProductDefinition productDefinition = ProductDefinition.getInstance();
-                    productDefinition.withId(resultSet.getInt("product_id"))
+                    Product product = ProductDefinition.getInstance().withId(resultSet.getInt("product_id"))
                             .withDescription(resultSet.getString("description"))
                             .withPrice(resultSet.getInt("price"))
-                            .withStock(resultSet.getInt("stock"));
-                    
-                    itemDefinition.withQuantity(resultSet.getInt("quantity")).withProduct(productDefinition.toProduct());
-                    itemList.add(itemDefinition.toItem());
+                            .withStock(resultSet.getInt("stock")).toProduct();
+                    Item item = ItemDefinition.getInstance().withQuantity(resultSet.getInt("quantity")).withProduct(product).toItem();
+                    itemList.add(item);
                 }
-                
                 Cart cart = cartDefinition.withItemList(itemList).toCart();
-
                 if (carts.contains(cart)) {
                     carts.remove(cart);
                 }
-                
                 carts.add(cart);
             }
             connection.close();
