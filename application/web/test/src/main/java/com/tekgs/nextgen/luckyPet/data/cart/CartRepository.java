@@ -43,14 +43,14 @@ public class CartRepository {
         List<Cart> carts = new ArrayList<>();
         try {
             ResultSet resultSet = this.executeQuery();
-            List<ItemCalibratable> itemList = new ArrayList<>();
+            List<ItemCalibratable> itemList;
             CartDefinition cartDefinition = CartDefinition.getInstance();
 
             int lastId = 0;
             while (resultSet.next()) {
                 int cartIdFromCart = resultSet.getInt("cart_id_from_cart");
+                itemList = new ArrayList<>();
                 if (cartIdFromCart != lastId) {
-                    itemList = new ArrayList<>();
                     cartDefinition = CartDefinition.getInstance();
                     lastId = cartIdFromCart;
                     cartDefinition.withId(cartIdFromCart);
@@ -65,11 +65,11 @@ public class CartRepository {
                             .withStock(resultSet.getInt("stock"));
                     
                     itemDefinition.withQuantity(resultSet.getInt("quantity")).withProduct(productDefinition.toProduct());
-                    
                     itemList.add(itemDefinition.toItem());
                 }
                 
                 Cart cart = cartDefinition.withItemList(itemList).toCart();
+
                 if (carts.contains(cart)) {
                     carts.remove(cart);
                 }
@@ -80,8 +80,6 @@ public class CartRepository {
         } catch (Exception e) {
             e.getStackTrace();
         }
-        
-        tsb.print(carts);
         return carts;
     }
     
