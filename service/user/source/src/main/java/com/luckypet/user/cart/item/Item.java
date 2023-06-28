@@ -1,6 +1,7 @@
 package com.luckypet.user.cart.item;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.luckypet.user.cart.Cart;
 import com.luckypet.user.cart.product.Product;
 import jakarta.persistence.*;
@@ -29,5 +30,6 @@ public class Item {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
+    @JsonProperty("product")
     private Product _product;
 }
