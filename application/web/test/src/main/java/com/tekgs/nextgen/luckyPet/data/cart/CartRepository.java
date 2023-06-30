@@ -1,6 +1,5 @@
 package com.tekgs.nextgen.luckyPet.data.cart;
 
-import com.tekgs.nextgen.luckyPet.behavior.ToStringBehavior;
 import com.tekgs.nextgen.luckyPet.data.cart.item.Item;
 import com.tekgs.nextgen.luckyPet.data.cart.item.ItemCalibratable;
 import com.tekgs.nextgen.luckyPet.data.cart.item.ItemDefinition;
@@ -16,7 +15,6 @@ public class CartRepository {
     public static final String DB_URL = "jdbc:mysql://localhost:3306/lucky_pet_db";
     public static final String MYSQL_USER = Environment.getInstance().getProperty("user");
     public static final String MYSQL_PASSWORD = Environment.getInstance().getProperty("password");
-    private final ToStringBehavior tsb = ToStringBehavior.getInstance();
     private Connection connection;
     
     private CartRepository() {
@@ -58,14 +56,20 @@ public class CartRepository {
                     cartDefinition.withId(cartIdFromCart);
                 }
                 if (resultSet.getObject("cart_id_from_item") != null) {
-                    Product product = ProductDefinition.getInstance().withId(resultSet.getInt("product_id"))
+                    Product product = ProductDefinition.getInstance()
+                            .withId(resultSet.getInt("product_id"))
                             .withDescription(resultSet.getString("description"))
                             .withPrice(resultSet.getInt("price"))
                             .withStock(resultSet.getInt("stock")).toProduct();
-                    Item item = ItemDefinition.getInstance().withQuantity(resultSet.getInt("quantity")).withProduct(product).toItem();
+                    Item item = ItemDefinition.getInstance()
+                            .withQuantity(resultSet.getInt("quantity"))
+                            .withProduct(product).toItem();
                     itemList.add(item);
                 }
                 Cart cart = cartDefinition.withItemList(itemList).toCart();
+                // when there is a cart with more than one item, if you don't remove the cart from the array
+                // it will add a new cart with the first item, then add a new cart with the first item and second item
+                // and so on...
                 if (carts.contains(cart)) {
                     carts.remove(cart);
                 }

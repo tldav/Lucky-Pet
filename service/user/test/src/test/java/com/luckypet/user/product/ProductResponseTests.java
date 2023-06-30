@@ -20,7 +20,7 @@ public class ProductResponseTests extends GauntletTest {
         then(ProductResponseCalibrator.getInstance(expected, actual));
     }
     
-    @Test(groups = {TestSuite.ACCEPTANCE}, dependsOnMethods = "smoke")
+    @Test(groups = {TestSuite.ACCEPTANCE, TestSuite.DEBUG}, dependsOnMethods = "smoke")
     public void getAll() {
         List<Product> productList = ProductProvider.getInstance().getProducts();
         List<ProductExpected> productListExpected = new ArrayList<>();
@@ -34,7 +34,7 @@ public class ProductResponseTests extends GauntletTest {
         then(ProductResponseCalibrator.getInstance(expected, actual));
     }
 
-    @Test(groups = {TestSuite.ACCEPTANCE, TestSuite.DEBUG}, dependsOnMethods = "smoke")
+    @Test(groups = {TestSuite.ACCEPTANCE}, dependsOnMethods = "smoke")
     public void getById(){
         Product product = ProductProvider.getInstance().get();
         given(product);

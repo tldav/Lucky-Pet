@@ -1,6 +1,5 @@
 package com.luckypet.user.service.product;
 
-import com.luckypet.behavior.ToStringBehavior;
 import com.luckypet.user.data.product.Product;
 import com.luckypet.user.data.product.ProductCalibratable;
 import jakarta.ws.rs.client.Client;
