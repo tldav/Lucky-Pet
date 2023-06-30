@@ -1,10 +1,11 @@
 package com.luckypet.user.data.cart;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.luckypet.behavior.ToStringBehavior;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import com.luckypet.user.data.cart.item.Item;
+import com.luckypet.user.data.cart.item.ItemCalibratable;
+import com.luckypet.user.data.cart.item.ItemDefinition;
+import com.luckypet.user.data.product.Product;
+import com.luckypet.user.data.product.ProductDefinition;
 import org.softwareonpurpose.gauntlet.Environment;
 
 import java.sql.*;
@@ -23,7 +24,7 @@ public class CartRepository {
 
     public CartRepository() {
         try{
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
             this.connection = DriverManager.getConnection(DB_URL, MYSQL_USER, MYSQL_PASSWORD);
         } catch (Exception e){
             e.getStackTrace();
@@ -44,55 +45,53 @@ public class CartRepository {
         List<Cart> carts = new ArrayList<>();
         try {
             ResultSet resultSet = this.executeQuery();
-            JSONArray jsonArrayCart = new JSONArray();
-            JSONArray jsonArrayItemList = new JSONArray();
-            JSONObject cart = new JSONObject();
+            List<ItemCalibratable> itemList;
+            CartDefinition cartDefinition = CartDefinition.getInstance();
 
             int lastId = 0;
             while (resultSet.next()) {
-                JSONObject itemInCart = new JSONObject();
-
                 int cartIdFromCart = resultSet.getInt("cart_id_from_cart");
+                itemList = new ArrayList<>();
                 if (cartIdFromCart != lastId) {
-                    jsonArrayItemList = new JSONArray();
-                    cart = new JSONObject();
+                    cartDefinition = CartDefinition.getInstance();
                     lastId = cartIdFromCart;
-                    cart.put("id", cartIdFromCart);
+                    cartDefinition.withId(cartIdFromCart);
                 }
-
                 if (resultSet.getObject("cart_id_from_item") != null) {
-                    JSONObject product = new JSONObject();
-                    product.put("id", resultSet.getInt("product_id"));
-                    product.put("description", resultSet.getString("description"));
-                    product.put("price", resultSet.getInt("price"));
-                    product.put("stock", resultSet.getInt("stock"));
-
-                    itemInCart.put("quantity", resultSet.getInt("quantity"));
-                    itemInCart.put("_product", product);
-                    jsonArrayItemList.add(itemInCart);
+                    Product product = ProductDefinition.getInstance()
+                            .withId(resultSet.getInt("product_id"))
+                            .withDescription(resultSet.getString("description"))
+                            .withPrice(resultSet.getInt("price"))
+                            .withStock(resultSet.getInt("stock")).toProduct();
+                    Item item = ItemDefinition.getInstance()
+                            .withQuantity(resultSet.getInt("quantity"))
+                            .withProduct(product).toItem();
+                    itemList.add(item);
                 }
-
-                cart.put("itemList", jsonArrayItemList);
-                if (jsonArrayCart.contains(cart)) {
-                    jsonArrayCart.remove(cart);
+                CartDefinition cart = cartDefinition.withItemList(itemList);
+                Cart realCart = cart.toCart();
+                ToStringBehavior.getInstance().print(realCart);
+                // when there is a cart with more than one item, if you don't remove the cart from the array
+                // it will add a new cart with the first item, then add a new cart with the first item and second item
+                // and so on...
+                if (carts.contains(realCart)) {
+                    carts.remove(realCart);
                 }
-                jsonArrayCart.add(cart);
+                carts.add(realCart);
             }
-            carts = new Gson().fromJson(jsonArrayCart.toJSONString(), new TypeToken<List<Cart>>() {
-            }.getType());
             connection.close();
         } catch (Exception e) {
             e.getStackTrace();
         }
-        ToStringBehavior.getInstance().print(carts);
         return carts;
     }
+
 
     private ResultSet executeQuery() throws SQLException {
         Statement statement = connection.createStatement();
         return statement.executeQuery("""
                     select c.cart_id as cart_id_from_cart, i.cart_id as cart_id_from_item, i.quantity, i.product_id, p.description, p.price, p.stock from _cart as c
                     LEFT JOIN _item i on c.cart_id=i.cart_id
-                    LEFT JOIN _product p on p.product_id=i.product_id;""".indent(4));
+                    LEFT JOIN _product p on p.id=i.product_id;""".indent(4));
     }
 }

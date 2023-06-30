@@ -7,24 +7,29 @@ import java.util.List;
 
 public class CartDefinition implements CartCalibratable {
     private Integer id;
-    private final List<ItemCalibratable> itemList = new ArrayList<>();
-    
-    private CartDefinition(CartCalibratable cart) {
-        if (cart != null) {
-            this.itemList.addAll(cart.getItemList());
-            this.id = cart.getId();
-        }
+    private List<ItemCalibratable> itemList = new ArrayList<>();
+
+    private CartDefinition(){
     }
-    
-    public static CartCalibratable getInstance() {
-        return new CartDefinition(null);
+
+    public static CartDefinition getInstance() {
+        return new CartDefinition();
     }
-    
+
     public CartDefinition withId(Integer id) {
         this.id = id;
         return this;
     }
-    
+
+    public CartDefinition withItemList(List<ItemCalibratable> itemList) {
+        this.itemList.addAll(itemList);
+        return this;
+    }
+
+    public Cart toCart() {
+        return Cart.getInstance(this);
+    }
+
     @Override
     public Integer getId() {
         return this.id;

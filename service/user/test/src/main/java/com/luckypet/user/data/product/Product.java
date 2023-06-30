@@ -9,6 +9,17 @@ public class Product implements ProductCalibratable {
     public Product() {
     }
 
+    private Product(Integer id, Integer price, String description, Integer stock) {
+        this.id = id;
+        this.price = price;
+        this.description = description;
+        this.stock = stock;
+    }
+
+    public static Product getInstance(ProductDefinition productDefinition) {
+        return new Product(productDefinition.getId(), productDefinition.getPrice(), productDefinition.getDescription(), productDefinition.getStock());
+    }
+
     @Override
     public Integer getId() {
         return this.id;

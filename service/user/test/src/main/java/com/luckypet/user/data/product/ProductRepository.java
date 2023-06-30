@@ -1,9 +1,5 @@
 package com.luckypet.user.data.product;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.softwareonpurpose.gauntlet.Environment;
 
 import java.sql.*;
@@ -14,6 +10,16 @@ public class ProductRepository {
     public static final String DB_URL = "jdbc:mysql://localhost:3306/lucky_pet_db";
     public static final String MYSQL_USER = Environment.getInstance().getProperty("user");
     public static final String MYSQL_PASSWORD = Environment.getInstance().getProperty("password");
+    private Connection connection;
+
+    private ProductRepository(){
+        try {
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            this.connection = DriverManager.getConnection(DB_URL, MYSQL_USER, MYSQL_PASSWORD);
+        } catch (Exception e){
+            e.getStackTrace();
+        }
+    }
 
     public static ProductRepository getInstance() {
         return new ProductRepository();
@@ -31,29 +37,26 @@ public class ProductRepository {
     public List<Product> query() {
         List<Product> products = new ArrayList<>();
         try{
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-            Connection connection = DriverManager.getConnection(DB_URL, MYSQL_USER, MYSQL_PASSWORD);
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from _product");
-
-            JSONArray productList = new JSONArray();
-
+            ResultSet resultSet = this.executeQuery();
             while(resultSet.next()){
-                JSONObject product = new JSONObject();
+                Product product = ProductDefinition.getInstance()
+                        .withId(resultSet.getInt("id"))
+                        .withDescription(resultSet.getString("description"))
+                        .withPrice(resultSet.getInt("price"))
+                        .withStock(resultSet.getInt("stock"))
+                        .toProduct();
 
-                product.put("id",resultSet.getInt("product_id"));
-                product.put("description", resultSet.getString("description"));
-                product.put("price", resultSet.getInt("price"));
-                product.put("stock", resultSet.getInt("stock"));
-
-                productList.add(product);
+                products.add(product);
             }
-
-            products = new Gson().fromJson(productList.toJSONString(),new TypeToken<List<Product>>(){}.getType());
             connection.close();
         } catch (Exception e) {
             e.getStackTrace();
         }
         return products;
+    }
+
+    private ResultSet executeQuery() throws SQLException {
+        Statement statement = connection.createStatement();
+        return statement.executeQuery("select * from _product");
     }
 }

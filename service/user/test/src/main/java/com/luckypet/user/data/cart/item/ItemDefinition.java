@@ -6,6 +6,10 @@ public class ItemDefinition implements ItemCalibratable {
     private Integer quantity;
     private Product product;
 
+    public static ItemDefinition getInstance() {
+        return new ItemDefinition();
+    }
+
     public ItemDefinition withQuantity(Integer quantity) {
         this.quantity = quantity;
         return this;
@@ -16,13 +20,17 @@ public class ItemDefinition implements ItemCalibratable {
         return this;
     }
 
+    public Item toItem() {
+        return Item.getInstance(this);
+    }
+
     @Override
     public Integer getQuantity() {
         return this.quantity;
     }
 
     @Override
-    public Product get_product() {
+    public Product getProduct() {
         return this.product;
     }
 

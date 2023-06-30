@@ -9,11 +9,20 @@ import java.util.List;
 public class Cart implements CartCalibratable {
     
     private Integer id;
-    private final List<Item> itemList = new ArrayList<>();
+    private List<ItemCalibratable> itemList = new ArrayList<>();
     
     public Cart() {
     }
-    
+
+    private Cart(Integer id, List<ItemCalibratable> itemList) {
+        this.id = id;
+        this.itemList = itemList;
+    }
+
+    public static Cart getInstance(CartDefinition cartDefinition) {
+        return new Cart(cartDefinition.getId(), cartDefinition.getItemList());
+    }
+
     private boolean itemsAreEquivalent(List<ItemCalibratable> comparatorItemList) {
         boolean areEquivalent = true;
         for (ItemCalibratable comparatorItem : comparatorItemList) {

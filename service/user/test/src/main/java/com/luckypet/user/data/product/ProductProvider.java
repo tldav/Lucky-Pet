@@ -1,7 +1,5 @@
 package com.luckypet.user.data.product;
 
-import com.luckypet.user.data.cart.CartRepository;
-
 import java.util.List;
 
 public class ProductProvider {

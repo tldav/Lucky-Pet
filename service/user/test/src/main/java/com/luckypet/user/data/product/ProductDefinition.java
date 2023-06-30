@@ -6,8 +6,15 @@ public class ProductDefinition implements ProductCalibratable {
     private Integer price;
     private Integer stock;
 
-    public static ProductCalibratable getInstance() {
+    public ProductDefinition() {
+    }
+
+    public static ProductDefinition getInstance() {
         return new ProductDefinition();
+    }
+
+    public Product toProduct(){
+        return Product.getInstance(this);
     }
 
     public ProductDefinition withDescription(String description) {
@@ -22,6 +29,11 @@ public class ProductDefinition implements ProductCalibratable {
 
     public ProductDefinition withStock(Integer stock) {
         this.stock = stock;
+        return this;
+    }
+
+    public ProductDefinition withId(Integer id) {
+        this.id = id;
         return this;
     }
 
