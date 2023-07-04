@@ -10,13 +10,13 @@ const calculateSubtotalScenarios = [
   [[
     {
       quantity: 2,
-      _product: {
+      product: {
         price: 500,
       },
     },
     {
       quantity: 7,
-      _product: {
+      product: {
         price: 60,
       },
     },
@@ -27,13 +27,13 @@ const calculateLineItemTotalScenarios = [
   [
     {
       quantity: 2,
-      _product: {
+      product: {
         price: 500,
       },
     }, 1000],
     [{
       quantity: 5,
-      _product: {
+      product: {
         price: 50,
       },
     }, 250]

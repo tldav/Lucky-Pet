@@ -8,7 +8,7 @@ function ItemListRegion({ items }) {
 
 	const renderItemRegions = () => {
 		return items.map((item) => {
-			return <ItemRegion key={item._product.id} item={item} />;
+			return <ItemRegion key={item.product.id} item={item} />;
 		});
 	};
 
