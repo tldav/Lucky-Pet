@@ -8,11 +8,11 @@ function formatCurrency(cents) {
 }
 
 function calculateSubtotal(items) {
-	return items.reduce((acc, item) => (acc = acc + item._product.price * item.quantity), 0);
+	return items.reduce((acc, item) => (acc = acc + item.product.price * item.quantity), 0);
 }
 
 function calculateLineItemTotal(item) {
-	return item.quantity * item._product.price;
+	return item.quantity * item.product.price;
 }
 
 module.exports = { formatCurrency, calculateSubtotal, calculateLineItemTotal };

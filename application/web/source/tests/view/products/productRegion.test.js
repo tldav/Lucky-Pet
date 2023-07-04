@@ -13,7 +13,7 @@ const isInCartScenarios = [
       "itemList": [
         {
           "quantity": 5,
-          "_product": {
+          "product": {
             "id": 1,
             "price": 500,
             "description": "Sample text"
@@ -28,7 +28,7 @@ const isInCartScenarios = [
       "itemList": [
         {
           "quantity": 5,
-          "_product": {
+          "product": {
             "id": 1,
             "price": 500,
             "description": "Sample text"
