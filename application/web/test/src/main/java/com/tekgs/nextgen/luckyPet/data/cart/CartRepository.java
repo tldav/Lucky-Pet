@@ -87,6 +87,6 @@ public class CartRepository {
         return statement.executeQuery("""
                 select c.cart_id as cart_id_from_cart, i.cart_id as cart_id_from_item, i.quantity, i.product_id, p.description, p.price, p.stock from _cart as c
                 LEFT JOIN _item i on c.cart_id=i.cart_id
-                LEFT JOIN _product p on p.product_id=i.product_id;""".indent(4));
+                LEFT JOIN _product p on p.id=i.product_id;""".indent(4));
     }
 }
